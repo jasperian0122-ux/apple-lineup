@@ -1,0 +1,49 @@
+{
+  "name": "Apple Hub｜十一個網站",
+  "short_name": "Apple Hub",
+  "description": "Apple 2026 全系列資料、訂閱比價、規格對比、記帳、倒數、旅遊攻略等 11 個網站，一個入口。",
+  "lang": "zh-Hant",
+  "dir": "ltr",
+  "start_url": "./index.html?sharecode=BA7H62QNZZ",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f5f5f7",
+  "theme_color": "#0071e3",
+  "categories": ["productivity", "utilities", "shopping"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Apple 產品站",
+      "url": "./apple-lineup/"
+    },
+    {
+      "name": "訂閱比價",
+      "url": "./subs-compare/"
+    },
+    {
+      "name": "下載桌面版",
+      "url": "./download/"
+    }
+  ]
+}

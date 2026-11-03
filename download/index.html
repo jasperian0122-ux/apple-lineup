@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>下載 Apple Hub｜iPhone・Android・電視・Mac・Windows</title>
+<meta name="description" content="Apple Hub 免費下載：macOS（.dmg）、Windows（.zip）、Android 手機與 Android TV（.apk），iPhone／iPad 免下載直接加入主屏幕。內建 14 個網站，離線可用、免登入。">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="icon" type="image/png" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/icons/icon-180.png">
+<meta name="theme-color" content="#0071e3">
+<style>
+  .dl-card{display:flex;flex-direction:column;height:100%}
+  .dl-card .os{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .dl-card .os svg{width:30px;height:30px;flex:none}
+  .dl-card .os strong{font-size:19px}
+  .dl-card .meta{font-size:13px;color:var(--ink-3);margin-top:auto;padding-top:16px}
+  .dl-card .btn{width:100%;text-align:center;margin-top:14px}
+  .alt{padding:8px 0 0;font-size:13px;text-align:center}
+  .alt a{color:var(--ink-3)}
+  .steps{counter-reset:s}
+  .steps li{list-style:none;position:relative;padding-left:38px;margin-bottom:16px;font-size:14.5px}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;
+    width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;
+    font-size:13px;font-weight:700;display:grid;place-items:center}
+  .steps code,code.k{background:rgba(0,0,0,.06);padding:2px 6px;border-radius:5px;font-size:13px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .note{background:rgba(178,80,0,.08);border:1px solid rgba(178,80,0,.22);border-radius:var(--radius-sm);
+    padding:14px 16px;font-size:13.5px;color:#7a3600}
+  .note b{color:#5c2900}
+  .note.blue{background:rgba(0,113,227,.07);border-color:rgba(0,113,227,.22);color:#0a4a8f}
+  .note.blue b{color:#083a6e}
+  .hash{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;word-break:break-all;
+    color:var(--ink-3);background:#fafafa;border:1px solid var(--line);border-radius:8px;
+    padding:8px 10px;margin-top:6px;cursor:pointer}
+  .hash:hover{background:#f2f2f4}
+  details{border-top:1px solid var(--line);padding:14px 0}
+  details summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"＋ ";color:var(--accent);font-weight:700}
+  details[open] summary::before{content:"− "}
+  details p{font-size:14px;color:var(--ink-2);margin:10px 0 0}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;
+    background:rgba(29,122,61,.1);color:var(--good);font-size:12.5px;font-weight:700}
+  .badge i{width:6px;height:6px;border-radius:50%;background:currentColor;display:block}
+  /* iPhone 分享選單示意 */
+  .ios-demo{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px 16px;
+    max-width:250px;margin:0 auto;box-shadow:var(--shadow);font-size:13px}
+  .ios-demo .bar{display:flex;justify-content:space-between;align-items:center;color:var(--ink-3);
+    font-size:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+  .ios-demo .sheet{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+  .ios-demo .sheet span{width:46px;text-align:center;color:var(--ink-2);font-size:10.5px}
+  .ios-demo .sheet span b{display:grid;place-items:center;width:44px;height:44px;border-radius:11px;
+    background:#f2f2f4;font-size:19px;margin-bottom:4px;font-weight:400}
+  .ios-demo .sheet span.hi b{background:var(--accent);color:#fff}
+  @media print{.topnav,.btn{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <span class="brand">Apple Hub 下載</span>
+    <span class="links">
+      <a href="#pc">電腦</a>
+      <a href="#mobile">手機・電視</a>
+      <a href="#ios">iPhone 教學</a>
+      <a href="#faq">常見問題</a>
+      <a href="../index.html">← 十四站入口</a>
+    </span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker reveal">Desktop · Mobile · TV · v1.1.0</p>
+    <h1 class="reveal">每個裝置<br>都有<span class="grad">同一個 App</span></h1>
+    <p class="sub reveal">14 個網站裝進一個殼：Apple 產品站、訂閱比價、規格對比、記帳、倒數、發票對獎、旅遊攻略……電腦、手機、電視都能開，離線可用、免登入、資料只留在你自己的裝置。</p>
+    <div class="reveal" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span class="badge"><i></i>免費</span>
+      <span class="badge" style="background:rgba(0,113,227,.1);color:var(--accent)">Mac · Windows · Android · TV · iOS</span>
+      <span class="badge" style="background:rgba(0,0,0,.06);color:var(--ink-2)">完全離線</span>
+      <span class="badge" style="background:rgba(0,0,0,.06);color:var(--ink-2)">無廣告 · 無追蹤</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 更新內容 ============ -->
+<section id="changelog" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="card reveal" style="border-left:4px solid var(--accent)">
+      <span class="chip">v1.1.0 · 2026-11-03</span>
+      <h3 style="margin:10px 0 6px">這一版新增了什麼</h3>
+      <ul style="margin:0;padding-left:20px;font-size:14.5px;color:var(--ink-2);line-height:1.9">
+        <li>新增 <b>二手殘值計算器</b>：舊機估價區間、折舊曲線、換機差額</li>
+        <li>新增 <b>相容性對照表</b>：系統 × 快充 × 5G／eSIM，可搜尋篩選</li>
+        <li>新增 <b>分期與教育價計算器</b>：月付試算、學生優惠、四幣別換算</li>
+        <li>幣別切換更快：記住上次選擇，切換後留在同一頁</li>
+        <li>桌面版新增幣別快捷切換與「檢查更新」</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 電腦 ============ -->
+<section id="pc">
+  <div class="wrap">
+    <p class="kicker reveal">電腦版</p>
+    <h2 class="reveal">macOS 與 Windows</h2>
+    <p class="muted reveal" style="margin-bottom:24px">點一下即開始下載。檔案較大（約 110 MB），建議用 Wi-Fi。</p>
+
+    <div class="grid g2">
+      <div class="card dl-card reveal">
+        <div class="os">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.9c.02 2.2 1.93 2.93 1.95 2.94-.02.05-.31 1.05-1.01 2.08-.61.9-1.24 1.79-2.24 1.81-.98.02-1.3-.58-2.42-.58-1.12 0-1.47.56-2.4.6-.97.03-1.7-.97-2.32-1.87-1.26-1.83-2.22-5.17-.93-7.43.64-1.12 1.79-1.83 3.03-1.85.95-.02 1.84.64 2.42.64.58 0 1.66-.79 2.8-.67.48.02 1.82.19 2.68 1.45-.07.04-1.6.93-1.58 2.88M14.4 5.3c.5-.61.84-1.45.75-2.3-.75.03-1.65.5-2.18 1.1-.47.54-.88 1.4-.77 2.23.83.06 1.68-.42 2.2-1.03"/></svg>
+          <div>
+            <strong>macOS</strong>
+            <div class="muted" style="font-size:13px">安裝檔 · .dmg</div>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0">
+          拖進「應用程式」即可用。Apple 晶片（M1 以上）與 Intel 機型皆可執行。
+        </p>
+        <div class="meta">macOS 11 Big Sur 或更新版 · 115 MB · 未簽章</div>
+        <a class="btn" href="files/Apple-Hub-1.1.0-mac-x64.dmg" download>下載 macOS 版（.dmg）</a>
+        <div class="alt">或 <a href="files/Apple-Hub-1.1.0-mac-x64.zip" download>下載 zip 壓縮版</a>（102 MB，解壓即用）</div>
+        <div class="hash" data-hash="fdbfe3f04c75da278b455b5ec36673c1a50ccd62afee132feffb05169dc93b61" title="點擊複製">SHA-256 fdbfe3f0…3b61</div>
+      </div>
+
+      <div class="card dl-card reveal">
+        <div class="os">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.6l7.4-1v7.1H3V5.6zM11.6 4.4L21 3v8.7h-9.4V4.4zM3 12.7h7.4v7.1L3 18.8v-6.1zM11.6 12.7H21V21l-9.4-1.3v-7z"/></svg>
+          <div>
+            <strong>Windows</strong>
+            <div class="muted" style="font-size:13px">免安裝 · .zip</div>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0">
+          解壓到任何資料夾，雙擊 <code class="k">Apple Hub.exe</code> 就能開，不寫登錄檔。
+        </p>
+        <div class="meta">Windows 10 / 11（64 位元）· 110 MB · 免安裝</div>
+        <a class="btn dark" href="files/Apple-Hub-1.1.0-win-x64.zip" download>下載 Windows 版（.zip）</a>
+        <div class="alt">解壓後執行 <code class="k">Apple Hub.exe</code></div>
+        <div class="hash" data-hash="48a9a1cae57bc434688ea716c4688b2ec5dc53825b4c671c26d4c39dfdbd629f" title="點擊複製">SHA-256 48a9a1ca…629f</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 手機・電視 ============ -->
+<section id="mobile" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker reveal">手機・電視版</p>
+    <h2 class="reveal">口袋裡、客廳裡</h2>
+    <p class="muted reveal" style="margin-bottom:24px">Android 直接裝 APK；iPhone 用 Safari「加入主屏幕」，一樣有獨立圖標、全屏開啟。</p>
+
+    <div class="grid g3">
+      <!-- iPhone -->
+      <div class="card dl-card reveal">
+        <div class="os">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.9c.02 2.2 1.93 2.93 1.95 2.94-.02.05-.31 1.05-1.01 2.08-.61.9-1.24 1.79-2.24 1.81-.98.02-1.3-.58-2.42-.58-1.12 0-1.47.56-2.4.6-.97.03-1.7-.97-2.32-1.87-1.26-1.83-2.22-5.17-.93-7.43.64-1.12 1.79-1.83 3.03-1.85.95-.02 1.84.64 2.42.64.58 0 1.66-.79 2.8-.67.48.02 1.82.19 2.68 1.45-.07.04-1.6.93-1.58 2.88M14.4 5.3c.5-.61.84-1.45.75-2.3-.75.03-1.65.5-2.18 1.1-.47.54-.88 1.4-.77 2.23.83.06 1.68-.42 2.2-1.03"/></svg>
+          <div>
+            <strong>iPhone・iPad</strong>
+            <div class="muted" style="font-size:13px">.ipa 安裝檔 · 未簽名</div>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0">
+          完整 App 包（含 14 個網站）。用愛思助手、Sideloadly、AltStore 等工具以自己的 Apple ID 簽名後即可安裝。
+        </p>
+        <div class="meta">iOS / iPadOS 13 以上 · 1.0 MB · 需自行簽名</div>
+        <a class="btn" href="files/Apple-Hub-1.1.0-ios.ipa" download>下載 iOS 版（.ipa）</a>
+        <div class="alt"><a href="#ios">不想每 7 天重簽？用「加入主屏幕」（永久有效）→</a></div>
+        <div class="hash" data-hash="da48dad57a759e8b237e7d28cd03f7bef280b5cdae99f0c88a1fb7f5d55b92c2" title="點擊複製">SHA-256 da48dad5…92c2</div>
+      </div>
+
+      <!-- Android -->
+      <div class="card dl-card reveal">
+        <div class="os">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 9h12v9a2 2 0 0 1-2 2h-1v3h-2v-3h-2v3H9v-3H8a2 2 0 0 1-2-2V9zm-3 .5A1.5 1.5 0 0 1 4.5 11v5a1.5 1.5 0 1 1-3 0v-5A1.5 1.5 0 0 1 3 9.5zm18 0a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 1 1-3 0v-5A1.5 1.5 0 0 1 21 9.5zM7.5 8a6 6 0 0 1 9 0h-9zm2-4.2l-1-1.6.9-.5 1.1 1.7a6.2 6.2 0 0 1 3 0l1.1-1.7.9.5-1 1.6A6 6 0 0 1 9.5 3.8zM9.2 6a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6zm5.6 0a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6z"/></svg>
+          <div>
+            <strong>Android 手機</strong>
+            <div class="muted" style="font-size:13px">APK 安裝檔</div>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0">
+          WebView 外殼，把 14 個網站打包在裡面。裝好之後完全離線，不用開瀏覽器。
+        </p>
+        <div class="meta">Android 5.0 以上 · 1.0 MB · 未上架</div>
+        <a class="btn" href="files/Apple-Hub-1.1.0-android.apk" download>下載 Android 版（.apk）</a>
+        <div class="alt">需允許「安裝未知來源的應用」</div>
+        <div class="hash" data-hash="33b1fe7ae8a46506dec4411e2c71a450e1df6ee8c407f8539ab08ea2b408b43e" title="點擊複製">SHA-256 33b1fe7a…b43e</div>
+      </div>
+
+      <!-- Android TV -->
+      <div class="card dl-card reveal">
+        <div class="os">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5h20a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-7v2h3v2H6v-2h3v-2H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2v9h18V7H3z"/></svg>
+          <div>
+            <strong>Android TV</strong>
+            <div class="muted" style="font-size:13px">電視專用 APK</div>
+          </div>
+        </div>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0">
+          專為大螢幕調整：字體放大、卡片兩欄、遙控器上下鍵翻頁，坐在沙發上也看得清。
+        </p>
+        <div class="meta">Android TV 7.0 以上 · 1.0 MB · 附橫式 banner</div>
+        <a class="btn dark" href="files/Apple-Hub-1.1.0-androidtv.apk" download>下載電視版（.apk）</a>
+        <div class="alt">用 U 盤或 ADB 安裝，見下方說明</div>
+        <div class="hash" data-hash="66f4b41d719bcde27923c7ceb9d93f7d7a9df8a69776de4880a8318962e0dad0" title="點擊複製">SHA-256 66f4b41d…dad0</div>
+      </div>
+    </div>
+
+    <div class="note blue reveal" style="margin-top:22px">
+      <b>iPhone 有兩條路，自己選。</b>　<b>① 下載 .ipa</b>：用愛思助手／Sideloadly 以自己的 Apple ID 簽名，裝完就是一個真正的 App，但免費簽名每 7 天要重簽一次。<b>② 加入主屏幕</b>：不用簽名、不會過期、不用電腦，效果幾乎一樣（獨立圖標、全屏、可離線）。<b>只想快點用就選 ②，想放進手機當真 App 就選 ①。</b>
+    </div>
+  </div>
+</section>
+
+<!-- ============ iPhone 教學 ============ -->
+<section id="ios">
+  <div class="wrap">
+    <p class="kicker reveal">iPhone・iPad</p>
+    <h2 class="reveal">兩種裝法，自己選</h2>
+
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <!-- 方案 A -->
+      <div class="card reveal">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <span class="chip" style="background:rgba(29,122,61,.12);color:var(--good)">方案 A · 推薦</span>
+        </div>
+        <h3>加入主屏幕（不用簽名）</h3>
+        <ol class="steps" style="padding:0;margin:14px 0 0">
+          <li><b>用 Safari 打開本站</b><br><span class="muted">一定要 Safari，Chrome 或 IG／FB 內建瀏覽器不行。</span></li>
+          <li><b>點底部「分享」按鈕</b>（方框加上箭頭的圖標），往下滑找到 <b>「加入主屏幕」</b>。</li>
+          <li><b>按「加入」</b>，主屏幕就多一個 Apple Hub 圖標。之後點它會全屏打開，像原生 App 一樣。</li>
+        </ol>
+        <p class="muted" style="margin-top:16px">優點：永久有效、不用電腦、不會過期。加完之後即使沒有網路，開過的頁面也能看。</p>
+      </div>
+
+      <!-- 方案 B -->
+      <div class="card reveal">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <span class="chip">方案 B · 真正的 App</span>
+        </div>
+        <h3>下載 .ipa 自己簽名</h3>
+        <ol class="steps" style="padding:0;margin:14px 0 0">
+          <li>電腦裝 <b>愛思助手</b>（i4.cn）、<b>Sideloadly</b> 或 <b>AltStore</b>，用 USB 線連上 iPhone。</li>
+          <li>把上面下載的 <code class="k">Apple-Hub-1.1.0-ios.ipa</code> 拖進工具，輸入自己的 Apple ID（免費帳號就行）。</li>
+          <li>工具自動簽名並安裝。首次開啟前，到 iPhone <b>設定 → 通用 → VPN 與裝置管理</b> 點「信任」你的開發者憑證。</li>
+          <li>完成。免費簽名 7 天後失效，用同一個工具再簽一次即可，<b>App 裡的資料會保留</b>。</li>
+        </ol>
+        <p class="muted" style="margin-top:16px">優點：真正的獨立 App，有圖標、全屏、可背景快取。缺點：每 7 天要重簽一次（付費開發者帳號可延長到一年）。</p>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:18px;align-items:center">
+      <div class="card reveal" style="background:#fafafa">
+        <div class="ios-demo">
+          <div class="bar"><span>9:41</span><span>apple-2026…</span><span>⋯</span></div>
+          <div style="text-align:center;font-weight:600;margin-bottom:8px">分享</div>
+          <div class="sheet">
+            <span><b>💬</b>訊息</span>
+            <span><b>✉️</b>郵件</span>
+            <span class="hi"><b>➕</b>加入主屏幕</span>
+            <span><b>🖨️</b>列印</span>
+          </div>
+        </div>
+        <p class="muted" style="text-align:center;margin-top:14px;font-size:12.5px">方案 A 的分享選單位置（示意，實際以你的 iOS 版本為準）</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="margin-bottom:10px">ipa 是什麼？安全嗎？</h3>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0 0 12px">
+          就是 iPhone 的安裝包，本質是一個 zip：裡面是 App 的程式檔、圖標，加上這 14 個網站的網頁。這個 ipa 是我用 Apple 官方 iOS SDK 編譯的，沒有連網上傳、沒有廣告 SDK、沒有第三方追蹤。
+        </p>
+        <p style="font-size:14.5px;color:var(--ink-2);margin:0">
+          因為沒有付費開發者憑證，檔案是<b>未簽名</b>的——iOS 不會讓你直接裝，必須先用自己的 Apple ID 簽一次（就是上面方案 B 做的事）。這也是為什麼頁面上給了 SHA-256：你可以確認檔案沒被別人改過。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Android 教學 ============ -->
+<section id="android" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker reveal">Android</p>
+    <h2 class="reveal">手機與電視怎麼裝</h2>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card reveal">
+        <h3>📱 Android 手機 / 平板</h3>
+        <ol class="steps" style="padding:0;margin:14px 0 0">
+          <li>點上面的下載按鈕，等通知欄出現 <code class="k">Apple-Hub-1.1.0-android.apk</code>。</li>
+          <li>點開通知，系統會問「是否允許安裝未知應用」→ 選 <b>允許</b>（在設定裡叫「安裝不明應用程式」）。</li>
+          <li>按 <b>安裝 → 開啟</b>。之後從桌面圖標就能進。</li>
+        </ol>
+        <p class="muted" style="margin-top:14px">華為、小米、OPPO 等機型可能在安裝時多一道「安全檢測」，選「繼續安裝」即可。</p>
+      </div>
+      <div class="card reveal">
+        <h3>📺 Android TV / 電視盒</h3>
+        <ol class="steps" style="padding:0;margin:14px 0 0">
+          <li>把 APK 放進 <b>U 盤</b>，插到電視上；或用電視上的「文件管理／媒體播放器」開啟 U 盤。</li>
+          <li>點 APK 安裝。若被攔截，先到 <b>設定 → 安全性 → 不明的來源</b> 打開。</li>
+          <li>從應用列表找到 <b>Apple Hub TV</b>（有橫式封面圖）。用遙控器上下鍵翻頁、按確定鍵點擊。</li>
+        </ol>
+        <p class="muted" style="margin-top:14px">進階：同網段電腦可執行 <code class="k">adb install Apple-Hub-1.1.0-androidtv.apk</code> 直接推送到電視。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 電腦安裝 ============ -->
+<section id="install">
+  <div class="wrap">
+    <p class="kicker reveal">電腦安裝</p>
+    <h2 class="reveal">macOS 與 Windows</h2>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card reveal">
+        <h3>macOS</h3>
+        <ol class="steps" style="padding:0;margin:14px 0 0">
+          <li>下載 <code class="k">.dmg</code>，雙擊打開，把 <b>Apple Hub</b> 圖示拖進「應用程式」資料夾。</li>
+          <li>第一次別直接雙擊——在「應用程式」裡 <b>右鍵（或按住 Control 點擊）→ 打開</b>，在警告視窗再按一次「打開」。</li>
+          <li>之後就正常雙擊即可。<br><span class="muted">若顯示「已損毀」：到「系統設定 → 隱私權與安全性」最下方按「仍要打開」。</span></li>
+        </ol>
+      </div>
+      <div class="card reveal">
+        <h3>Windows</h3>
+        <ol class="steps" style="padding:0;margin:14px 0 0">
+          <li>下載 <code class="k">.zip</code>，右鍵 → <b>解壓縮全部</b>（不要直接在壓縮檔裡雙擊）。</li>
+          <li>進入解壓後的資料夾，雙擊 <code class="k">Apple Hub.exe</code>。</li>
+          <li>出現藍色 SmartScreen 視窗時，點 <b>「更多資訊」→「仍要執行」</b>。<br><span class="muted">只需一次；之後可把 exe 傳送到桌面當捷徑。</span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="note reveal" style="margin-top:22px">
+      <b>五個版本都沒有付費簽章</b>（個人專案沒買 Apple Developer / Windows 憑證），所以第一次打開會被系統攔一下——這是正常現象，不是病毒。照上面的步驟做一次就好，之後不會再問。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 規格 ============ -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker reveal">規格</p>
+    <h2 class="reveal">各版本一覽</h2>
+    <div class="reveal" style="overflow-x:auto;margin-top:18px">
+      <table>
+        <thead><tr><th>裝置</th><th>形式</th><th>系統需求</th><th class="num">大小</th></tr></thead>
+        <tbody>
+          <tr><td>macOS</td><td>.dmg 安裝檔</td><td>macOS 11+，Apple 晶片或 Intel</td><td class="num">115 MB</td></tr>
+          <tr><td>Windows</td><td>.zip 免安裝</td><td>Windows 10 / 11（64 位元）</td><td class="num">110 MB</td></tr>
+          <tr><td>Android 手機</td><td>.apk</td><td>Android 5.0 以上</td><td class="num">1.0 MB</td></tr>
+          <tr><td>Android TV</td><td>.apk（Leanback）</td><td>Android TV 7.0 以上</td><td class="num">1.0 MB</td></tr>
+          <tr><td>iPhone / iPad</td><td>.ipa（未簽名，需自簽）</td><td>iOS / iPadOS 13 以上</td><td class="num">1.0 MB</td></tr>
+          <tr><td>iPhone / iPad</td><td>加入主屏幕（PWA）</td><td>iOS / iPadOS 16.4 以上</td><td class="num">0 MB</td></tr>
+          <tr><td>任何瀏覽器</td><td>直接用網頁版</td><td>近五年任何瀏覽器</td><td class="num">0 MB</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted reveal" style="margin-top:12px">所有版本內容相同：14 個網站、約 1.6 MB 頁面資料，資料存在你自己的裝置裡，不上傳。</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <p class="kicker reveal">常見問題</p>
+    <h2 class="reveal">下載前想知道的事</h2>
+    <div class="reveal" style="margin-top:20px">
+      <details open>
+        <summary>為什麼 ipa 要自己簽名？7 天後怎麼辦？</summary>
+        <p>iOS 只安裝「由 Apple 認可的憑證簽過名」的 App。憑證是綁定在個人 Apple 帳號上的，我不能代替你簽（簽了也裝不進你的手機）。所以流程是：你下載 ipa → 用愛思助手／Sideloadly 拖進去 → 輸入自己的 Apple ID → 工具自動重簽並安裝。免費帳號的簽名有效期 7 天，到期後用同一個工具再簽一次就好，<b>App 內的資料（記帳、倒數、打包清單）會保留</b>。</p>
+      </details>
+      <details>
+        <summary>App 裡面有哪 14 個網站？</summary>
+        <p>Apple 產品站（四種幣別）、訂閱比價、規格對比、換機指南、記帳、倒數計時、發票對獎、旅遊攻略（四城）、Apple 百科、作品集、連結頁。桌面版側邊欄點一下就切換，也可以用 ⌘K / Ctrl+K 搜尋。</p>
+      </details>
+      <details>
+        <summary>Android 手機會不會有病毒？</summary>
+        <p>APK 是我用 Android 官方 build-tools 編譯、自己簽名的，內容就是這 11 個本地網頁加一個 WebView 外殼，沒有連網權限以外的任何權限。頁面上有 SHA-256，你可以自行比對檔案是否被動過。</p>
+      </details>
+      <details>
+        <summary>電視版遙控器怎麼操作？</summary>
+        <p>上下鍵翻頁、確定鍵點擊連結、返回鍵回上一頁。字體與卡片都為大螢幕放大過，三公尺外也看得清。</p>
+      </details>
+      <details>
+        <summary>會自動更新嗎？</summary>
+        <p>不會。有新版本時回來這一頁重新下載、覆蓋安裝即可，本機資料會保留。</p>
+      </details>
+      <details>
+        <summary>怎麼確認下載的檔案沒被動過？</summary>
+        <p>點卡片上的 SHA-256 那行可複製雜湊值，然後在終端機執行 <code class="k">shasum -a 256 檔案路徑</code>（Windows 用 <code class="k">certutil -hashfile 檔案 SHA256</code>），兩串字完全一樣就代表檔案完整。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="card reveal" style="text-align:center;padding:38px 26px">
+      <h3 style="font-size:22px">不想裝任何東西？</h3>
+      <p class="muted" style="max-width:520px;margin:0 auto 20px">網頁版一樣有全部 14 個網站，免安裝、免註冊，任何裝置打開就能用。</p>
+      <a class="btn ghost" href="../index.html">直接打開網頁版 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Apple Hub v1.1.0 · 2026 年 11 月 · 由 Jasper 製作</span>
+    <span><a href="../index.html">十四站入口</a> · <a href="../linkhub/">連結頁</a> · <a href="#pc">回到下載</a></span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.hash').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var v = el.dataset.hash, done = function () {
+        var t = el.textContent;
+        el.textContent = '✓ 已複製完整雜湊值';
+        setTimeout(function () { el.textContent = t; }, 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(v).then(done, function () {});
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = v; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>

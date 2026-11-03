@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多地區旅遊攻略｜香港・台北・東京・首爾 三日兩夜</title>
+<meta name="description" content="四城三日兩夜自由行攻略：香港、台北、東京、首爾，每城含每日行程、交通美食、預算估算、實用小貼士與可列印打包清單。">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  /* ---- 地區切換 ---- */
+  .region-switch{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 0 8px}
+  .rbtn{
+    padding:11px 20px;border-radius:999px;border:1.5px solid var(--line);
+    background:var(--surface);font-weight:600;font-size:14.5px;cursor:pointer;color:var(--ink-2);
+    transition:all .15s;white-space:nowrap;
+  }
+  .rbtn:hover{border-color:var(--accent);color:var(--accent)}
+  .rbtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  @media(max-width:560px){
+    .region-switch{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+  }
+  .region{display:none}
+  .region.active{display:block}
+  .print-hint{font-size:13px;color:var(--ink-3);margin-top:10px}
+
+  /* ---- 天數分頁 ---- */
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 20px}
+  .tab{
+    padding:10px 22px;border-radius:999px;border:1.5px solid var(--line);
+    background:var(--surface);font-weight:600;font-size:14.5px;cursor:pointer;color:var(--ink-2);
+    transition:all .15s;
+  }
+  .tab:hover{border-color:var(--accent);color:var(--accent)}
+  .tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .day{display:none}
+  .day.active{display:block}
+  .slot{margin-bottom:14px}
+  .slot .tag{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em}
+  .slot p{margin:6px 0 0;font-size:14.5px}
+  .tip{background:rgba(0,113,227,.07);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13.5px;margin-top:10px}
+
+  /* ---- 打包清單 ---- */
+  .pack{list-style:none;padding:0;margin:16px 0 0}
+  .pack li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+  .pack input{width:18px;height:18px;accent-color:var(--accent);flex:none}
+  .pack li.done label{color:var(--ink-3);text-decoration:line-through}
+  .progress{height:10px;border-radius:999px;background:rgba(0,0,0,.07);overflow:hidden;margin-top:14px}
+  .progress .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .25s}
+  .region-hint{font-size:13px;color:var(--ink-2);background:rgba(0,113,227,.07);border-radius:10px;padding:10px 14px;margin-top:14px}
+
+  /* ---- 列印：只印當前顯示的地區 ---- */
+  @media print{
+    .topnav,.tabs,.btn,.noprint{display:none!important}
+    .region{display:none!important}
+    .region.active{display:block!important}
+    .region.active .day{display:block!important;page-break-after:always}
+    body{background:#fff}
+    .card{box-shadow:none;break-inside:avoid}
+    footer{border:0}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <span class="brand">✈️ 多地區旅遊攻略</span>
+    <span class="links">
+      <a href="#regions">行程與預算</a>
+      <a href="#packing">打包</a>
+      <a href="../index.html">← 回總入口</a>
+    </span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Travel Guide · Asia City Breaks</p>
+    <h1>四城三日兩夜<span class="grad">自由行攻略</span></h1>
+    <p class="sub">香港、台北、東京、首爾——每座城市一條經典路線，含每日行程、預算估算與打包清單。點下方按鈕切換地區。</p>
+    <button class="btn" onclick="window.print()">🖨️ 列印此行程</button>
+    <p class="print-hint noprint">提示：列印只會輸出當前顯示的地區，請先切換到想列印的城市。</p>
+  </div>
+</header>
+
+<!-- ================= 地區切換 ================= -->
+<section id="regions" class="noprint" style="padding:8px 0 0">
+  <div class="wrap">
+    <div class="region-switch" role="tablist">
+      <button class="rbtn active" data-region="hk" onclick="showRegion('hk',this)">🇭🇰 香港</button>
+      <button class="rbtn" data-region="tpe" onclick="showRegion('tpe',this)">🇹🇼 台北</button>
+      <button class="rbtn" data-region="tky" onclick="showRegion('tky',this)">🇯🇵 東京</button>
+      <button class="rbtn" data-region="sel" onclick="showRegion('sel',this)">🇰🇷 首爾</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 香港 ================= -->
+<div class="region active" id="region-hk">
+<section id="days">
+  <div class="wrap">
+    <p class="kicker">Hong Kong · Itinerary</p>
+    <h2>香港每日行程</h2>
+
+    <div class="tabs noprint" role="tablist">
+      <button class="tab active" data-day="hk-d1" onclick="showDay('hk-d1',this)">Day 1｜港島經典</button>
+      <button class="tab" data-day="hk-d2" onclick="showDay('hk-d2',this)">Day 2｜九龍市井</button>
+      <button class="tab" data-day="hk-d3" onclick="showDay('hk-d3',this)">Day 3｜藝文慢遊</button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day active" id="hk-d1">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🌅 上午</span>
+          <h3>中環・半山扶梯</h3>
+          <p>港鐵中環站出發，走訪中環街市與嘉咸街壁畫，搭乘全球最長的中環至半山自動扶梯上山，俯瞰老城街景。</p>
+          <div class="tip">💡 扶梯上午 10 點前只向下運行，建議 10 點後再搭；嘉咸街壁畫適合早上順光拍照。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">☀️ 下午</span>
+          <h3>大館・蘭桂坊</h3>
+          <p>參觀前身為中區警署的古蹟群「大館」（免費入場，部分展覽收費），再到蘭桂坊石板街（砵典乍街）散步拍照。</p>
+          <div class="tip">💡 大館營業至晚上 11 點，傍晚人流較少；石板街斜坡石塊路面好拍不好走，穿好走的鞋。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🌙 晚上</span>
+          <h3>太平山夜景</h3>
+          <p>乘山頂纜車上太平山，於凌霄閣摩天台 428 觀賞世界級夜景。晚餐可選山頂廣場或回中環吃茶餐廳。</p>
+          <div class="tip">💡 纜車單程約 8 分鐘，日落前 1 小時上山最理想；可用八達通或 App 買票省排隊時間。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day" id="hk-d2">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🥟 上午</span>
+          <h3>飲茶點心・油麻地</h3>
+          <p>先到老字號茶樓飲茶（蝦餃、燒賣、叉燒包），再逛油麻地果欄與玉器市場，感受地道港式生活。</p>
+          <div class="tip">💡 飲茶 11 點前人較少；果欄清晨最熱鬧，順路可買當季水果。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🛍️ 下午</span>
+          <h3>旺角街市</h3>
+          <p>波鞋街（花園街）、女人街（通菜街）、金魚街一路逛下去，尾站到「氣勢十足」的旺角行人專用區。</p>
+          <div class="tip">💡 女人街約中午 12 點開檔；講價友善但保持禮貌，記得帶現金小額港紙。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🍜 晚上</span>
+          <h3>廟街夜市</h3>
+          <p>佐敦站步行到廟街夜市：煲仔飯、大排檔、算命攤與歌女文化，是港片裡最經典的夜晚。</p>
+          <div class="tip">💡 夜市約晚上 6 點後最熱鬧；煲仔飯熱門店要排隊，建議 7 點前入座。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day" id="hk-d3">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🖼️ 上午</span>
+          <h3>西九文化區・M+</h3>
+          <p>在維港海濱長廊散步，參觀亞洲級當代視覺文化博物館 M+（常設展收費），天台花園可遠眺港島天際線。</p>
+          <div class="tip">💡 M+ 逢週一閉館；九龍站出站步行約 10 分鐘，沿途有咖啡店可歇腳。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">⛵ 下午</span>
+          <h3>尖沙咀海濱・天星小輪</h3>
+          <p>星光大道找李小龍銅像，搭百年歷史的天星小輪橫渡維港到中環——用 5 塊港幣看最美的海港。</p>
+          <div class="tip">💡 小輪可用八達通，上層視野更好；回程可改搭叮叮車（電車）遊港島。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🧳 晚上</span>
+          <h3>茶餐廳告別晚餐</h3>
+          <p>最後一晚用港式奶茶、菠蘿油與乾炒牛河收尾，之後整理行李、預留時間前往機場。</p>
+          <div class="tip">💡 機場快線從中環約 24 分鐘直達；國際航班建議起飛前 3 小時抵達機場。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 香港 預算 -->
+<section id="budget" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Budget</p>
+    <h2>香港預算估算（每人）</h2>
+    <p class="muted">以下為不含機票的在地花費估算（港幣 HK$），彙率與消費習慣會影響實際金額。</p>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div>
+        <table>
+          <thead><tr><th>類別</th><th>項目</th><th class="num">估計（HK$）</th></tr></thead>
+          <tbody>
+            <tr><td>🚇 交通</td><td>八達通卡（押金 50）＋三日車資＋天星小輪＋山頂纜車</td><td class="num">350</td></tr>
+            <tr><td>🍜 餐飲</td><td>茶樓飲茶 ×1、茶餐廳 ×4、夜市與大排檔 ×2</td><td class="num">800</td></tr>
+            <tr><td>🎫 門票</td><td>摩天台 428＋M+ 常設展等</td><td class="num">250</td></tr>
+            <tr><td>🛍️ 購物備用</td><td>伴手禮與個人購物（彈性）</td><td class="num">400</td></tr>
+            <tr><td>🏨 住宿</td><td>兩夜（市區三星級酒店雙人房均攤）</td><td class="num">1,400</td></tr>
+            <tr style="background:#fafafa"><td><strong>合計</strong></td><td><strong>三日兩夜總預算</strong></td><td class="num"><strong>≈ HK$3,200</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>省錢小貼士</h3>
+        <p class="muted" style="font-size:14.5px">
+          · 八達通儲值 200＋押金 50 即可，餘額可在便利店用完退卡。<br>
+          · 天星小輪與叮叮車都是 HK$5 上下的懷舊交通，風景不輸觀光船。<br>
+          · 茶餐廳中午套餐（碟頭飯）最划算，約 HK$45–60。<br>
+          · M+ 每週有部分時段免費開放公眾區，出發前查官網。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /region-hk -->
+
+<!-- ================= 台北 ================= -->
+<div class="region" id="region-tpe">
+<section>
+  <div class="wrap">
+    <p class="kicker">Taipei · Itinerary</p>
+    <h2>台北每日行程</h2>
+
+    <div class="tabs noprint" role="tablist">
+      <button class="tab active" data-day="tpe-d1" onclick="showDay('tpe-d1',this)">Day 1｜西城漫遊</button>
+      <button class="tab" data-day="tpe-d2" onclick="showDay('tpe-d2',this)">Day 2｜故宮與北投</button>
+      <button class="tab" data-day="tpe-d3" onclick="showDay('tpe-d3',this)">Day 3｜象山與 101</button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day active" id="tpe-d1">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🌅 上午</span>
+          <h3>西門町・紅樓</h3>
+          <p>捷運西門站出發，逛西門徒步區與電影街，參觀百年古蹟「西門紅樓」的文創小店與八角樓展間。</p>
+          <div class="tip">💡 交通：桃園機場捷運直達台北車站再轉捷運板南線；紅樓上午 11 點開放，先逛徒步區剛好。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">☀️ 下午</span>
+          <h3>龍山寺・剝皮寮</h3>
+          <p>捷運到龍山寺站，參拜香火鼎盛的艋舺龍山寺，再步行到剝皮寮歷史街區與佛具街，感受萬華老台北氣味。</p>
+          <div class="tip">💡 交通：捷運板南線西門→龍山寺一站即達；龍山寺免費參觀，中午前順路吃一碗華西街虱目魚湯。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🌙 晚上</span>
+          <h3>寧夏夜市</h3>
+          <p>捷運雙連站步行到寧夏夜市：蚵仔煎、鹽酥雞、古早味豆花與潤餅，短小精悍的全台知名夜市。</p>
+          <div class="tip">💡 交通：捷運淡水信義線雙連站 1 號出口步行約 8 分鐘；晚上 7–9 點最熱鬧，多數攤位收現金。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day" id="tpe-d2">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🏺 上午</span>
+          <h3>故宮博物院</h3>
+          <p>參觀世界四大博物館之一的台北故宮：翠玉白菜、肉形石與毛公鼎等鎮院之寶，書畫與瓷器收藏豐富。</p>
+          <div class="tip">💡 交通：捷運士林站轉公車（紅 30／255 等多線直達）；全票 NT$350，逢週五延長開放至晚上 9 點。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">♨️ 下午</span>
+          <h3>北投溫泉</h3>
+          <p>捷運淡水信義線到北投，參觀百年北投溫泉博物館與地熱谷，時間充裕可找間大眾池或個人湯屋泡湯。</p>
+          <div class="tip">💡 交通：捷運北投站轉新北投支線一站；地熱谷溫泉泉溫高達 90 度，記得只看不摸。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🍢 晚上</span>
+          <h3>士林夜市</h3>
+          <p>從捷運劍潭站一出來就是士林夜市：大雞排、起司馬鈴薯、青蛙下蛋與豪大炸雞，吃飽再回市區。</p>
+          <div class="tip">💡 交通：北投站搭捷運回劍潭站即達；夜市內排隊名店多，先繞一圈比較再下手。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day" id="tpe-d3">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">⛰️ 上午</span>
+          <h3>象山步道</h3>
+          <p>健行象山自然步道，約 30–40 分鐘登上六巨石觀景平台，是拍攝台北 101 天際線的最佳角度。</p>
+          <div class="tip">💡 交通：捷運象山站 2 號出口即達登山口；早晨涼爽人少，記得帶水，步道多為石階。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🏙️ 下午</span>
+          <h3>台北 101・四四南村</h3>
+          <p>登台北 101 觀景台俯瞰全市，再步行到旁邊的四四南村眷村文創園區與好丘貝果，拍信義區全景。</p>
+          <div class="tip">💡 交通：象山站到台北 101／世貿站一站；觀景台門票約 NT$600，傍晚上去可一次看到日景與夜景。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🍜 晚上</span>
+          <h3>永康街牛肉麵</h3>
+          <p>最後一晚到永康街吃一碗紅燒牛肉麵配小菜，再買伴手禮（鳳梨酥、茶葉）收尾，整理行李前往機場。</p>
+          <div class="tip">💡 交通：捷運東門站 5 號出口；機場捷運從台北車站直達桃園機場約 36 分鐘，預留 3 小時。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 台北 預算 -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Budget</p>
+    <h2>台北預算估算（每人）</h2>
+    <p class="muted">以下為不含機票的在地花費估算（新台幣 NT$），彙率與消費習慣會影響實際金額。</p>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div>
+        <table>
+          <thead><tr><th>類別</th><th>項目</th><th class="num">估計（NT$）</th></tr></thead>
+          <tbody>
+            <tr><td>🚇 交通</td><td>悠遊卡＋三日捷運公車車資</td><td class="num">600</td></tr>
+            <tr><td>🍜 餐飲</td><td>早餐店 ×2、牛肉麵、夜市 ×2、便當與小館</td><td class="num">1,800</td></tr>
+            <tr><td>🎫 門票</td><td>故宮 350＋台北 101 觀景台 600</td><td class="num">950</td></tr>
+            <tr><td>🛍️ 購物備用</td><td>鳳梨酥、茶葉等伴手禮（彈性）</td><td class="num">1,200</td></tr>
+            <tr><td>🏨 住宿</td><td>兩夜（西門町／信義區旅宿均攤）</td><td class="num">3,000</td></tr>
+            <tr style="background:#fafafa"><td><strong>合計</strong></td><td><strong>三日兩夜總預算</strong></td><td class="num"><strong>≈ NT$7,600</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>實用小貼士</h3>
+        <p class="muted" style="font-size:14.5px">
+          · 悠遊卡便利商店可購值，捷運、公車、YouBike 與超商付款一卡通用。<br>
+          · 捷運車廂與站區全面禁止飲食，違規會被罰款。<br>
+          · 台灣不收小費，餐廳標價即實付（部分餐廳另收一成服務費會註明）。<br>
+          · 夏季常有午後雷陣雨，出門隨身帶把摺傘；便利商店也買得到。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /region-tpe -->
+
+<!-- ================= 東京 ================= -->
+<div class="region" id="region-tky">
+<section>
+  <div class="wrap">
+    <p class="kicker">Tokyo · Itinerary</p>
+    <h2>東京每日行程</h2>
+
+    <div class="tabs noprint" role="tablist">
+      <button class="tab active" data-day="tky-d1" onclick="showDay('tky-d1',this)">Day 1｜淺草下町</button>
+      <button class="tab" data-day="tky-d2" onclick="showDay('tky-d2',this)">Day 2｜原宿澀谷</button>
+      <button class="tab" data-day="tky-d3" onclick="showDay('tky-d3',this)">Day 3｜市場與新宿</button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day active" id="tky-d1">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">⛩️ 上午</span>
+          <h3>淺草寺・仲見世通</h3>
+          <p>從雷門出發穿越仲見世通商店街，參拜東京最古老的淺草寺，抽支籤、買人形燒與現烤仙貝。</p>
+          <div class="tip">💡 交通：東京地鐵淺草站或東武線淺草站步行即達；上午 9 點前人最少，仲見世通約 10 點全開。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🗼 下午</span>
+          <h3>晴空塔・隅田川</h3>
+          <p>沿隅田川公園散步或搭水上巴士，登東京晴空塔展望台，天氣好時可遠眺富士山；周邊 Solamachi 商場好逛。</p>
+          <div class="tip">💡 交通：淺草站搭東武晴空塔線一站或步行 20 分鐘；展望台門票天望之閣約 ¥2,100 起，建議官網先購。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🌙 晚上</span>
+          <h3>淺草居酒屋之夜</h3>
+          <p>在淺草 Hoppy 通的老派居酒屋吃串燒配 Hoppy，感受昭和下町風情，或沿隅田川看晴空塔夜景。</p>
+          <div class="tip">💡 交通：全程步行可達；居酒屋多為現金＋信用卡均可，深夜的淺草安靜得快，早點回飯店。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day" id="tky-d2">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🌾 上午</span>
+          <h3>明治神宮</h3>
+          <p>從原宿站旁的大鳥居進入，走過全日本最大的木製鳥居與滿是巨木的參道，在城市中心享受森林散步。</p>
+          <div class="tip">💡 交通：JR 山手線原宿站或東京Metro明治神宮前站即達；免費參觀，開放時間日出至日落。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🎀 下午</span>
+          <h3>原宿・表參道</h3>
+          <p>竹下通體驗可麗餅與 Kawaii 文化，走到表參道看時尚建築與精品櫥窗，貓街（Cat Street）一路散步到澀谷。</p>
+          <div class="tip">💡 交通：全程步行約 30 分鐘；竹下通中午後最熱鬧，可麗餅名店常排隊。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🌙 晚上</span>
+          <h3>澀谷十字路口</h3>
+          <p>在 SHIBUYA SKY（約 ¥2,200）看東京夜景，再到世界最繁忙的澀谷十字路口朝聖，晚餐在澀谷吃拉麵或燒肉。</p>
+          <div class="tip">💡 交通：原宿站搭 JR 山手線兩站到澀谷；SHIBUYA SKY 日落時段票最快售罄，務必提前線上預約。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day" id="tky-d3">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🍣 上午</span>
+          <h3>築地場外市場</h3>
+          <p>在築地場外市場吃現切海鮮丼與玉子燒當早餐，市場商店街採買廚房小物與伴手禮。</p>
+          <div class="tip">💡 交通：東京Metro築地站或都營大江戶線築地市場站步行即達；多數店家中午前收攤，建議 8–10 點前往。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🌳 下午</span>
+          <h3>新宿御苑・都廳展望台</h3>
+          <p>逛新宿御苑的日式庭園與溫室草坪（門票 ¥500），再到東京都廳北展望台免費眺望東京市景。</p>
+          <div class="tip">💡 交通：JR 新宿站各線步行 10 分鐘內；都廳展望台免費但晚上 10 點前關閉，注意公休日。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🏮 晚上</span>
+          <h3>新宿・思出橫丁</h3>
+          <p>在東口思出橫丁（回憶橫丁）的窄巷燒鳥店吃串燒，再到歌舞伎町感受東京不夜城，之後整理行李前往機場。</p>
+          <div class="tip">💡 交通：新宿站直達成田機場的 N'EX 約 80 分鐘、到羽田機場約 35 分鐘；國際線預留 3 小時。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 東京 預算 -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Budget</p>
+    <h2>東京預算估算（每人）</h2>
+    <p class="muted">以下為不含機票的在地花費估算（日圓 ¥），彙率與消費習慣會影響實際金額。</p>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div>
+        <table>
+          <thead><tr><th>類別</th><th>項目</th><th class="num">估計（¥）</th></tr></thead>
+          <tbody>
+            <tr><td>🚇 交通</td><td>Suica/Pasmo 儲值＋三日電車車資＋機場進出</td><td class="num">3,500</td></tr>
+            <tr><td>🍜 餐飲</td><td>壽司丼、拉麵 ×2、居酒屋、燒鳥與便利商店早餐</td><td class="num">12,000</td></tr>
+            <tr><td>🎫 門票</td><td>晴空塔＋SHIBUYA SKY＋新宿御苑等</td><td class="num">5,000</td></tr>
+            <tr><td>🛍️ 購物備用</td><td>藥妝、伴手禮與個人購物（彈性）</td><td class="num">8,000</td></tr>
+            <tr><td>🏨 住宿</td><td>兩夜（新宿／淺草商務酒店均攤）</td><td class="num">16,000</td></tr>
+            <tr style="background:#fafafa"><td><strong>合計</strong></td><td><strong>三日兩夜總預算</strong></td><td class="num"><strong>≈ ¥44,500</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>實用小貼士</h3>
+        <p class="muted" style="font-size:14.5px">
+          · Suica/Pasmo 一卡搭遍電車、公車與便利店；iPhone 可直接在手機錢包發行 Suica 免實體卡。<br>
+          · 電車末班車多在午夜前後收班，錯過只好搭貴得驚人的計程車；晚上行程抓準時間。<br>
+          · 路上垃圾桶極少，自備小塑膠袋裝垃圾，多數便利店可丟。<br>
+          · 日本沒有小費文化，付錢多放收銀盤、不直接遞手。<br>
+          · 較老的店家仍偏愛現金，隨身帶 ¥10,000–20,000 現金比較安心。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /region-tky -->
+
+<!-- ================= 首爾 ================= -->
+<div class="region" id="region-sel">
+<section>
+  <div class="wrap">
+    <p class="kicker">Seoul · Itinerary</p>
+    <h2>首爾每日行程</h2>
+
+    <div class="tabs noprint" role="tablist">
+      <button class="tab active" data-day="sel-d1" onclick="showDay('sel-d1',this)">Day 1｜古宮韓屋</button>
+      <button class="tab" data-day="sel-d2" onclick="showDay('sel-d2',this)">Day 2｜市場與弘大</button>
+      <button class="tab" data-day="sel-d3" onclick="showDay('sel-d3',this)">Day 3｜漢江與購物</button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day active" id="sel-d1">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🏯 上午</span>
+          <h3>景福宮</h3>
+          <p>觀賞景福宮光化門換崗儀式，穿韓服入宮可免門票，在勤政殿與香遠亭拍出古宮美照。</p>
+          <div class="tip">💡 交通：地鐵 3 號線景福宮站 5 號出口；換崗儀式每日 10:00／14:00，週二休宮要注意。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🏘️ 下午</span>
+          <h3>北村韓屋村・三清洞</h3>
+          <p>散步北村韓屋村的石坡巷弄，再到三清洞的咖啡館、美術館與文具小店，一路走到仁寺洞。</p>
+          <div class="tip">💡 交通：景福宮步行約 15 分鐘；北村是住宅區，參觀請保持安靜、勿打擾居民。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🌙 晚上</span>
+          <h3>明洞</h3>
+          <p>明洞逛街買美妝與服飾，街頭小吃吃辣炒年糕、糖餅與烤起司串，晚餐可選韓式烤肉一個人也能吃的烤肉店。</p>
+          <div class="tip">💡 交通：地鐵 4 號線明洞站；美妝店滿額常可退稅，記得帶護照。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day" id="sel-d2">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🥟 上午</span>
+          <h3>廣藏市場</h3>
+          <p>百年傳統市場吃綠豆煎餅、麻藥紫菜包飯與生牛肉拌飯，《Running Man》等綜藝都來取景。</p>
+          <div class="tip">💡 交通：地鐵 1 號線鐘路 5 街站 8 號出口；攤位多收現金，每樣 ₩5,000–12,000 就能吃飽。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🛍️ 下午</span>
+          <h3>梨花女大・弘大商圈</h3>
+          <p>逛梨花女大前街的服飾小店，再到弘大商圈挖寶潮牌與雜貨，沿街咖啡廳休息充電。</p>
+          <div class="tip">💡 交通：地鐵 2 號線梨大站→弘大入口站兩站；弘大周六下午人流最多。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🎤 晚上</span>
+          <h3>弘大街頭表演</h3>
+          <p>弘大特區周末夜有街頭舞蹈與 Busking 表演，吃完炸雞啤酒（치맥）再逛 24 小時的購物街。</p>
+          <div class="tip">💡 交通：弘大入口站 9 號出口一帶最熱鬧；深夜地鐵約 24 點收班，注意回程時間。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day" id="sel-d3">
+      <div class="grid g3">
+        <div class="card slot">
+          <span class="tag">🌿 上午</span>
+          <h3>汝矣島漢江公園</h3>
+          <p>到汝矣島漢江公園租野餐墊，在江邊吃便利商店拉麵與炸雞外送，感受首爾人的休閒日常。</p>
+          <div class="tip">💡 交通：地鐵 5 號線汝矣渡口站 2、3 號出口；公園內有便利店與租借服務，春天可賞櫻。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">☕ 下午</span>
+          <h3>新沙洞林蔭道</h3>
+          <p>逛新沙洞林蔭道的選物店與咖啡館，拍銀杏大道街景；時間充裕再搭地鐵到三成站 COEX 星空圖書館。</p>
+          <div class="tip">💡 交通：地鐵 3 號線新沙站 8 號出口；COEX 星空圖書館在地鐵 2 號線三成站 B1 直達。</div>
+        </div>
+        <div class="card slot">
+          <span class="tag">🧳 晚上</span>
+          <h3>明洞伴手禮・告別首爾</h3>
+          <p>回明洞補買海苔、蜂蜜奶油杏仁等伴手禮，吃最後一晚部隊鍋，之後搭機場快線前往仁川機場。</p>
+          <div class="tip">💡 交通：首爾站搭 AREX 機場快線直達仁川機場約 50 分鐘；預留 3 小時辦理退稅與登機。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 首爾 預算 -->
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Budget</p>
+    <h2>首爾預算估算（每人）</h2>
+    <p class="muted">以下為不含機票的在地花費估算（韓元 ₩），彙率與消費習慣會影響實際金額。</p>
+    <div class="grid g2" style="margin-top:24px;align-items:start">
+      <div>
+        <table>
+          <thead><tr><th>類別</th><th>項目</th><th class="num">估計（₩）</th></tr></thead>
+          <tbody>
+            <tr><td>🚇 交通</td><td>T-money 卡＋三日地鐵公車＋機場快線</td><td class="num">30,000</td></tr>
+            <tr><td>🍜 餐飲</td><td>烤肉、廣藏市場、部隊鍋、炸雞啤酒與街頭小吃</td><td class="num">120,000</td></tr>
+            <tr><td>🎫 門票</td><td>景福宮 3,000＋雜項參觀費用</td><td class="num">30,000</td></tr>
+            <tr><td>🛍️ 購物備用</td><td>美妝、海苔等伴手禮（彈性）</td><td class="num">100,000</td></tr>
+            <tr><td>🏨 住宿</td><td>兩夜（明洞／弘大青年旅館至三星級均攤）</td><td class="num">150,000</td></tr>
+            <tr style="background:#fafafa"><td><strong>合計</strong></td><td><strong>三日兩夜總預算</strong></td><td class="num"><strong>≈ ₩430,000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>實用小貼士</h3>
+        <p class="muted" style="font-size:14.5px">
+          · T-money 卡在便利店購買與儲值，地鐵、公車、計程車通用；下車也要刷卡（公車）。<br>
+          · 韓國不收小費，餐廳的水與小菜免費且可續加。<br>
+          · 查路線用 Naver Map 或 Kakao Map 比 Google Map 準確很多，出發前先裝好。<br>
+          · 插座為歐規雙圓腳（C/E 型），記得帶轉接頭。<br>
+          · 秋冬乾冷，帶保濕與護唇膏；餐廳多是辣與熱食，怕辣先問店家。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /region-sel -->
+
+<!-- ================= 打包清單 ================= -->
+<section id="packing">
+  <div class="wrap">
+    <p class="kicker">Packing List</p>
+    <h2>互動打包清單（四城通用）</h2>
+    <p class="muted">勾選進度自動存在你的瀏覽器裡，下次打開還記得。</p>
+    <div class="card" style="margin-top:24px;max-width:640px">
+      <div style="display:flex;justify-content:space-between;font-weight:600;font-size:14px">
+        <span>完成率</span><span id="packPct">0%</span>
+      </div>
+      <div class="progress"><div class="fill" id="packFill"></div></div>
+      <ul class="pack" id="packList">
+        <li><input type="checkbox" id="p1"><label for="p1">🛂 護照（有效期 6 個月以上）</label></li>
+        <li><input type="checkbox" id="p2"><label for="p2">💳 信用卡＋當地交通卡（八達通／悠遊卡／Suica／T-money）</label></li>
+        <li><input type="checkbox" id="p3"><label for="p3">🔌 插頭轉接器（港：英式三腳／台日：Type A／韓：Type C・E）</label></li>
+        <li><input type="checkbox" id="p4"><label for="p4">📱 電話卡／eSIM 已啟用</label></li>
+        <li><input type="checkbox" id="p5"><label for="p5">👟 好走的鞋（每天 2 萬步起跳）</label></li>
+        <li><input type="checkbox" id="p6"><label for="p6">🧥 薄外套（商場冷氣／秋冬早晚溫差）</label></li>
+        <li><input type="checkbox" id="p7"><label for="p7">☂️ 摺傘（梅雨、颱風與午後雷陣雨）</label></li>
+        <li><input type="checkbox" id="p8"><label for="p8">💊 個人藥品與腸胃藥</label></li>
+        <li><input type="checkbox" id="p9"><label for="p9">🔋 行動電源與充電線</label></li>
+        <li><input type="checkbox" id="p10"><label for="p10">✈️ 機票與住宿確認信</label></li>
+      </ul>
+      <div class="region-hint">
+        🧭 地區提示：🇹🇼 台北＝悠遊卡｜🇯🇵 東京＝Suica・Pasmo｜🇰🇷 首爾＝T-money｜🇭🇰 香港＝八達通——到埠後在便利店就能買到。
+      </div>
+      <button class="btn ghost noprint" style="margin-top:18px" onclick="clearPack()">清空勾選</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>多地區旅遊攻略（香港・台北・東京・首爾）· 各區預算為估算，彙率僅供參考</span>
+    <a href="../index.html">回十四站工作室</a>
+  </div>
+</footer>
+
+<script>
+/* ---- 地區切換 ---- */
+function showRegion(id,btn){
+  document.querySelectorAll(".region").forEach(r=>r.classList.remove("active"));
+  document.querySelectorAll(".rbtn").forEach(b=>b.classList.remove("active"));
+  document.getElementById("region-"+id).classList.add("active");
+  btn.classList.add("active");
+  window.scrollTo({top:document.getElementById("regions").offsetTop-60,behavior:"smooth"});
+}
+
+/* ---- 天數分頁（只切換當前地區內的 day） ---- */
+function showDay(id,btn){
+  const region=btn.closest(".region");
+  region.querySelectorAll(".day").forEach(d=>d.classList.remove("active"));
+  region.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  btn.classList.add("active");
+}
+
+/* ---- 打包清單（localStorage，四城通用） ---- */
+const PACK_KEY="travel-packing-v1";
+const boxes=document.querySelectorAll("#packList input");
+function loadPack(){
+  let s={};
+  try{s=JSON.parse(localStorage.getItem(PACK_KEY))||{};}catch(e){}
+  boxes.forEach(b=>{
+    b.checked=!!s[b.id];
+    b.closest("li").classList.toggle("done",b.checked);
+  });
+  updateProgress();
+}
+function savePack(){
+  let s={};
+  boxes.forEach(b=>{s[b.id]=b.checked;b.closest("li").classList.toggle("done",b.checked);});
+  localStorage.setItem(PACK_KEY,JSON.stringify(s));
+  updateProgress();
+}
+function updateProgress(){
+  const done=document.querySelectorAll("#packList input:checked").length;
+  const pct=Math.round(done/boxes.length*100);
+  document.getElementById("packFill").style.width=pct+"%";
+  document.getElementById("packPct").textContent=pct+"%";
+}
+function clearPack(){
+  localStorage.removeItem(PACK_KEY);
+  loadPack();
+}
+boxes.forEach(b=>b.addEventListener("change",savePack));
+loadPack();
+</script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple 換機指南 2026｜該升級、再撐一年，還是買二手？</title>
+<meta name="description" content="回答三個問題，獲得誠實的換機建議：升級、再撐一年或考慮二手。附 iPhone 15→18 各代差距速查表與 Apple M1→M6 晶片一覽。標準版 iPhone 18 尚未發表。">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
+.q-card .q-num{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;align-items:center;justify-content:center;font-size:14px;margin-right:8px}
+.q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+@media(max-width:820px){.q-grid{grid-template-columns:1fr}}
+.result{margin-top:22px;padding:26px;border-radius:var(--radius);display:none}
+.result.show{display:block}
+.result.up{background:rgba(0,113,227,.08);border:1.5px solid rgba(0,113,227,.35)}
+.result.hold{background:rgba(29,122,61,.08);border:1.5px solid rgba(29,122,61,.35)}
+.result.used{background:rgba(178,80,0,.07);border:1.5px solid rgba(178,80,0,.35)}
+.result .r-title{font-size:26px;font-weight:800;margin:6px 0 10px}
+.diff-table td:first-child{font-weight:600}
+.warn-strip{background:rgba(178,80,0,.08);border:1px solid rgba(178,80,0,.3);border-radius:var(--radius-sm);padding:14px 18px;font-size:14px;margin-top:18px}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">🧭 換機指南</a>
+    <div class="links">
+      <a href="#quiz">決策測驗</a>
+      <a href="#iphone-diff">iPhone 代差</a>
+      <a href="#m-diff">M 系列晶片</a>
+      <a href="../index.html">回總入口</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Upgrade Guide · 2026</p>
+    <h1>該換了嗎？<span class="grad">三個問題就知道</span></h1>
+    <p class="sub">不推銷、不無腦喊買新的。回答三個問題，我們依 2026 年的產品線現況，誠實告訴你：升級、再撐一年，還是考慮二手。</p>
+    <span class="chip">iPhone 18 Pro HK$10,499 起</span>
+    <span class="chip gray">標準版 iPhone 18 尚未發表</span>
+  </div>
+</header>
+
+<section id="quiz">
+  <div class="wrap">
+    <p class="kicker">Decision</p>
+    <h2>換機決策測驗</h2>
+    <div class="q-grid">
+      <div class="q-card">
+        <p><span class="q-num">1</span><b>你目前用什麼機型？</b></p>
+        <label for="qDevice" style="margin-top:10px">目前裝置</label>
+        <select id="qDevice">
+          <option value="ip15">iPhone 15 系列或更舊</option>
+          <option value="ip16">iPhone 16 系列</option>
+          <option value="ip17">iPhone 17 系列</option>
+          <option value="macOld">MacBook M1／M2</option>
+          <option value="macNew">MacBook M3 或更新</option>
+          <option value="ipadOld">iPad 第九／十代或 Air M1/M2</option>
+        </select>
+      </div>
+      <div class="q-card">
+        <p><span class="q-num">2</span><b>這台機器你用幾年了？</b></p>
+        <label for="qAge" style="margin-top:10px">使用年數</label>
+        <select id="qAge">
+          <option value="lt1">不到 1 年</option>
+          <option value="y12">1–2 年</option>
+          <option value="y34">3–4 年</option>
+          <option value="y5">5 年以上</option>
+        </select>
+      </div>
+      <div class="q-card">
+        <p><span class="q-num">3</span><b>你最在意什麼？</b></p>
+        <label for="qPriority" style="margin-top:10px">最在意</label>
+        <select id="qPriority">
+          <option value="camera">相機與效能</option>
+          <option value="battery">電池與續航</option>
+          <option value="budget">預算，能省則省</option>
+          <option value="light">輕巧手感</option>
+          <option value="screen">螢幕體驗</option>
+        </select>
+      </div>
+    </div>
+    <p style="margin-top:20px"><button class="btn" id="btnCalc" type="button">計算我的建議</button></p>
+
+    <div class="result" id="result">
+      <span class="chip" id="rTag">建議</span>
+      <p class="r-title" id="rTitle"></p>
+      <p id="rBody" style="margin:0 0 8px"></p>
+      <p class="muted" id="rPick"></p>
+    </div>
+  </div>
+</section>
+
+<section id="iphone-diff" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">iPhone 15 → 16 → 17 → 18</p>
+    <h2>各代差距速查表</h2>
+    <p class="muted">想知道「跳一代值不值」，看這張表最快。標準版 iPhone 18 尚未發表，下表標 ⚠️ 者為傳聞。</p>
+    <div style="overflow-x:auto;margin-top:16px">
+      <table style="min-width:720px">
+        <thead><tr><th>項目</th><th>iPhone 15（2023）</th><th>iPhone 16（2024）</th><th>iPhone 17（2025）</th><th>iPhone 18 標準版 ⚠️</th><th>iPhone 18 Pro</th></tr></thead>
+        <tbody class="diff-table">
+          <tr><th>晶片</th><td>A16</td><td>A18</td><td>A19</td><td>A20（2nm）⚠️</td><td>A20 Pro（2nm）＋均熱板</td></tr>
+          <tr><th>螢幕更新率</th><td>60Hz</td><td>60Hz</td><td class="diff">120Hz ProMotion</td><td>120Hz ⚠️</td><td class="diff">120Hz＋永遠顯示</td></tr>
+          <tr><th>主鏡頭</th><td>48MP（固定光圈）</td><td>48MP</td><td>48MP 雙鏡</td><td>48MP＋48MP 超廣角 ⚠️</td><td class="diff">48MP 可變光圈（f/1.48–4.0）</td></tr>
+          <tr><th>望遠</th><td>—</td><td>—</td><td>2× 裁切</td><td>2× 裁切 ⚠️</td><td class="diff">4×／8× 光學品質＋LiDAR</td></tr>
+          <tr><th>峰值亮度</th><td>2000 尼特</td><td>2000 尼特</td><td>3000 尼特</td><td>3000 尼特 ⚠️</td><td>3000 尼特</td></tr>
+          <tr><th>香港起價</th><td class="num">HK$6,899（發表價）</td><td class="num">HK$6,899（發表價）</td><td class="num">HK$6,899（發表價）</td><td class="num">未公布（傳聞約 US$799–899）</td><td class="num">HK$10,499</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn-strip">
+      ⚠️ <b>誠實標註：</b>標準版 iPhone 18 在 2026 年 9 月發表會上<b>沒有發表</b>。外媒與分析師（Macworld、郭明錤、Jeff Pu）指向 2027 年春季與 iPhone 18e、Air 2 一同登場，上述欄位全部為傳聞，非官方規格。若你在等它，等於還要再等半年以上。
+    </div>
+  </div>
+</section>
+
+<section id="m-diff">
+  <div class="wrap">
+    <p class="kicker">Apple Silicon</p>
+    <h2>M 系列晶片：M1 → M6 一張表</h2>
+    <p class="muted">換機前先看清楚：你的晶片落點在哪，距離最新一代有多遠。</p>
+    <div style="overflow-x:auto;margin-top:16px">
+      <table style="min-width:720px">
+        <thead><tr><th>晶片</th><th>發表年份</th><th>代表機型</th><th>CPU 核心</th><th>重點</th></tr></thead>
+        <tbody class="diff-table">
+          <tr><th>M1</th><td>2020</td><td>MacBook Air、Pro 13″</td><td class="num">8 核</td><td>Apple Silicon 起點，仍堪用但已停產</td></tr>
+          <tr><th>M2</th><td>2022</td><td>MacBook Air、Mac mini</td><td class="num">8 核</td><td>小幅效能提升，8GB 版本建議汰換</td></tr>
+          <tr><th>M3</th><td>2023</td><td>MacBook Pro、iMac</td><td class="num">8 核</td><td>首款 3nm Mac 晶片</td></tr>
+          <tr><th>M4</th><td>2024</td><td>MacBook Pro、iMac、Mac mini</td><td class="num">10 核</td><td>全線 16GB 起的開始</td></tr>
+          <tr><th>M5</th><td>2025</td><td>MacBook Pro 14″、MacBook Air</td><td class="num">8–14 核</td><td>神經網路引擎大改，Air M5 為 2026 主力</td></tr>
+          <tr><th>M6</th><td>2026</td><td>iMac 24″、MacBook Pro 14″、Mac mini</td><td class="num">12 核</td><td class="diff">10 月 27 日發表，標配 1TB（Pro）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <h3>什麼時候真的該升級 Mac？</h3>
+        <p class="muted">三個訊號：電池循環明顯衰退或機身發熱、macOS 停止支援你的機型、你做的工作（剪片／本地 AI／虛擬機）讓 8–16GB 記憶體吃緊。三者符合其一才考慮，否則 M2／M3 機種再戰兩年沒問題。</p>
+      </div>
+      <div class="card">
+        <h3>2026 年的省錢換機路線</h3>
+        <p class="muted">M6 上市後，M4 iMac 與 M5 MacBook Pro 的出清／認證整新品值得盯。MacBook Neo（HK$5,499 起）適合輕度需求；預算夠就直接 MacBook Air M5，記憶體別省。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>🧭 換機指南 · 非官方網站</span>
+    <span>資料為 2026 年 11 月 Apple 香港官網售價與公開資訊，僅供參考；標示傳聞者非官方資訊。</span>
+    <a href="../index.html">回總入口 →</a>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+$('btnCalc').addEventListener('click', () => {
+  const dev = $('qDevice').value;
+  const age = $('qAge').value;
+  const pri = $('qPriority').value;
+  const box = $('result'), tag = $('rTag'), title = $('rTitle'), body = $('rBody'), pick = $('rPick');
+
+  const ageScore = { lt1:0, y12:1, y34:2, y5:3 }[age];
+  const devScore = { ip15:2, ip16:1, ip17:0, macOld:2, macNew:0, ipadOld:2 }[dev];
+
+  let verdict = 'hold';
+  if(ageScore + devScore >= 4) verdict = 'up';
+  else if(ageScore + devScore <= 1) verdict = 'hold';
+  else verdict = 'used';
+  if(age === 'lt1') verdict = 'hold';
+  if(age === 'y5') verdict = 'up';
+
+  box.className = 'result show';
+
+  if(verdict === 'up'){
+    tag.textContent = '建議：升級';
+    box.classList.add('up');
+    let target, why;
+    if(dev.startsWith('ip')){
+      if(pri === 'light') { target = 'iPhone Air（HK$9,499 起，165g、5.64mm）'; why = '你最在意輕巧，Air 是目前手感最好的 iPhone。'; }
+      else if(pri === 'battery') { target = 'iPhone 18 Pro Max（HK$11,499 起，影片最長 43 小時）'; why = '它的 5,391mAh 電池比 Pro 多 9 小時影片播放，是續航之王。'; }
+      else if(pri === 'budget') { target = 'iPhone Air 或認證整新 iPhone 17'; why = '預算優先就不必上 Pro；等 2027 春季標準版 iPhone 18 也是選項，但價格未必更甜（記憶體漲價）。'; }
+      else if(pri === 'screen') { target = 'iPhone 18 Pro（HK$10,499 起）'; why = '6.3 吋 120Hz＋3000 尼特，或考慮 7.6 吋大畫面的摺疊機 iPhone Duo（HK$17,499 起）。'; }
+      else { target = 'iPhone 18 Pro（HK$10,499 起）'; why = 'A20 Pro（2nm）＋可變光圈 48MP 主鏡＋8× 光學品質變焦，是你現有機型跨世代的完整答案。'; }
+    } else if(dev === 'macOld'){
+      target = 'MacBook Air M5（HK$10,499 起）或 Mac mini M6（HK$7,299 起）';
+      why = 'M1／M2 距今已 4 年以上，電池與 macOS 支援週期都開始吃緊，換 M5／M6 是痛感最明顯的升級。';
+    } else {
+      target = 'iPad Air M4（11″ HK$5,999 起）或 iPad mini A20 Pro（HK$5,299 起）';
+      why = '舊款 iPad 的 60Hz 螢幕與 A 系列晶片差距已拉大，Air M4 效能翻倍卻更薄。';
+    }
+    title.textContent = '升級！你的機器已經到汰換線了';
+    body.textContent = why;
+    pick.textContent = '👉 建議目標：' + target;
+  } else if(verdict === 'used'){
+    tag.textContent = '建議：考慮二手／觀望';
+    box.classList.add('used');
+    title.textContent = '處於灰色地帶——二手或出清更聰明';
+    body.textContent = '你的機器還能用，但換新也不是不合理。這個時間點買新機最虧：新機剛發表價格最硬，而上一代正在跌價。';
+    pick.textContent = '👉 做法：查 Apple 認證整新品（保固相同、價格更低），或等 M6／A20 機種出清上一代。標準版 iPhone 18 傳聞 2027 春季發表，想換新機也可以再等半年。';
+  } else {
+    tag.textContent = '建議：再撐一年';
+    box.classList.add('hold');
+    title.textContent = '還不用換，你的機器還很能打';
+    body.textContent = '你用不到一年（或機型夠新），現在換機沒有任何痛點被解決。2027 年春季還會有標準版 iPhone 18（傳聞，未經官方確認）與 iPhone Air 2，屆時的選擇會更多。';
+    pick.textContent = '👉 省錢做法：先把 Fitness+ 年繳等訂閱成本顧好；真要花錢，把預算留給記憶體而不是更貴的機型。';
+  }
+});
+</script>
+</body>
+</html>

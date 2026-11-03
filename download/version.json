@@ -1,0 +1,17 @@
+{
+  "version": "1.1.0",
+  "date": "2026-11-03",
+  "notes": [
+    "新增 3 個網站：二手殘值計算器、相容性對照表、分期與教育價計算器",
+    "幣別切換更快：記住上次選擇，切換不再跳回首頁",
+    "桌面版新增幣別快捷鍵與本更新檢查功能"
+  ],
+  "files": {
+    "mac-dmg": "Apple-Hub-1.1.0-mac-x64.dmg",
+    "mac-zip": "Apple-Hub-1.1.0-mac-x64.zip",
+    "win-zip": "Apple-Hub-1.1.0-win-x64.zip",
+    "android": "Apple-Hub-1.1.0-android.apk",
+    "androidtv": "Apple-Hub-1.1.0-androidtv.apk",
+    "ios": "Apple-Hub-1.1.0-ios.ipa"
+  }
+}

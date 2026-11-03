@@ -1,0 +1,11 @@
+.DS_Store
+*.log
+Thumbs.db
+
+# 大型安裝包走 GitHub Releases（單檔上限 100 MB，repo 建議 < 1 GB）
+# ipa / apk 各約 1 MB，留在 repo 由 Pages 同網域直下
+download/files/*.dmg
+download/files/*-mac-x64.zip
+download/files/*-win-x64.zip
+download/files/*.exe
+download/files/*.pkg

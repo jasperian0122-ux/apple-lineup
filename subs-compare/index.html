@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple 訂閱比價｜分開訂 vs Apple One 即時試算（香港 2026）</title>
+<meta name="description" content="勾選你需要的 Apple 服務與方案，即時計算分開訂閱與 Apple One 的每月、每年總價，告訴你哪種更划算。資料為 2026 年 11 月香港售價。">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+.svc-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.svc-emoji{font-size:26px;line-height:1}
+.price-line{font-size:22px;font-weight:700;margin:6px 0 2px}
+.price-line small{font-size:12.5px;font-weight:400;color:var(--ink-3)}
+.calc-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+.calc-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:26px;align-items:start}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr}}
+.check-row{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.check-row:last-of-type{border-bottom:0}
+.check-row input[type=checkbox]{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--accent)}
+.check-row .name{font-weight:600;font-size:14.5px}
+.check-row .sub{font-size:12.5px;color:var(--ink-3)}
+.check-row .unit{margin-left:auto;font-size:13px;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.mini-select{width:auto;min-width:120px;padding:6px 10px;font-size:13px;margin-top:4px}
+.result-box{position:sticky;top:70px}
+.big-num{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.big-num span{font-size:14px;font-weight:400;color:var(--ink-3)}
+.verdict{margin-top:14px;padding:14px 16px;border-radius:var(--radius-sm);font-size:14px;line-height:1.55}
+.verdict.win{background:rgba(29,122,61,.09);border:1px solid rgba(29,122,61,.3);color:var(--good)}
+.verdict.lose{background:rgba(192,57,43,.07);border:1px solid rgba(192,57,43,.3);color:var(--bad)}
+.result-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.result-line b{font-variant-numeric:tabular-nums}
+.plan-tag{font-size:12px;padding:2px 10px;border-radius:999px;font-weight:600}
+.plan-tag.on{background:rgba(0,113,227,.12);color:var(--accent)}
+.plan-tag.off{background:rgba(0,0,0,.05);color:var(--ink-3)}
+.hl{background:#fff8d6;border-radius:4px;padding:0 3px}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">🍎 訂閱比價</a>
+    <div class="links">
+      <a href="#services">服務介紹</a>
+      <a href="#calc">比價試算</a>
+      <a href="#tips">省錢建議</a>
+      <a href="../index.html">回總入口</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Subscription Compare · 香港</p>
+    <h1>分開訂，還是<span class="grad">包成 Apple One</span>？</h1>
+    <p class="sub">勾選你在用的服務，即時算出「分開訂總價」與「最接近的 Apple One 方案」誰比較便宜——不划算我們會誠實告訴你。</p>
+    <span class="chip">Apple One 個人 HK$148</span>
+    <span class="chip">Apple One 家庭 HK$228</span>
+    <span class="chip gray">資料：2026 年 11 月香港官網</span>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <p class="kicker">Services</p>
+    <h2>五項月費服務，一次看懂</h2>
+    <p class="muted">Apple Books 不採月費制（單本購買），故不列入試算。</p>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card">
+        <div class="svc-head"><span class="svc-emoji">🎵</span><h3 style="margin:0">Apple Music</h3></div>
+        <p class="price-line">HK$78<small>／月（個人）</small></p>
+        <p class="muted">一億首歌、無損音質、杜比全景聲空間音訊。學生 HK$48、家庭（6 人）HK$128，2026 年 7 月家庭方案起調漲。</p>
+      </div>
+      <div class="card">
+        <div class="svc-head"><span class="svc-emoji">📺</span><h3 style="margin:0">Apple TV</h3></div>
+        <p class="price-line">HK$68<small>／月</small></p>
+        <p class="muted">Apple Originals 原創影集與電影，4K 杜比視界，另有 MLS 足球等賽事。買 Apple 裝置常附三個月免費。</p>
+      </div>
+      <div class="card">
+        <div class="svc-head"><span class="svc-emoji">🎮</span><h3 style="margin:0">Apple Arcade</h3></div>
+        <p class="price-line">HK$54<small>／月</small></p>
+        <p class="muted">數百款無廣告、無內購的完整版遊戲，iPhone／iPad／Mac／Apple TV 跨裝置同步存檔，全家可共用。</p>
+      </div>
+      <div class="card">
+        <div class="svc-head"><span class="svc-emoji">💪</span><h3 style="margin:0">Apple Fitness+</h3></div>
+        <p class="price-line">HK$58<small>／月或 HK$468／年</small></p>
+        <p class="muted">瑜伽、肌力、冥想等課程，與 Apple Watch 連動顯示心率。年繳等於每月約 HK$39，可與 5 位家人共享。</p>
+      </div>
+      <div class="card">
+        <div class="svc-head"><span class="svc-emoji">☁️</span><h3 style="margin:0">iCloud+</h3></div>
+        <p class="price-line">HK$8–78<small>／月</small></p>
+        <p class="muted">50GB HK$8、200GB HK$23、2TB HK$78。含私密轉送、隱藏郵件、HomeKit 安全錄影。200GB 起可家人共享。</p>
+      </div>
+      <div class="card">
+        <div class="svc-head"><span class="svc-emoji">📦</span><h3 style="margin:0">Apple One</h3></div>
+        <p class="price-line">HK$148–348<small>／月</small></p>
+        <p class="muted">個人 HK$148（Music＋TV＋Arcade＋50GB）；家庭 HK$228（200GB、6 人共享）；高級 HK$348（再加 Fitness＋ 與 2TB）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calc" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Calculator</p>
+    <h2>即時比價試算</h2>
+    <p class="muted">勾選服務、選人數與 iCloud 容量，右側即時更新。</p>
+
+    <div class="calc-grid" style="margin-top:20px">
+      <div>
+        <label style="font-size:14px">🏠 同一家家人共享的人數（含你）</label>
+        <select id="people" class="mini-select" aria-label="共享人數">
+          <option value="1">1 人（只有我）</option>
+          <option value="2">2 人</option>
+          <option value="3">3 人</option>
+          <option value="4">4 人</option>
+          <option value="5">5 人</option>
+          <option value="6">6 人</option>
+        </select>
+
+        <div style="margin-top:14px">
+          <div class="check-row">
+            <input type="checkbox" id="svc-music" checked>
+            <div>
+              <span class="name">🎵 Apple Music</span><br>
+              <span class="sub">2 人以上自動採家庭方案 HK$128（最多 6 人）</span>
+              <div id="musicPlanWrap" style="display:none">
+                <select id="musicPlan" class="mini-select" aria-label="Music 方案">
+                  <option value="78">個人 HK$78</option>
+                  <option value="48">學生 HK$48</option>
+                  <option value="128">家庭 HK$128</option>
+                </select>
+              </div>
+            </div>
+            <span class="unit" id="u-music">HK$78／月</span>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="svc-tv" checked>
+            <div>
+              <span class="name">📺 Apple TV</span><br>
+              <span class="sub">一個家庭共享帳號即可，全家人看</span>
+            </div>
+            <span class="unit">HK$68／月</span>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="svc-arcade">
+            <div>
+              <span class="name">🎮 Apple Arcade</span><br>
+              <span class="sub">家庭共享，最多 6 人一起玩</span>
+            </div>
+            <span class="unit">HK$54／月</span>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="svc-fitness">
+            <div>
+              <span class="name">💪 Apple Fitness+</span><br>
+              <span class="sub">試算以月繳 HK$58 計（年繳 HK$468 更省，見下方建議）</span>
+            </div>
+            <span class="unit">HK$58／月</span>
+          </div>
+
+          <div class="check-row">
+            <input type="checkbox" id="svc-icloud" checked>
+            <div>
+              <span class="name">☁️ iCloud+</span>
+              <select id="icloudTier" class="mini-select" aria-label="iCloud 容量">
+                <option value="8">50GB — HK$8</option>
+                <option value="23">200GB — HK$23</option>
+                <option value="78">2TB — HK$78</option>
+              </select>
+            </div>
+            <span class="unit" id="u-icloud">HK$8／月</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="calc-card">
+          <p class="kicker" style="margin-bottom:10px">分開訂總價</p>
+          <p class="big-num"><span id="sepM">HK$154</span><span>／月</span></p>
+          <p class="muted" style="margin:2px 0 14px">每年約 <b id="sepY">HK$1,848</b></p>
+
+          <div class="result-line"><span>最接近的 Apple One</span><b id="oneName">個人方案</b></div>
+          <div class="result-line"><span>Apple One 月費</span><b id="oneM">HK$148</b></div>
+          <div class="result-line"><span>Apple One 年費</span><b id="oneY">HK$1,776</b></div>
+          <div class="result-line"><span>Apple One 內含</span><b id="oneInc" style="font-size:12.5px;text-align:right">Music＋TV＋Arcade＋50GB</b></div>
+
+          <div class="verdict win" id="verdict">
+            ✅ 包成 Apple One 比較划算：每月省下 <span class="hl" id="saveM">HK$6</span>，每年省 <b id="saveY">HK$72</b>。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tips">
+  <div class="wrap">
+    <p class="kicker">Saving Tips</p>
+    <h2>省錢的三個實際做法</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card">
+        <h3>💡 Fitness+ 一律年繳</h3>
+        <p class="muted">月繳 HK$58 × 12 ＝ HK$696；年繳只要 <b>HK$468</b>，一年省 HK$228，等於每月約 HK$39。確定會用超過半年就直接年繳。</p>
+      </div>
+      <div class="card">
+        <h3>👨‍👩‍👧‍👦 家庭共享攤平成本</h3>
+        <p class="muted">Apple One 家庭 HK$228，6 人分攤每人約 <b>HK$38／月</b>，卻人人有 Music、TV、Arcade 與共享 200GB。一個人訂反而最不划算。</p>
+      </div>
+      <div class="card">
+        <h3>🎁 別忘了免費試用</h3>
+        <p class="muted">買 iPhone、Apple Watch、iPad、Apple TV 等新機，TV＋ 與 Fitness＋ 各有 3 個月免費，Music 也有 1 個月。很多人買了手機卻忘了開。</p>
+      </div>
+    </div>
+
+    <div class="calc-card" style="margin-top:22px;overflow-x:auto">
+      <h3>典型組合一覽（每月／每年）</h3>
+      <table>
+        <thead><tr><th>使用情境</th><th>建議組合</th><th class="num">每月</th><th class="num">每年</th></tr></thead>
+        <tbody>
+          <tr><th>一個人，聽音樂＋看劇</th><td>Apple One 個人</td><td class="num">HK$148</td><td class="num">HK$1,776</td></tr>
+          <tr><th>一個人，還想在家運動</th><td>Apple One 個人＋Fitness+ 年繳</td><td class="num">約 HK$187</td><td class="num">HK$2,244</td></tr>
+          <tr><th>一家四口，全都要</th><td>Apple One 高級（HK$348）</td><td class="num">HK$348</td><td class="num">HK$4,176</td></tr>
+          <tr><th>只要音樂，其他不用</th><td>Apple Music 個人</td><td class="num">HK$78</td><td class="num">HK$936</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:12px">⚠️ 若你只勾選一項服務，幾乎永遠是分開訂比較便宜——Apple One 的價值在於「同時用三項以上」。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>📦 訂閱比價 · 非官方網站</span>
+    <span>資料為 2026 年 11 月 Apple 香港官網售價，僅供參考，實際費用以官網為準。</span>
+    <a href="../index.html">回總入口 →</a>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => 'HK$' + n.toLocaleString('en-US');
+
+const PLANS = {
+  individual: { name:'個人方案', price:148, inc:'Music＋TV＋Arcade＋50GB', maxPeople:1, fitness:false, icloudMax:50 },
+  family:     { name:'家庭方案', price:228, inc:'Music＋TV＋Arcade＋200GB（6 人共享）', maxPeople:6, fitness:false, icloudMax:200 },
+  premier:    { name:'高級方案', price:348, inc:'Music＋TV＋Arcade＋Fitness+＋2TB（6 人共享）', maxPeople:6, fitness:true, icloudMax:2000 }
+};
+
+function calc(){
+  const people = parseInt($('people').value, 10);
+  const useMusic = $('svc-music').checked;
+  const useTV = $('svc-tv').checked;
+  const useArcade = $('svc-arcade').checked;
+  const useFitness = $('svc-fitness').checked;
+  const useIcloud = $('svc-icloud').checked;
+  const icloudPrice = parseInt($('icloudTier').value, 10);
+
+  // 分開訂：人數 >1 時 Music 自動用家庭方案（除非手動選了學生/個人的 1 人情境）
+  let musicPrice = 0;
+  if(useMusic){
+    if(people > 1){ musicPrice = 128; $('musicPlanWrap').style.display='none'; }
+    else { $('musicPlanWrap').style.display='block'; musicPrice = parseInt($('musicPlan').value,10); }
+  } else { $('musicPlanWrap').style.display='none'; }
+
+  let sep = musicPrice + (useTV?68:0) + (useArcade?54:0) + (useFitness?58:0) + (useIcloud?icloudPrice:0);
+  $('sepM').textContent = fmt(sep);
+  $('sepY').textContent = fmt(sep*12);
+  $('u-music').textContent = useMusic ? 'HK$' + (musicPrice||78) + '／月' : '未勾選';
+  $('u-icloud').textContent = useIcloud ? 'HK$' + icloudPrice + '／月' : '未勾選';
+
+  // 找最便宜且「涵蓋所有已勾選服務」的 Apple One 方案
+  let best = null;
+  for(const key of ['individual','family','premier']){
+    const p = PLANS[key];
+    if(people > p.maxPeople) continue;
+    if(useFitness && !p.fitness) continue;
+    if(useIcloud && icloudPrice > p.icloudMax) continue;   // iCloud 容量要夠
+    if(!best || p.price < best.price) best = p;
+  }
+
+  const v = $('verdict');
+  if(!best){
+    best = PLANS.premier;
+    v.className = 'verdict lose';
+    v.innerHTML = '⚠️ 目前勾選的組合只有 Apple One 高級方案（HK$348／月）能完整涵蓋。' +
+      (sep <= 348 ? '分開訂（' + fmt(sep) + '／月）比較划算，不建議為了 Apple One 而加訂。'
+                  : '相比分開訂（' + fmt(sep) + '／月），高級方案每月省 ' + fmt(sep-348) + '。');
+    $('oneName').textContent = '高級方案（勉強涵蓋）';
+  } else if(sep <= best.price){
+    $('oneName').textContent = best.name;
+    v.className = 'verdict lose';
+    v.innerHTML = '🚫 <b>分開訂比較划算</b>：每月 HK$' + sep.toLocaleString('en-US') +
+      '，比 ' + best.name + '（HK$' + best.price.toLocaleString('en-US') + '）省 HK$' +
+      (best.price - sep).toLocaleString('en-US') + '。Apple One 通常要同時用三項以上才值得。';
+  } else {
+    $('oneName').textContent = best.name;
+    v.className = 'verdict win';
+    v.innerHTML = '✅ 包成 <b>' + best.name + '</b> 比較划算：每月省 <span class="hl">' +
+      fmt(sep - best.price) + '</span>，每年省 <b>' + fmt((sep - best.price) * 12) + '</b>。';
+  }
+  $('oneM').textContent = fmt(best.price);
+  $('oneY').textContent = fmt(best.price * 12);
+  $('oneInc').textContent = best.inc;
+}
+
+['people','musicPlan','icloudTier'].forEach(id => $(id).addEventListener('change', calc));
+document.querySelectorAll('#calc input[type=checkbox]').forEach(cb => cb.addEventListener('change', calc));
+calc();
+</script>
+</body>
+</html>

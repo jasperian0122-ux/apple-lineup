@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple 產品規格對比工具｜iPhone・Mac・iPad 即時比較（香港 2026）</title>
+<meta name="description" content="選兩台 Apple 產品即時對比規格：iPhone 18 Pro／Pro Max／Duo／Air、MacBook Neo／Air／Pro／mini／iMac／Studio、iPad Pro／Air／mini。差異儲存格自動高亮。">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+.picker-bar{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.picker-bar>div{flex:1;min-width:180px}
+.picker-bar .vs{flex:0 0 auto;font-weight:800;font-size:18px;color:var(--ink-3);padding-bottom:12px}
+.diff{background:#fff8d6 !important;font-weight:600}
+.table-scroll{overflow-x:auto}
+.cmp-table{min-width:560px}
+.cmp-table th:first-child{width:110px}
+.cmp-table td{font-size:13.8px}
+.cmp-table td:first-of-type,.cmp-table th:nth-child(2){border-left:1px solid var(--line)}
+.random-row{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.legend{font-size:12.5px;color:var(--ink-3)}
+.legend i{display:inline-block;width:14px;height:14px;background:#fff8d6;border:1px solid #eadfa8;border-radius:3px;vertical-align:-2px;margin-right:4px}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">🔍 規格對比</a>
+    <div class="links">
+      <a href="#compare">開始對比</a>
+      <a href="#lineup">全部機型</a>
+      <a href="../index.html">回總入口</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Spec Compare · 2026</p>
+    <h1>兩台機器，<span class="grad">差在哪一格</span>？</h1>
+    <p class="sub">從 iPhone 18 Pro 到 Mac Studio，選擇兩台產品即時並排對比。數值不同的儲存格會自動以淡黃色高亮。</p>
+    <span class="chip">iPhone 4 台</span><span class="chip">Mac 8 台</span><span class="chip">iPad 5 台</span>
+    <span class="chip gray">價格為 2026 年 11 月香港官網</span>
+  </div>
+</header>
+
+<section id="compare">
+  <div class="wrap">
+    <p class="kicker">Compare</p>
+    <h2>選擇分類與兩台機型</h2>
+
+    <div class="picker-bar" style="margin-top:18px">
+      <div>
+        <label for="cat">分類</label>
+        <select id="cat">
+          <option value="iphone">📱 手機（iPhone）</option>
+          <option value="mac">💻 電腦（Mac）</option>
+          <option value="ipad">📲 平板（iPad）</option>
+        </select>
+      </div>
+      <div>
+        <label for="selA">機型 A</label>
+        <select id="selA"></select>
+      </div>
+      <div class="vs">VS</div>
+      <div>
+        <label for="selB">機型 B</label>
+        <select id="selB"></select>
+      </div>
+      <div style="flex:0 0 auto">
+        <button class="btn ghost" id="btnRandom" type="button">🎲 隨機對比</button>
+      </div>
+    </div>
+
+    <div class="table-scroll" style="margin-top:22px">
+      <table class="cmp-table" id="cmpTable"></table>
+    </div>
+    <p class="legend" style="margin-top:12px"><i></i>淡黃色＝兩台數值不同。價格為 Apple 香港官網 2026 年 11 月現行售價（起價）。</p>
+  </div>
+</section>
+
+<section id="lineup" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Line-up</p>
+    <h2>全部 17 台機型</h2>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card">
+        <h3>📱 iPhone（4 台）</h3>
+        <p class="muted">iPhone 18 Pro（HK$10,499 起）、18 Pro Max（HK$11,499 起）、摺疊機 Duo（HK$17,499 起）、iPhone Air（HK$9,499 起）。標準版 iPhone 18 尚未發表，傳聞 2027 年春季登場。</p>
+      </div>
+      <div class="card">
+        <h3>💻 Mac（8 台）</h3>
+        <p class="muted">MacBook Neo（HK$5,499 起）、MacBook Air 13″／15″（HK$10,499／11,999 起）、MacBook Pro 14″ M6（HK$15,999 起）與 16″（HK$23,999 起）、Mac mini（HK$7,299 起）、iMac 24″、Mac Studio（HK$19,999 起）。</p>
+      </div>
+      <div class="card">
+        <h3>📲 iPad（5 台）</h3>
+        <p class="muted">iPad Pro 11″／13″ M5（HK$9,499／11,999 起）、iPad Air 11″／13″ M4（HK$5,999／7,499 起）、iPad mini 8.5″ A20 Pro（HK$5,299 起）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>🔍 產品規格對比 · 非官方網站</span>
+    <span>資料為 2026 年 11 月 Apple 香港官網售價與公開規格，僅供參考。</span>
+    <a href="../index.html">回總入口 →</a>
+  </div>
+</footer>
+
+<script>
+const DATA = {
+  iphone: {
+    label: '📱 iPhone',
+    items: {
+      'iPhone 18 Pro': {
+        '香港售價':'HK$10,499 起','晶片':'A20 Pro（2nm）','螢幕':'6.3″ OLED · 120Hz · 3000 尼特',
+        '解析度':'2622 × 1206（460 ppi）','電池／續航':'4,056mAh · 影片最長 34 小時',
+        '相機':'48MP 可變光圈主鏡＋48MP 超廣角＋48MP 望遠＋LiDAR','重量':'211g','記憶體':'12GB'},
+      'iPhone 18 Pro Max': {
+        '香港售價':'HK$11,499 起','晶片':'A20 Pro（2nm）','螢幕':'6.9″ OLED · 120Hz · 3000 尼特',
+        '解析度':'2868 × 1320（460 ppi）','電池／續航':'5,391mAh · 影片最長 43 小時',
+        '相機':'48MP 可變光圈主鏡＋48MP 超廣角＋48MP 望遠＋LiDAR','重量':'249g','記憶體':'12GB'},
+      'iPhone Duo（摺疊）': {
+        '香港售價':'HK$17,499 起','晶片':'A20 Pro（2nm）','螢幕':'5.4″ 外 ＋ 7.6″ 內 OLED · 雙 120Hz',
+        '解析度':'未公布（460 ppi 級）','電池／續航':'雙電池 · 內螢幕 31 小時／外螢幕 44 小時',
+        '相機':'48MP 主鏡＋48MP 超廣角（無獨立長焦）','重量':'254g','記憶體':'12GB'},
+      'iPhone Air': {
+        '香港售價':'HK$9,499 起','晶片':'A19 Pro（3nm）','螢幕':'6.5″ OLED · 120Hz · 3000 尼特',
+        '解析度':'2736 × 1260（460 ppi）','電池／續航':'3,149mAh · 影片最長 27 小時（＋MagSafe 電池 40 小時）',
+        '相機':'單 48MP 融合主鏡（2× 裁切變焦）','重量':'165g（5.64mm）','記憶體':'12GB'}
+    }
+  },
+  mac: {
+    label: '💻 Mac',
+    items: {
+      'MacBook Neo 13″': {
+        '香港售價':'HK$5,499 起','晶片':'A18 Pro','螢幕':'13.6″ Liquid Retina',
+        '記憶體':'8GB（不可升級）','儲存':'256GB 起','重量／厚度':'1.23kg · 無風扇','續航':'影片最長 16 小時','定位':'學生、輕度文書'},
+      'MacBook Air 13″ (M5)': {
+        '香港售價':'HK$10,499 起','晶片':'M5（8 核 CPU／10 核 GPU）','螢幕':'13.6″ Liquid Retina',
+        '記憶體':'16GB 起','儲存':'512GB 起','重量／厚度':'1.24kg · 無風扇','續航':'最長 18 小時','定位':'大多數人的主力機'},
+      'MacBook Air 15″ (M5)': {
+        '香港售價':'HK$11,999 起','晶片':'M5（8 核 CPU／10 核 GPU）','螢幕':'15.3″ Liquid Retina',
+        '記憶體':'16GB 起','儲存':'512GB 起','重量／厚度':'1.51kg · 無風扇','續航':'最長 18 小時','定位':'要大螢幕的輕使用者'},
+      'MacBook Pro 14″ (M6)': {
+        '香港售價':'HK$15,999 起','晶片':'M6（12 核 CPU）','螢幕':'14.2″ Liquid Retina XDR',
+        '記憶體':'16GB 起（最高 32GB）','儲存':'1TB 起','重量／厚度':'有風扇','續航':'最長 24 小時','定位':'創作者、開發者'},
+      'MacBook Pro 16″ (M5 Max)': {
+        '香港售價':'HK$23,999 起（M5 Max 版 HK$32,499 起）','晶片':'M5 Pro／M5 Max','螢幕':'16.2″ Liquid Retina XDR',
+        '記憶體':'最高 128GB','儲存':'512GB 起','重量／厚度':'有風扇','續航':'最長 22 小時','定位':'高階行動工作站'},
+      'Mac mini (M6)': {
+        '香港售價':'HK$7,299 起','晶片':'M6（12 核 CPU）','螢幕':'無（外接顯示器）',
+        '記憶體':'16GB 起（建議 24GB）','儲存':'256GB 起','重量／厚度':'小巧桌上主機','續航':'—（接電源）','定位':'自備螢幕的最佳性價比'},
+      'iMac 24″ (M6)': {
+        '香港售價':'依官網（US$1,499／1,699 起）','晶片':'M6（10 核／12 核 CPU）','螢幕':'24″ 4.5K Retina 一體成型',
+        '記憶體':'16GB 起','儲存':'256GB 起（建議 512GB）','重量／厚度':'一體成型（含支架）','續航':'—（接電源）','定位':'家用、櫃檯'},
+      'Mac Studio': {
+        '香港售價':'HK$19,999 起','晶片':'M5 Max／M5 Ultra','螢幕':'無（外接顯示器）',
+        '記憶體':'最高 128GB（Ultra）','儲存':'512GB 起','重量／厚度':'鋁金屬桌上工作站','續航':'—（接電源）','定位':'影片、3D、機器學習'}
+    }
+  },
+  ipad: {
+    label: '📲 iPad',
+    items: {
+      'iPad Pro 11″ (M5)': {
+        '香港售價':'HK$9,499 起（256GB）','晶片':'M5','螢幕':'11″ Ultra Retina XDR OLED · 120Hz',
+        '儲存':'256GB–2TB','重量':'約 444g','Apple Pencil':'Pencil Pro／USB-C','定位':'專業繪圖、剪輯'},
+      'iPad Pro 13″ (M5)': {
+        '香港售價':'HK$11,999 起（256GB）','晶片':'M5','螢幕':'13″ Ultra Retina XDR OLED · 120Hz',
+        '儲存':'256GB–2TB','重量':'約 579g','Apple Pencil':'Pencil Pro／USB-C','定位':'同上，更大畫面'},
+      'iPad Air 11″ (M4)': {
+        '香港售價':'HK$5,999 起（128GB）','晶片':'M4','螢幕':'11″ Liquid Retina LCD · 60Hz',
+        '儲存':'128GB–1TB','重量':'約 462g','Apple Pencil':'Pencil Pro／USB-C','定位':'學生、上班族'},
+      'iPad Air 13″ (M4)': {
+        '香港售價':'HK$7,499 起（128GB）','晶片':'M4','螢幕':'13″ Liquid Retina LCD · 60Hz',
+        '儲存':'128GB–1TB','重量':'約 616g','Apple Pencil':'Pencil Pro／USB-C','定位':'同上，更大畫面'},
+      'iPad mini 8.5″ (A20 Pro)': {
+        '香港售價':'HK$5,299 起（128GB）','晶片':'A20 Pro','螢幕':'8.5″ Super Retina XDR OLED',
+        '儲存':'128GB／256GB／512GB','重量':'約 300g','Apple Pencil':'Pencil Pro／USB-C','定位':'閱讀、單手持握'}
+    }
+  }
+};
+
+const $ = id => document.getElementById(id);
+const catSel = $('cat'), selA = $('selA'), selB = $('selB'), table = $('cmpTable');
+
+function fillModels(){
+  const items = Object.keys(DATA[catSel.value].items);
+  selA.innerHTML = items.map(m => '<option>' + m + '</option>').join('');
+  selB.innerHTML = items.map(m => '<option>' + m + '</option>').join('');
+  // 預設組合：每類給一組有看頭的對比
+  const defaults = { iphone:['iPhone 18 Pro','iPhone Air'], mac:['MacBook Air 13″ (M5)','MacBook Pro 14″ (M6)'], ipad:['iPad Pro 11″ (M5)','iPad Air 11″ (M4)'] };
+  const d = defaults[catSel.value];
+  if(items.includes(d[0])) selA.value = d[0];
+  if(items.includes(d[1])) selB.value = d[1];
+}
+
+function render(){
+  const items = DATA[catSel.value].items;
+  const a = items[selA.value], b = items[selB.value];
+  const keys = Object.keys(a).filter(k => k in b);
+  let html = '<thead><tr><th>規格</th><th>' + selA.value + '</th><th>' + selB.value + '</th></tr></thead><tbody>';
+  for(const k of keys){
+    const va = String(a[k]), vb = String(b[k]);
+    const cls = va !== vb ? ' class="diff"' : '';
+    html += '<tr><th>' + k + '</th><td' + cls + '>' + va + '</td><td' + cls + '>' + vb + '</td></tr>';
+  }
+  html += '</tbody>';
+  table.innerHTML = html;
+}
+
+catSel.addEventListener('change', () => { fillModels(); render(); });
+selA.addEventListener('change', render);
+selB.addEventListener('change', render);
+$('btnRandom').addEventListener('click', () => {
+  const names = Object.keys(DATA[catSel.value].items);
+  let i = Math.floor(Math.random() * names.length);
+  let j = Math.floor(Math.random() * names.length);
+  while(j === i) j = Math.floor(Math.random() * names.length);
+  selA.value = names[i]; selB.value = names[j];
+  render();
+});
+
+fillModels();
+render();
+</script>
+</body>
+</html>

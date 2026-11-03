@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple 小百科｜1976–2026 互動時間軸</title>
+<meta name="description" content="從 Apple I 到 iPhone Duo：50 年 Apple 關鍵大事記，可搜尋、可依年代篩選的互動時間軸百科，附 5 條冷知識。">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  .eras{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+  .era-btn{cursor:pointer;border:1.5px solid var(--line)}
+  .era-btn:hover{border-color:var(--accent)}
+  .era-btn.active{background:var(--accent);color:#fff}
+  .tl{position:relative;margin-top:28px;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:3px;border-radius:3px;
+    background:linear-gradient(180deg,var(--accent),var(--accent-2))}
+  .tl-item{position:relative;margin-bottom:18px}
+  .tl-item::before{content:"";position:absolute;left:-25px;top:26px;width:13px;height:13px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 0 4px rgba(0,113,227,.15)}
+  .year{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1}
+  .searchwrap{max-width:520px}
+  #noResult{display:none;text-align:center;padding:40px 0;color:var(--ink-3)}
+  .fact{border-left:3px solid var(--accent-2)}
+  .fact h3{font-size:16px}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <span class="brand">🍎 Apple 小百科</span>
+    <span class="links">
+      <a href="#timeline">時間軸</a>
+      <a href="#facts">冷知識</a>
+      <a href="../index.html">← 回總入口</a>
+    </span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">1976 – 2026</p>
+    <h1>Apple <span class="grad">五十年大事記</span></h1>
+    <p class="sub">從車庫裡的 Apple I 到空間運算的 iPhone Duo，用一條時間軸看完蘋果的每一步。</p>
+    <div class="searchwrap" style="margin:0 auto">
+      <label for="q" style="text-align:left">搜尋事件（比對年份、標題與內文）</label>
+      <input type="search" id="q" placeholder="例如：iPhone、M1、iMac、1984…" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<!-- ================= 時間軸 ================= -->
+<section id="timeline">
+  <div class="wrap">
+    <p class="kicker">Timeline</p>
+    <h2>互動時間軸</h2>
+    <p class="muted">點年代標籤可篩選，再搭配上方搜尋框縮小範圍。</p>
+
+    <div class="eras" id="eras">
+      <button class="chip era-btn active" data-era="all">全部</button>
+      <button class="chip gray era-btn" data-era="startup">🚜 創業期（1976–1985）</button>
+      <button class="chip gray era-btn" data-era="revival">🎨 復興期（1996–2000）</button>
+      <button class="chip gray era-btn" data-era="mobile">📱 行動時代（2001–2014）</button>
+      <button class="chip gray era-btn" data-era="silicon">🪙 矽時代（2015–2022）</button>
+      <button class="chip gray era-btn" data-era="spatial">🥽 空間時代（2023–）</button>
+    </div>
+
+    <div class="tl" id="tl">
+
+      <div class="tl-item" data-era="startup"><div class="card">
+        <div class="year">1976</div><h3>Apple I 誕生</h3>
+        <p class="muted">Steve Wozniak 設計、Steve Jobs 推銷的第一台產品 Apple I 在車庫問世，為一塊需自備鍵盤與螢幕的電路板，售價 US$666.66。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="startup"><div class="card">
+        <div class="year">1977</div><h3>Apple II 正式發表</h3>
+        <p class="muted">首台內建塑膠機殼與彩色圖形的個人電腦，熱賣十餘年，奠定了 Apple 最早的財務基礎。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="startup"><div class="card">
+        <div class="year">1980</div><h3>股票上市</h3>
+        <p class="muted">Apple IPO 當日籌資超過一億美元，創下當時 1956 年福特汽車以來最大規模的上市紀錄，瞬間誕生數百位百萬富翁。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="startup"><div class="card">
+        <div class="year">1983</div><h3>Lisa 與圖形介面</h3>
+        <p class="muted">Lisa 是全球首款搭載滑鼠與圖形使用介面的商用電腦，雖因定價過高慘敗，卻為 Macintosh 鋪路。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="startup"><div class="card">
+        <div class="year">1984</div><h3>Macintosh 問世</h3>
+        <p class="muted">以雷利史考特執導的「1984」廣告超級盃亮相，Macintosh 把圖形介面帶進大眾市場，成為 Apple 的精神圖騰。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="startup"><div class="card">
+        <div class="year">1985</div><h3>Jobs 離開 Apple</h3>
+        <p class="muted">權力鬥爭失利後，Steve Jobs 辭職創立 NeXT，並以 1,000 萬美元收購後來的皮克斯動畫。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="revival"><div class="card">
+        <div class="year">1996</div><h3>收購 NeXT</h3>
+        <p class="muted">陷入虧損的 Apple 以約 4.29 億美元買下 NeXT，Jobs 以顧問身分重返，NeXTSTEP 成為今日 macOS 的基礎。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="revival"><div class="card">
+        <div class="year">1997</div><h3>「Think different」與微軟投資</h3>
+        <p class="muted">Jobs 重掌兵符，推出 Think different 廣告；微軟投資 1.5 億美元無投票權股票，化解專利訴訟並救了瀕危的 Apple。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="revival"><div class="card">
+        <div class="year">1998</div><h3>iMac G3 救亡圖存</h3>
+        <p class="muted">半透明糖果色一體機 iMac 讓全世界重新愛上 Apple，上市首年銷逾 200 萬台，宣告品牌正式復興。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="revival"><div class="card">
+        <div class="year">2000</div><h3>iTools 與 Jobs 回任 CEO</h3>
+        <p class="muted">Jobs 正式回任執行長，同步推出 iTools（.Mac 前身），雲端服務的種子悄悄埋下。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2001</div><h3>iPod 與 OS X 登場</h3>
+        <p class="muted">「把 1,000 首歌放進口袋」的 iPod 誕生，同年推出全新架構的 Mac OS X，Apple 開啟雙線進擊。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2003</div><h3>iTunes Store 上線</h3>
+        <p class="muted">每首 US$0.99 的單曲購買模式改寫音樂產業，也為數位內容商店的商業模式定調。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2005</div><h3>iPod nano 與 Intel 轉換</h3>
+        <p class="muted">超薄閃存式 iPod nano 大賣；同年 Apple 宣布 Mac 全面轉向 Intel 晶片，告別 PowerPC。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2007</div><h3>iPhone 發表</h3>
+        <p class="muted">Jobs 在 Macworld 舞台上發表結合 iPod、手機與上網裝置的 iPhone，重新發明了智慧型手機。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2008</div><h3>App Store 開幕</h3>
+        <p class="muted">伴隨 iPhone 3G 推出的 App Store 上線，首年即有逾 10 億次下載，創造了整個行動 app 經濟。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2010</div><h3>iPad 定義平板</h3>
+        <p class="muted">介於手機與筆電之間的 iPad 問世，9.7 吋多點觸控螢幕重新定義了平板電腦的形態。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2011</div><h3>Siri 與世代交替</h3>
+        <p class="muted">iPhone 4S 帶來語音助理 Siri；同年 10 月 Jobs 逝世，Tim Cook 正式接任執行長。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2013</div><h3>Touch ID 指紋辨識</h3>
+        <p class="muted">iPhone 5s 內建 Home 鍵下的 Touch ID，生物辨識從此成為手機解鎖與支付的基本配備。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="mobile"><div class="card">
+        <div class="year">2014</div><h3>Apple Pay 與大螢幕 iPhone</h3>
+        <p class="muted">Apple Pay 以 NFC 行動支付亮相，iPhone 6／6 Plus 首次提供大螢幕機型，銷量創下歷史新高。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="silicon"><div class="card">
+        <div class="year">2015</div><h3>Apple Watch 問世</h3>
+        <p class="muted">庫克時代的全新產品線 Apple Watch 上市，數年後成為全球最暢銷的手錶。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="silicon"><div class="card">
+        <div class="year">2016</div><h3>AirPods 與無線時代</h3>
+        <p class="muted">隨 iPhone 7 取消 3.5mm 耳機孔推出的真無線耳機 AirPods，意外成為穿透力最強的配件產品。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="silicon"><div class="card">
+        <div class="year">2017</div><h3>iPhone X 全面螢幕</h3>
+        <p class="muted">紀念 iPhone 十週年的 iPhone X 取消 Home 鍵，以 Face ID 與 OLED 全面螢幕確立此後十年的設計語言。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="silicon"><div class="card">
+        <div class="year">2019</div><h3>服務大年</h3>
+        <p class="muted">Apple News+、Apple TV+、Apple Arcade、Apple Card 一年之內齊發，硬體之外的服務營收成為第二引擎。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="silicon"><div class="card">
+        <div class="year">2020</div><h3>M1 晶片革命</h3>
+        <p class="muted">Apple 捨棄 Intel，推出自研 ARM 架構的 M1 晶片 Mac，效能與續航表現震撼業界，展開自家矽的兩年轉換計畫。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="silicon"><div class="card">
+        <div class="year">2022</div><h3>M2 與動態島</h3>
+        <p class="muted">M2 晶片登陸 MacBook Air；iPhone 14 Pro 以「動態島」取代瀏海，把硬體缺口變成互動介面。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="spatial"><div class="card">
+        <div class="year">2023</div><h3>Vision Pro 問世</h3>
+        <p class="muted">WWDC 發表的空間運算裝置 Vision Pro 以「空間電腦」自居，2024 年初開賣，開啟 Apple 的空間時代。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="spatial"><div class="card">
+        <div class="year">2024</div><h3>Apple Intelligence</h3>
+        <p class="muted">Apple 推出裝置端為主的 AI 系統 Apple Intelligence，寫作工具、影像魔法與更聰明的 Siri 逐步上線。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="spatial"><div class="card">
+        <div class="year">2025</div><h3>M4 系列與摺疊前哨</h3>
+        <p class="muted">M4 晶片系列橫掃 Mac 產品線，摺疊 iPhone 的傳聞愈演愈烈，供應鏈開始量產可撓式面板。</p>
+      </div></div>
+
+      <div class="tl-item" data-era="spatial"><div class="card">
+        <div class="year">2026</div><h3>iPhone Duo 摺疊時代</h3>
+        <p class="muted">傳言中的首款摺疊 iPhone「iPhone Duo」登場，搭配 Apple Intelligence 深度整合，迎接 iPhone 誕生二十年的全新形態。</p>
+      </div></div>
+
+    </div>
+
+    <p id="noResult">找不到符合的事件，換個關鍵字試試（例如：iPhone、Mac、M1）。</p>
+  </div>
+</section>
+
+<!-- ================= 冷知識 ================= -->
+<section id="facts" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="kicker">Fun Facts</p>
+    <h2>五條冷知識</h2>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="card fact"><h3>💸 定價 US$666.66</h3><p class="muted">Apple I 於 1976 年定價 US$666.66——Wozniak 說只因為「好唸好記」，並無任何魔鬼暗示。</p></div>
+      <div class="card fact"><h3>🚜 真的有那間車庫</h3><p class="muted">Jobs 童年位於 Los Altos 的車庫被認為是 Apple 誕生地，2013 年被列入歷史古蹟名單。</p></div>
+      <div class="card fact"><h3>🤝 微軟救過蘋果</h3><p class="muted">1997 年 Jobs 在波士頓 Macworld 上公布微軟 1.5 億美元投資時，台下噓聲一片，卻讓 Apple 活了下來。</p></div>
+      <div class="card fact"><h3>🍎 為什麼叫 Apple？</h3><p class="muted">Jobs 曾在果園工作又剛節食完，覺得「Apple」有趣、活潑又不嚇人，於是公司就叫 Apple。</p></div>
+      <div class="card fact"><h3>👤 咬一口的設計巧思</h3><p class="muted">設計師 Rob Janoff 咬一口的蘋果 logo 是為了避免被誤認成櫻桃，與圖靈傳說無關。</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Apple 小百科 · 部分傳聞事件（2025–2026）僅供參考</span>
+    <a href="../index.html">回十四站工作室</a>
+  </div>
+</footer>
+
+<script>
+const items=document.querySelectorAll(".tl-item");
+const noResult=document.getElementById("noResult");
+let era="all",kw="";
+
+function filter(){
+  let visible=0;
+  items.forEach(it=>{
+    const okEra=era==="all"||it.dataset.era===era;
+    const okKw=!kw||it.textContent.toLowerCase().includes(kw);
+    const show=okEra&&okKw;
+    it.style.display=show?"":"none";
+    if(show)visible++;
+  });
+  noResult.style.display=visible?"none":"block";
+}
+
+document.getElementById("q").addEventListener("input",e=>{
+  kw=e.target.value.trim().toLowerCase();
+  filter();
+});
+
+document.querySelectorAll(".era-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".era-btn").forEach(b=>{b.classList.remove("active");b.classList.add("gray")});
+    btn.classList.add("active");btn.classList.remove("gray");
+    era=btn.dataset.era;
+    filter();
+  });
+});
+</script>
+</body>
+</html>

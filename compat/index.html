@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apple 相容性對照表｜機型 × 系統 × 充電 × eSIM（2026-11）</title>
+<meta name="description" content="一張表查清 Apple 機型相容性：出廠系統與最高可升級版本、有線快充瓦數、MagSafe 無線充電、5G／eSIM、連接埠。支援搜尋與分類篩選。">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:18px 0 14px}
+.toolbar input{max-width:320px}
+.filter{display:flex;gap:8px;flex-wrap:wrap}
+.filter button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink-2);
+  padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer}
+.filter button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.table-scroll{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line)}
+table.cmp{min-width:860px;font-size:13.8px}
+table.cmp th{position:sticky;top:0;z-index:2}
+table.cmp td{vertical-align:top}
+table.cmp .m{font-weight:700;white-space:nowrap}
+table.cmp .yr{color:var(--ink-3);font-size:12px;display:block;font-weight:400}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.pill.ok{background:rgba(29,122,61,.12);color:var(--good)}
+.pill.max{background:rgba(0,113,227,.12);color:var(--accent)}
+.pill.no{background:rgba(192,57,43,.1);color:var(--bad)}
+.pill.mid{background:rgba(178,80,0,.12);color:var(--warn)}
+.count{font-size:13px;color:var(--ink-3)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);margin:12px 0 0}
+.legend .pill{margin-right:4px}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a class="brand" href="../index.html">🧩 相容性對照</a>
+    <div class="links">
+      <a href="#table">查詢表格</a>
+      <a href="#notes">注意事項</a>
+      <a href="../index.html">回總入口</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Compatibility · 2026-11</p>
+    <h1>一張表，<span class="grad">查清你的機器</span></h1>
+    <p class="sub">出廠系統、最高可升級版本、快充瓦數、無線充電、5G／eSIM、連接埠——買二手、買充電器、換電信之前先查這裡。</p>
+    <span class="chip" id="totalChip">載入中…</span>
+    <span class="chip gray">資料整理自 Apple 官方技術規格 · 最後更新 2026-11</span>
+  </div>
+</header>
+
+<section id="table" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker">Search &amp; Filter</p>
+    <h2>搜尋與篩選</h2>
+
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="搜尋機型，例如：iPhone 17、MacBook、iPad mini…" aria-label="搜尋機型">
+      <div class="filter" id="catFilter">
+        <button data-cat="all" class="on">全部</button>
+        <button data-cat="phone">📱 手機</button>
+        <button data-cat="tablet">📲 平板</button>
+        <button data-cat="mac">💻 電腦</button>
+        <button data-cat="wear">⌚ 穿戴</button>
+      </div>
+      <span class="count" id="count"></span>
+    </div>
+
+    <div class="table-scroll">
+      <table class="cmp" id="tbl">
+        <thead>
+          <tr>
+            <th>機型</th>
+            <th>出廠系統</th>
+            <th>最高可升級<br>（2026-11）</th>
+            <th>有線快充</th>
+            <th>無線充電</th>
+            <th>5G</th>
+            <th>eSIM</th>
+            <th>連接埠</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span><span class="pill max">可升級</span>仍支援最新系統</span>
+      <span><span class="pill ok">已是最新</span>出廠即最新</span>
+      <span><span class="pill mid">終點</span>已停在該版本</span>
+      <span><span class="pill no">不支援</span>無此功能</span>
+    </div>
+  </div>
+</section>
+
+<section id="notes" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker">Notes</p>
+    <h2>看表之前，四件事要知道</h2>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card reveal">
+        <h3>「最高可升級」會隨時間改變</h3>
+        <p class="muted" style="margin:0">Apple 每年 6 月發表新系統、9–10 月推送正式版。表中最後更新為 2026 年 11 月；翌年 6 月後請重新確認。</p>
+      </div>
+      <div class="card reveal">
+        <h3>快充瓦數是「上限」</h3>
+        <p class="muted" style="margin:0">實際功率取決於電量與溫度：低電量時最接近峰值，80% 之後明顯放慢。標示 ~30W 不代表全程 30W。</p>
+      </div>
+      <div class="card reveal">
+        <h3>eSIM 因地區而異</h3>
+        <p class="muted" style="margin:0">美版 iPhone 14 起僅支援 eSIM；港版長期保留實體 SIM。買二手或攜機出國前，先確認版本對應的 SIM 配置。</p>
+      </div>
+      <div class="card reveal">
+        <h3>充電器要「夠」也要「對」</h3>
+        <p class="muted" style="margin:0">iPhone 對第三方充電器會依 PD 協議協商功率，雜牌標示瓦數常灌水。想跑滿速，選有 USB-IF／MFi 認證的。</p>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:18px">
+      <h3>沒找到你的機型？</h3>
+      <p class="muted" style="margin:0">本表優先收錄 2019 年之後的機型（也是二手市場最活躍的區間）。更舊的機型可到 Apple 官網「技術規格」頁查證；或用上方搜尋框輸入關鍵字試試。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Apple 相容性對照表 · 整理自官方技術規格，僅供參考</span>
+    <span>最後更新 2026-11</span>
+  </div>
+</footer>
+
+<script>
+// ---------- 資料 ----------
+// sup: 'max'=出廠即最新 | 'ok'=仍可升級到最新 | 'end'=已停在終點版本
+const DATA = [
+  // 📱 手機
+  {c:'phone', m:'iPhone 18 Duo',        yr:'2026', os:'iOS 26',   sup:'ok',  wire:'~35W', 无线:'MagSafe 25W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 18 Pro Max',    yr:'2026', os:'iOS 26',   sup:'ok',  wire:'~40W',  无线:'MagSafe 25W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 18 Pro',        yr:'2026', os:'iOS 26',   sup:'ok',  wire:'~35W',  无线:'MagSafe 25W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone Air',           yr:'2025', os:'iOS 26',   sup:'ok',  wire:'~30W',  无线:'MagSafe 25W', g5:'是', esim:'✓（部分地區僅 eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 17 Pro Max',    yr:'2025', os:'iOS 26',   sup:'ok',  wire:'~40W',  无线:'MagSafe 25W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 17',            yr:'2025', os:'iOS 26',   sup:'ok',  wire:'~30W',  无线:'MagSafe 25W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 16 Pro Max',    yr:'2024', os:'iOS 18',   sup:'ok',  wire:'~30W',  无线:'MagSafe 15W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 16',            yr:'2024', os:'iOS 18',   sup:'ok',  wire:'~27W',  无线:'MagSafe 15W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 15 Pro Max',    yr:'2023', os:'iOS 17',   sup:'ok',  wire:'~27W',  无线:'MagSafe 15W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 15',            yr:'2023', os:'iOS 17',   sup:'ok',  wire:'~20W',  无线:'MagSafe 15W', g5:'是', esim:'✓（實體＋eSIM）', port:'USB-C'},
+  {c:'phone', m:'iPhone 14 Pro Max',    yr:'2022', os:'iOS 16',   sup:'ok',  wire:'~27W',  无线:'MagSafe 15W', g5:'是', esim:'✓（美版僅 eSIM）', port:'Lightning'},
+  {c:'phone', m:'iPhone 14',            yr:'2022', os:'iOS 16',   sup:'ok',  wire:'~20W',  无线:'MagSafe 15W', g5:'是', esim:'✓（美版僅 eSIM）', port:'Lightning'},
+  {c:'phone', m:'iPhone 13 Pro Max',    yr:'2021', os:'iOS 15',   sup:'ok',  wire:'~23W',  无线:'MagSafe 15W', g5:'是', esim:'✓', port:'Lightning'},
+  {c:'phone', m:'iPhone 12 Pro Max',    yr:'2020', os:'iOS 14',   sup:'ok',  wire:'~20W',  无线:'MagSafe 15W', g5:'是', esim:'✓', port:'Lightning'},
+  {c:'phone', m:'iPhone 11 Pro Max',    yr:'2019', os:'iOS 13',   sup:'ok',  wire:'~18W',  无线:'Qi 7.5W', g5:'是', esim:'✓', port:'Lightning'},
+  {c:'phone', m:'iPhone SE（第三代）',   yr:'2022', os:'iOS 15',   sup:'ok',  wire:'~20W',  无线:'Qi 7.5W', g5:'是', esim:'✓', port:'Lightning'},
+  // 📲 平板
+  {c:'tablet', m:'iPad Pro 13"（M5）',  yr:'2026', os:'iPadOS 26', sup:'ok', wire:'~40W',  无线:'—',           g5:'是', esim:'✓（僅 eSIM）', port:'USB-C / TB'},
+  {c:'tablet', m:'iPad mini（A20 Pro）', yr:'2026', os:'iPadOS 26', sup:'ok', wire:'~30W', 无线:'—',           g5:'是', esim:'✓（僅 eSIM）', port:'USB-C'},
+  {c:'tablet', m:'iPad Air 13"（M3）',  yr:'2025', os:'iPadOS 18', sup:'ok', wire:'~30W',  无线:'—',           g5:'是', esim:'✓（僅 eSIM）', port:'USB-C'},
+  {c:'tablet', m:'iPad（第十一代）',     yr:'2025', os:'iPadOS 18', sup:'ok', wire:'~20W',  无线:'—',           g5:'是', esim:'✓（僅 eSIM）', port:'USB-C'},
+  // 💻 電腦
+  {c:'mac', m:'MacBook Pro 14"（M6）',  yr:'2026', os:'macOS 26',  sup:'ok', wire:'96W',   无线:'—',           g5:'—', esim:'—', port:'3×TB5、HDMI、SD'},
+  {c:'mac', m:'MacBook Air 13"（M5）',  yr:'2026', os:'macOS 26',  sup:'ok', wire:'35W',   无线:'—',           g5:'—', esim:'—', port:'2×TB4、MagSafe'},
+  {c:'mac', m:'MacBook Neo',            yr:'2026', os:'macOS 26',  sup:'ok', wire:'30W',   无线:'—',           g5:'—', esim:'—', port:'2×USB-C'},
+  {c:'mac', m:'MacBook Air 15"（M4）',  yr:'2025', os:'macOS 15',  sup:'ok', wire:'35W',   无线:'—',           g5:'—', esim:'—', port:'2×TB4、MagSafe'},
+  {c:'mac', m:'Mac mini（M4）',         yr:'2024', os:'macOS 15',  sup:'ok', wire:'—',     无线:'—',           g5:'—', esim:'—', port:'3×TB4、2×USB-A'},
+  // ⌚ 穿戴
+  {c:'wear', m:'Apple Watch Ultra 4',   yr:'2026', os:'watchOS 26', sup:'ok', wire:'磁吸快充', 无线:'磁吸專用', g5:'—', esim:'✓（LTE 版）', port:'專用磁吸'},
+  {c:'wear', m:'Apple Watch Series 12', yr:'2026', os:'watchOS 26', sup:'ok', wire:'磁吸快充', 无线:'磁吸專用', g5:'—', esim:'✓（LTE 版）', port:'專用磁吸'},
+  {c:'wear', m:'Apple Watch SE 3',      yr:'2025', os:'watchOS 26', sup:'ok', wire:'磁吸快充', 无线:'磁吸專用', g5:'—', esim:'✓（LTE 版）', port:'專用磁吸'},
+];
+
+const CATS = { all:'全部', phone:'手機', tablet:'平板', mac:'電腦', wear:'穿戴' };
+const $ = s => document.querySelector(s);
+let curCat = 'all';
+
+function pill(sup, os) {
+  if (sup === 'ok')   return `<span class="pill max">可升級至最新</span><span class="muted" style="display:block;font-size:12px">${os} 起</span>`;
+  if (sup === 'max')  return `<span class="pill ok">已是最新</span>`;
+  return `<span class="pill mid">終點：${os}</span>`;
+}
+
+function render() {
+  const q = $('#q').value.trim().toLowerCase();
+  const rows = DATA.filter(d =>
+    (curCat === 'all' || d.c === curCat) &&
+    (!q || (d.m + d.os + d.port).toLowerCase().includes(q))
+  );
+  $('#tbl tbody').innerHTML = rows.map(d => `
+    <tr>
+      <td class="m">${d.m}<span class="yr">${CATS[d.c]} · ${d.yr}</span></td>
+      <td>${d.os}</td>
+      <td>${pill(d.sup, d.os)}</td>
+      <td>${d.wire}</td>
+      <td>${d.无线}</td>
+      <td>${d.g5 === '—' ? '<span class="pill no">—</span>' : d.g5}</td>
+      <td>${d.esim === '—' ? '<span class="pill no">—</span>' : d.esim}</td>
+      <td>${d.port}</td>
+    </tr>`).join('');
+  $('#count').textContent = `共 ${rows.length} 款`;
+}
+
+$('#q').addEventListener('input', render);
+$('#catFilter').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#catFilter button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  curCat = b.dataset.cat;
+  render();
+});
+
+$('#totalChip').textContent = DATA.length + ' 款機型';
+render();
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
