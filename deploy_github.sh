@@ -51,7 +51,7 @@ for f in \
   name=$(basename "$f")
   size=$(du -h "$f" | cut -f1)
   echo "    $name ($size)"
-  curl -sS "${AUTH[@]}" -X POST \
+  curl -sS --http1.1 --max-time 900 "${AUTH[@]}" -X POST \
     -H "Content-Type: application/octet-stream" \
     --data-binary "@$f" \
     "https://uploads.github.com/repos/$OWNER/$REPO/releases/$REL_ID/assets?name=$name" \
