@@ -1,18 +1,18 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.2",
   "date": "2026-11-04",
   "notes": [
-    "App 現在會每天自動檢查更新，有新版本在頂部提示（不用再手動按）",
-    "選機問答：Apple、三星、小米、Google、OnePlus 五品牌 60 款機型",
-    "新增品牌快篩列，結果卡標示品牌與價格來源",
-    "安裝包移除多餘的版本控制檔案，體積縮小約 15%"
+    "筆電類別擴充：新增三星 Galaxy Book6 Pro、HP OmniBook 5、宏碁 Swift Go 14、華碩 Zenbook 14 OLED、微軟 Surface Laptop 8",
+    "全站 69 款機型（九品牌：Apple、三星、小米、Google、OnePlus、華碩、HP、宏碁、微軟）",
+    "macOS／Android／TV 內部識別統一為 com.jasper.advisor",
+    "Android 版套件名變更，需先移除舊版再安裝本版"
   ],
   "files": {
-    "mac-dmg": "Advisor-1.2.1-mac-x64.dmg",
-    "mac-zip": "Advisor-1.2.1-mac-x64.zip",
-    "win-zip": "Advisor-1.2.1-win-x64.zip",
-    "android": "Advisor-1.2.1-android.apk",
-    "androidtv": "Advisor-1.2.1-androidtv.apk",
-    "ios": "Advisor-1.2.1-ios.ipa"
+    "mac-dmg": "Advisor-1.2.2-mac-x64.dmg",
+    "mac-zip": "Advisor-1.2.2-mac-x64.zip",
+    "win-zip": "Advisor-1.2.2-win-x64.zip",
+    "android": "Advisor-1.2.2-android.apk",
+    "androidtv": "Advisor-1.2.2-androidtv.apk",
+    "ios": "Advisor-1.2.2-ios.ipa"
   }
 }
