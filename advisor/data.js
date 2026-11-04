@@ -1,4 +1,4 @@
-/* Apple 選購顧問 — 機型資料
+/* 選機顧問 — 機型資料（五品牌）
    價格來源：appLE 香港／美國官網 2026 年 11 月，與 apple-lineup 四地區頁面一致。
    匯率：1 HKD ≈ 1.03 MOP ≈ 4.05 TWD ≈ 0.128 USD（與 finance-calc 同基準）。
    規格僅列有依據者，未取得官方數值者填 null，介面顯示「依官網」。 */
@@ -8,13 +8,13 @@ window.ADVISOR = {
   rate: { MOP: 1.03, TWD: 4.05, USD: 0.128 },
 
   categories: [
-    { id: 'mac',     name: 'Mac',        sub: '筆電與桌上型', icon: 'laptop', q: '你主要拿它做什麼？' },
-    { id: 'iphone',  name: 'iPhone',     sub: '手機',        icon: 'phone',  q: '你最在意哪一點？' },
-    { id: 'ipad',    name: 'iPad',       sub: '平板',        icon: 'tablet', q: '買來做什麼用？' },
-    { id: 'watch',   name: 'Apple Watch', sub: '手錶',       icon: 'watch',  q: '你怎麼戴它？' },
-    { id: 'airpods', name: 'AirPods',    sub: '耳機',        icon: 'buds',   q: '你在哪種場合聽？' },
-    { id: 'vision',  name: 'Vision Pro', sub: '空間運算',    icon: 'vision', q: '你想用它做什麼？' },
-    { id: 'home',    name: 'TV 與 Home', sub: '客廳',        icon: 'tv',     q: '你的客廳缺什麼？' }
+    { id: 'phone',   name: '手機',    sub: 'Apple・三星・小米・Google・OnePlus', icon: 'phone'  },
+    { id: 'tablet',  name: '平板',    sub: 'Apple・三星・小米・OnePlus',        icon: 'tablet' },
+    { id: 'watch',   name: '手錶',    sub: 'Apple・三星・小米・Google・OnePlus', icon: 'watch'  },
+    { id: 'earbuds', name: '耳機',    sub: 'Apple・三星・小米・Google・OnePlus', icon: 'buds'   },
+    { id: 'mac',     name: '筆電',    sub: 'Mac（Apple 專區）',                 icon: 'laptop' },
+    { id: 'vision',  name: '空間運算', sub: 'Vision Pro（Apple 專區）',          icon: 'vision' },
+    { id: 'home',    name: '電視盒',   sub: 'Apple TV 與 HomePod',              icon: 'tv'     }
   ],
 
   /* ── 問題：每個品類一組，用 tags 打分 ── */
@@ -38,7 +38,7 @@ window.ADVISOR = {
         { label: '固定放桌上，不用帶', tags: ['desktop'] }
       ]}
     ],
-    iphone: [
+    phone: [
       { id: 'care', text: '最在意？', multi: false, opts: [
         { label: '拍照與錄影', tags: ['camera'] },
         { label: '螢幕大、看片爽', tags: ['bigscreen'] },
@@ -52,7 +52,7 @@ window.ADVISOR = {
         { label: 'HK$18,000 以上', max: 99999 }
       ]}
     ],
-    ipad: [
+    tablet: [
       { id: 'use', text: '買來做什麼？', multi: false, opts: [
         { label: '追劇、上網、家人共用', tags: ['media', 'budget'] },
         { label: '做筆記、上課、看 PDF', tags: ['study', 'portable'] },
@@ -79,7 +79,7 @@ window.ADVISOR = {
         { label: 'HK$4,500 以上', max: 99999 }
       ]}
     ],
-    airpods: [
+    earbuds: [
       { id: 'use', text: '在哪聽？', multi: false, opts: [
         { label: '通勤、想要通透清楚', tags: ['light'] },
         { label: '健身、要防水牢固', tags: ['sport'] },
@@ -186,7 +186,7 @@ window.ADVISOR = {
       caveat:'不能帶走，且要另外準備高階螢幕才配得上它。' },
 
     /* ===== iPhone ===== */
-    { id:'iphone18', cat:'iphone', name:'iPhone 18', sub:'尚未發表',
+    { id:'iphone18', cat:'phone', name:'iPhone 18', sub:'尚未發表',
       chip:'A20（2nm）', cpu:null, gpu:null, ram:'9／12GB', storage:'256／512GB',
       screen:'6.3 吋 OLED 120Hz', battery:'約 4,000mAh', weight:null,
       priceHK:null, priceUS:null, tags:['budget','compact'], unreleased:true,
@@ -194,7 +194,7 @@ window.ADVISOR = {
       why:'標準版把 120Hz 與 2nm 的 A20 下放，價格通常比 Pro 少三到四成。',
       caveat:'尚未發表，規格為傳聞，售價未定。' },
 
-    { id:'iphone18pro', cat:'iphone', name:'iPhone 18 Pro', sub:'6.3 吋',
+    { id:'iphone18pro', cat:'phone', name:'iPhone 18 Pro', sub:'6.3 吋',
       chip:'A20 Pro（2nm）', cpu:null, gpu:null, ram:'12GB', storage:'256GB–2TB',
       screen:'6.3 吋 OLED 120Hz · 3,000 尼特', battery:'影片播放最長 34 小時', weight:'211 g',
       priceHK:10499, priceUS:1349, tags:['camera','premium','work'],
@@ -202,7 +202,7 @@ window.ADVISOR = {
       why:'48MP 三鏡加 LiDAR、4×／8× 光學品質、可變光圈四段——單手拿得住的前提下，這是拍照最好的尺寸。',
       caveat:'HK$10,499 起，比 Pro Max 便宜 1,000 但螢幕小 0.6 吋。' },
 
-    { id:'iphone18promax', cat:'iphone', name:'iPhone 18 Pro Max', sub:'6.9 吋',
+    { id:'iphone18promax', cat:'phone', name:'iPhone 18 Pro Max', sub:'6.9 吋',
       chip:'A20 Pro（2nm）', cpu:null, gpu:null, ram:'12GB', storage:'256GB–2TB',
       screen:'6.9 吋 OLED 120Hz · 3,000 尼特', battery:'影片播放最長 43 小時', weight:'249 g',
       priceHK:11499, priceUS:1449, tags:['camera','bigscreen','premium'],
@@ -210,7 +210,7 @@ window.ADVISOR = {
       why:'6.9 吋加 43 小時影片播放，一天半不充電；跟 Pro 同鏡頭，只貴 1,000。',
       caveat:'249g，口袋裡很有存在感，一支手操作吃力。' },
 
-    { id:'iphone-duo', cat:'iphone', name:'iPhone Duo', sub:'折疊 · 5.4″ 外 + 7.6″ 內',
+    { id:'iphone-duo', cat:'phone', name:'iPhone Duo', sub:'折疊 · 5.4″ 外 + 7.6″ 內',
       chip:'A20 Pro（2nm）', cpu:null, gpu:null, ram:'12GB', storage:'256GB–2TB',
       screen:'5.4 吋外螢幕 ＋ 7.6 吋內螢幕 雙 120Hz', battery:'內 31／外 44 小時', weight:'254 g',
       priceHK:17499, priceUS:2249, tags:['bigscreen','premium','explore'],
@@ -219,7 +219,7 @@ window.ADVISOR = {
       caveat:'5 級鈦金屬、eSIM-only、HK$17,499 起；折疊結構長期耐用度仍需觀察。' },
 
     /* ===== iPad ===== */
-    { id:'ipad-a16', cat:'ipad', name:'iPad（A16）', sub:'11 吋',
+    { id:'ipad-a16', cat:'tablet', name:'iPad（A16）', sub:'11 吋',
       chip:'A16', cpu:null, gpu:null, ram:null, storage:'128GB 起',
       screen:'11 吋 LCD', battery:'約 10 小時', weight:null,
       priceHK:3599, priceUS:null, tags:['media','budget','home'],
@@ -227,7 +227,7 @@ window.ADVISOR = {
       why:'HK$3,599 就能有一台 11 吋 iPad，看片、上網、給小孩用都不心疼。',
       caveat:'螢幕非全貼合、只支援 USB-C 版 Apple Pencil，畫畫不合適。' },
 
-    { id:'ipad-mini', cat:'ipad', name:'iPad mini（A20 Pro）', sub:'8.5 吋 OLED',
+    { id:'ipad-mini', cat:'tablet', name:'iPad mini（A20 Pro）', sub:'8.5 吋 OLED',
       chip:'A20 Pro', cpu:null, gpu:null, ram:null, storage:'128GB 起',
       screen:'8.5 吋 OLED', battery:'約 10 小時', weight:null,
       priceHK:5299, priceUS:null, tags:['portable','study','media'],
@@ -235,7 +235,7 @@ window.ADVISOR = {
       why:'8.5 吋 OLED 單手拿得住，塞進外套口袋——通勤看書、開會記筆記最順手。',
       caveat:'螢幕小，分割畫面做事會擠；不適合當主力工作機。' },
 
-    { id:'ipad-air', cat:'ipad', name:'iPad Air（M4）', sub:'11″／13″',
+    { id:'ipad-air', cat:'tablet', name:'iPad Air（M4）', sub:'11″／13″',
       chip:'M4', cpu:null, gpu:null, ram:null, storage:'128GB 起',
       screen:'11 吋／13 吋 LCD 60Hz', battery:'約 10 小時', weight:null,
       priceHK:5999, priceUS:null, tags:['study','work','creative-light','value'],
@@ -243,7 +243,7 @@ window.ADVISOR = {
       why:'M4 加 Apple Pencil Pro 支援，做筆記、畫圖、外接鍵盤當筆電都夠——性價比最好的一台。',
       caveat:'螢幕是 60Hz LCD，寫字滑動不如 Pro 順。' },
 
-    { id:'ipad-pro', cat:'ipad', name:'iPad Pro（M5）', sub:'11″／13″ OLED',
+    { id:'ipad-pro', cat:'tablet', name:'iPad Pro（M5）', sub:'11″／13″ OLED',
       chip:'M5', cpu:null, gpu:null, ram:null, storage:'256GB 起',
       screen:'11 吋／13 吋 OLED 120Hz', battery:'約 10 小時', weight:null,
       priceHK:9499, priceUS:null, tags:['creative','work','pro','premium'],
@@ -277,7 +277,7 @@ window.ADVISOR = {
       caveat:'49mm 很大，手腕細的人戴起來突兀。' },
 
     /* ===== AirPods ===== */
-    { id:'airpods5', cat:'airpods', name:'AirPods 5', sub:'標準充電盒',
+    { id:'airpods5', cat:'earbuds', name:'AirPods 5', sub:'標準充電盒',
       chip:'H 系列', cpu:null, gpu:null, ram:null, storage:null,
       screen:null, battery:'ANC 單次 4 小時', weight:null,
       priceHK:1099, priceUS:null, tags:['light','daily','budget'],
@@ -285,7 +285,7 @@ window.ADVISOR = {
       why:'HK$1,099 就有主動降噪與通透模式，日常通勤夠用。',
       caveat:'續航 4 小時偏短，充電盒不支援無線充電。' },
 
-    { id:'airpods5-wireless', cat:'airpods', name:'AirPods 5（無線充電盒）', sub:'Qi 充電',
+    { id:'airpods5-wireless', cat:'earbuds', name:'AirPods 5（無線充電盒）', sub:'Qi 充電',
       chip:'H 系列', cpu:null, gpu:null, ram:null, storage:null,
       screen:null, battery:'ANC 單次 5 小時 · 配盒 22 小時', weight:null,
       priceHK:1249, priceUS:null, tags:['light','daily','value'],
@@ -293,7 +293,7 @@ window.ADVISOR = {
       why:'多 150 元換到多一小時續航、無線充電、滑動調音量與充電盒揚聲器——這 150 元值得。',
       caveat:'外型與 AirPods 5 相同，僅充電盒升級。' },
 
-    { id:'airpods-pro3', cat:'airpods', name:'AirPods Pro 3', sub:'入耳式 · 降噪',
+    { id:'airpods-pro3', cat:'earbuds', name:'AirPods Pro 3', sub:'入耳式 · 降噪',
       chip:'H 系列', cpu:null, gpu:null, ram:null, storage:null,
       screen:null, battery:'ANC 單次約 6 小時', weight:null,
       priceHK:null, priceUS:null, tags:['anc','sport','daily'],
@@ -301,7 +301,7 @@ window.ADVISOR = {
       why:'入耳式矽膠塞的隔音加自適應降噪，地鐵與開放辦公室裡最能安靜下來；支援防水，運動也能戴。',
       caveat:'售價依官網；矽膠塞長時間戴有些人會脹。' },
 
-    { id:'airpods-max', cat:'airpods', name:'AirPods Max', sub:'頭戴式',
+    { id:'airpods-max', cat:'earbuds', name:'AirPods Max', sub:'頭戴式',
       chip:'H 系列', cpu:null, gpu:null, ram:null, storage:null,
       screen:null, battery:'約 20 小時', weight:null,
       priceHK:null, priceUS:null, tags:['comfort','premium','anc'],

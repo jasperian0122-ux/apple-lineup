@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apple 選購顧問｜回答幾個問題，直接告訴你買哪一台</title>
-<meta name="description" content="不用自己比規格。選 Mac、iPhone、iPad、Watch、AirPods，回答幾個問題，立刻得到最適合你的機型、理由、價格（港幣／澳門幣／新台幣／美元）與晶片、GPU、記憶體、螢幕、續航等完整規格。">
+<title>選機顧問｜手機、平板、手錶、耳機，回答幾個問題直接告訴你買哪一台</title>
+<meta name="description" content="不只 Apple。手機、平板、手錶、耳機五大品牌（Apple、三星、小米、Google、OnePlus）回答幾個問題，立刻得到最適合你的機型、理由、價格（港幣／澳門幣／新台幣／美元）與晶片、記憶體、螢幕、續航等完整規格。">
 <link rel="canonical" href="https://jasperian0122-ux.github.io/apple-lineup/advisor/">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Apple 選購顧問｜回答幾個問題，直接告訴你買哪一台">
-<meta property="og:description" content="選品類 → 回答問題 → 得到最適合的機型與完整規格、四種幣別價格。">
+<meta property="og:title" content="選機顧問｜五品牌 60 款機型，回答問題直接推薦">
+<meta property="og:description" content="Apple、三星、小米、Google、OnePlus 一起比：選品類 → 回答問題 → 得到最適合的機型與完整規格、四種幣別價格。">
 <meta property="og:url" content="https://jasperian0122-ux.github.io/apple-lineup/advisor/">
 <meta property="og:image" content="https://jasperian0122-ux.github.io/apple-lineup/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -107,6 +107,22 @@
 }
 .mini:hover{background:rgba(0,0,0,.09);text-decoration:none;color:var(--ink)}
 .done-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:30px 0 0}
+
+/* 品牌快篩 */
+.brand-bar{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 22px}
+.brand-bar button{
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  padding:6px 13px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;
+}
+.brand-bar button:hover{border-color:var(--accent);color:var(--ink)}
+.brand-bar button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.brand-tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
+  padding:3px 8px;border-radius:6px;background:rgba(0,113,227,.1);color:var(--accent);
+  margin:0 0 6px;
+}
+.brand-tag.apple{background:rgba(0,0,0,.06);color:var(--ink-2)}
+.price-note{font-size:11.5px;color:var(--ink-3);margin:2px 0 0}
 .note{font-size:12.5px;color:var(--ink-3);text-align:center;margin:26px auto 0;max-width:640px;line-height:1.7}
 </style>
 </head>
@@ -114,7 +130,7 @@
 
 <nav class="topnav">
   <div class="wrap">
-    <a class="brand" href="../index.html" style="text-decoration:none">Apple 選購顧問</a>
+    <a class="brand" href="../index.html" style="text-decoration:none">選機顧問</a>
     <span class="links">
       <a href="../apple-lineup/">產品總覽</a>
       <a href="../spec-compare/">規格對比</a>
@@ -129,12 +145,12 @@
   <!-- 步驟一：選品類 -->
   <section id="step-cat">
     <div class="a-hero">
-      <h1>回答幾個問題，<span class="grad">直接告訴你買哪一台</span></h1>
-      <p>不用自己啃規格表。選一個品類，問你三兩件事，立刻給出最適合的機型、理由，以及晶片、GPU、記憶體、續航的完整數據。</p>
+      <h1>不只 Apple，<span class="grad">五品牌一起幫你選</span></h1>
+      <p>手機、平板、手錶、耳機——Apple、三星、小米、Google、OnePlus 共 60 款。選一個品類，問你三兩件事，立刻給出最適合的機型、理由與完整規格。</p>
       <div class="cur-bar" id="curBar"></div>
     </div>
     <div class="cat-grid" id="catGrid"></div>
-    <p class="note">價格取自 Apple 香港／美國官網 2026 年 11 月現行售價；澳門幣與新台幣依 1 HKD ≈ 1.03 MOP ≈ 4.05 TWD 換算，僅供參考。</p>
+    <p class="note">價格查證於 2026 年 11 月：Apple、三星、小米取香港官網價；Google 為美國官價換算、OnePlus 為香港平行進口價（兩者在港均無官方渠道）。澳門幣與新台幣依 1 HKD ≈ 1.03 MOP ≈ 4.05 TWD 換算，僅供參考。</p>
   </section>
 
   <!-- 步驟二：問答 -->
@@ -143,6 +159,7 @@
       <button class="q-back" id="btnBack">← 換品類</button>
       <span class="muted" id="qCat" style="margin-left:auto"></span>
     </div>
+    <div class="brand-bar" id="brandBar"></div>
     <div class="q-bar"><i id="qFill"></i></div>
     <h2 class="q-title" id="qTitle"></h2>
     <div class="opt-list" id="optList"></div>
@@ -160,20 +177,21 @@
       <button class="btn ghost" id="btnAgain">重新回答</button>
       <button class="btn dark" id="btnOther">換個品類</button>
     </div>
-    <p class="note">價格與規格整理自 Apple 官方公開資訊，實際售價與供貨以 Apple 官網為準。標示「依官網」者為該地區尚未公布定價。</p>
+    <p class="note">價格與規格整理自各品牌官方公開資訊，實際售價與供貨以官網為準。Google 與 OnePlus 在香港沒有官方渠道，價格分別為美國官價換算與平行進口標價。</p>
   </section>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Apple 選購顧問 · 純前端 · 資料僅供參考</span>
+    <span>選機顧問 · 純前端 · 資料僅供參考</span>
     <span><a href="../index.html">回首頁</a> · <a href="../apple-lineup/">產品總覽</a> · <a href="../spec-compare/">規格對比</a></span>
   </div>
-  <p style="font-size:12px;opacity:.62;margin:16px 0 0;text-align:center;line-height:1.7">本站為非官方獨立製作，與 Apple Inc. 無隸屬或背書關係。Apple、iPhone、iPad、Mac、Apple Watch、Vision Pro、AirPods 等名稱為 Apple Inc. 之商標。內容整理自公開資訊，僅供參考，實際規格與售價以官方公告為準。</p>
+  <p style="font-size:12px;opacity:.62;margin:16px 0 0;text-align:center;line-height:1.7">本站為非官方獨立製作，與 Apple Inc.、三星電子、小米集團、Google LLC、OnePlus 均無隸屬或背書關係。Apple、iPhone、iPad、Mac、Apple Watch、AirPods、Samsung、Galaxy、Xiaomi、Redmi、POCO、Pixel、OnePlus 等名稱與商標分別屬於其各自所有者。內容整理自公開資訊，僅供參考，實際規格與售價以官方公告為準。</p>
 </footer>
 
 <script src="data.js"></script>
+<script src="data-brands.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* Apple 選購顧問 — 問答與推薦引擎
+/* 選機顧問 — 問答與推薦引擎（多品牌）
    零依賴、純前端。資料來自 data.js 的 window.ADVISOR。 */
 (function () {
   'use strict';
@@ -21,7 +21,7 @@
     { id: 'USD', label: 'US$' }
   ];
 
-  var state = { cat: null, qi: 0, answers: {}, cur: 'HKD' };
+  var state = { cat: null, qi: 0, answers: {}, cur: 'HKD', brand: 'all' };
   var $ = function (id) { return document.getElementById(id); };
 
   try {
@@ -84,6 +84,41 @@
     });
   }
 
+
+  /* ---------- 品牌快篩 ---------- */
+  function brandsInCat(catId) {
+    var ids = [];
+    D.models.forEach(function (m) {
+      if (m.cat === catId && ids.indexOf(m.brand) < 0) ids.push(m.brand);
+    });
+    return (D.brands || []).filter(function (b) { return b.id === 'all' || ids.indexOf(b.id) >= 0; });
+  }
+
+  function renderBrandBar() {
+    var bar = $('brandBar');
+    if (!bar) return;
+    var list = brandsInCat(state.cat);
+    if (list.length <= 2) { bar.hidden = true; return; }
+    bar.hidden = false;
+    if (!list.some(function (b) { return b.id === state.brand; })) state.brand = 'all';
+    bar.innerHTML = list.map(function (b) {
+      return '<button data-brand="' + b.id + '" class="' + (state.brand === b.id ? 'on' : '') + '">' + b.name + '</button>';
+    }).join('');
+    bar.querySelectorAll('button').forEach(function (x) {
+      x.onclick = function () {
+        state.brand = x.dataset.brand;
+        renderBrandBar();
+        if (!$('step-result').hidden) renderResults();
+      };
+    });
+  }
+
+  function poolFor(catId) {
+    return D.models.filter(function (m) {
+      return m.cat === catId && (state.brand === 'all' || m.brand === state.brand);
+    });
+  }
+
   /* ---------- 問答 ---------- */
   function startCat(id) {
     var cat = D.categories.find(function (c) { return c.id === id; });
@@ -92,6 +127,7 @@
     $('step-cat').hidden = true;
     $('step-q').hidden = false;
     $('step-result').hidden = true;
+    renderBrandBar();
     renderQuestion();
   }
 
@@ -194,7 +230,7 @@
   function renderResults() {
     var qs = D.questions[state.cat];
     var cat = D.categories.find(function (c) { return c.id === state.cat; });
-    var pool = D.models.filter(function (m) { return m.cat === state.cat; });
+    var pool = poolFor(state.cat);
 
     var ranked = pool.map(function (m) {
       var r = scoreModel(m);
@@ -212,7 +248,8 @@
       if (ai != null && q.opts[ai].max) budgetAns = q.opts[ai].label;
     });
 
-    $('resKicker').textContent = cat.name + ' 推薦';
+    var bName = (D.brands || []).filter(function (b) { return b.id === state.brand; })[0];
+    $('resKicker').textContent = cat.name + ' 推薦' + (state.brand !== 'all' && bName ? ' · 只看 ' + bName.name : ' · 五品牌一起比');
     $('resTitle').textContent = '最適合你的 ' + top.length + ' 台';
     $('resSub').textContent = budgetAns ? ('預算 ' + budgetAns + '，依你的用途排序') : '依你的用途排序';
 
@@ -227,15 +264,20 @@
         return '<div><dt>' + x[0] + '</dt><dd>' + x[1] + '</dd></div>';
       }).join('');
 
+      var tagCls = m.brand === 'apple' ? 'brand-tag apple' : 'brand-tag';
       return '<article class="res-card' + (i === 0 ? ' top' : '') + '">' + badge +
+        '<span class="' + tagCls + '">' + (m.brandName || 'Apple') + '</span>' +
         '<h3 class="res-name">' + m.name + '</h3>' +
         '<p class="res-sub">' + m.sub + ' · 適合：' + m.best + '</p>' +
         '<p class="res-price">' + fmtPrice(m) + '<small>' + priceUnit(m) + '</small></p>' +
+        (m.priceNote ? '<p class="price-note">' + m.priceNote + '</p>' : '') +
         '<p class="res-why">' + m.why + '</p>' +
         (m.caveat ? '<p class="res-caveat">要留意：' + m.caveat + '</p>' : '') +
         '<dl class="spec">' + specs + '</dl>' +
         '<div class="res-actions">' +
-        '<a class="mini" href="../apple-lineup/' + (m.cat === 'mac' ? 'mac' : m.cat) + '.html">看這台的完整介紹 →</a>' +
+        (m.brand === 'apple'
+          ? '<a class="mini" href="../apple-lineup/' + (m.cat === 'mac' ? 'mac' : (m.cat === 'phone' ? 'iphone' : (m.cat === 'tablet' ? 'ipad' : (m.cat === 'earbuds' ? 'airpods' : m.cat)))) + '.html">看這台的完整介紹 →</a>'
+          : '') +
         '<a class="mini" href="../spec-compare/">跟別台比規格</a>' +
         (m.priceHK ? '<a class="mini" href="../finance-calc/">算分期月付</a>' : '') +
         '</div></article>';
