@@ -52,7 +52,7 @@ details p{font-size:14px;color:var(--ink-2);margin:10px 0 0}
     <p class="kicker">Resale Value · 2026</p>
     <h1>你的舊機，<span class="grad">現在還值多少</span>？</h1>
     <p class="sub">選機型、填狀況，即時算出估價區間與折舊曲線，順便告訴你換新機要補多少差額。</p>
-    <span class="chip">13 款機型</span><span class="chip">HK$ 計價</span>
+    <span class="chip" id="modelCount">105 款歷代機型</span><span class="chip">HK$ 計價</span>
     <span class="chip gray">估價為參考值，非收購承諾</span>
   </div>
 </header>
@@ -73,6 +73,7 @@ details p{font-size:14px;color:var(--ink-2);margin:10px 0 0}
           <select id="storage"></select>
         </div>
       </div>
+      <p class="hint" id="modelMeta" style="margin:-4px 0 14px"></p>
       <div class="form-row">
         <div>
           <label for="bought">購入時間</label>
@@ -224,7 +225,7 @@ details p{font-size:14px;color:var(--ink-2);margin:10px 0 0}
       </div>
       <div class="card reveal">
         <h3>為什麼沒有 Android 機型？</h3>
-        <p class="muted" style="margin:0">這個站只收錄 Apple 產品線。Android 各品牌折舊差異極大，硬套同一組係數會失真。</p>
+        <p class="muted" style="margin:0">目前只收錄 Apple 產品線（2018–2026 共 105 款，含已停售機型）。Android 各品牌折舊差異極大，硬套同一組係數會失真，所以沒有混進來。</p>
       </div>
       <div class="card reveal">
         <h3>可以一次算多台嗎？</h3>
@@ -242,26 +243,21 @@ details p{font-size:14px;color:var(--ink-2);margin:10px 0 0}
 <p style="font-size:12px;opacity:.62;margin:16px 0 0;text-align:center;line-height:1.7">本站為非官方獨立製作，與 Apple Inc. 無隸屬或背書關係。Apple、iPhone、iPad、Mac、Apple Watch、Vision Pro、AirPods 等名稱為 Apple Inc. 之商標。內容整理自公開資訊，僅供參考，實際規格與售價以官方公告為準。</p>
 </footer>
 
+<script src="../assets/apple-models.js"></script>
 <script>
-// ---------- 機型資料（HK$ 參考原價；可自行改「當初購入價」覆寫）----------
-const MODELS = [
-  { id:'ip18duo',  name:'iPhone 18 Duo',      price:17499, months:2,  type:'phone',  label:'手機' },
-  { id:'ip18pm',   name:'iPhone 18 Pro Max',  price:11499, months:2,  type:'phone',  label:'手機' },
-  { id:'ip18p',    name:'iPhone 18 Pro',      price:10499, months:2,  type:'phone',  label:'手機' },
-  { id:'ipair',    name:'iPhone Air',         price:9499,  months:14, type:'phone',  label:'手機' },
-  { id:'ippro',    name:'iPad Pro 13"',       price:9499,  months:14, type:'tablet', label:'平板' },
-  { id:'ipmini',   name:'iPad mini (A20 Pro)', price:5299, months:14, type:'tablet', label:'平板' },
-  { id:'mbaneo',   name:'MacBook Neo',        price:5499,  months:2,  type:'mac',    label:'電腦' },
-  { id:'mba',      name:'MacBook Air 13"',    price:10499, months:8,  type:'mac',    label:'電腦' },
-  { id:'mbp',      name:'MacBook Pro 14" M6', price:15999, months:2,  type:'mac',    label:'電腦' },
-  { id:'watchu4',  name:'Apple Watch Ultra 4', price:6499, months:2,  type:'wear',   label:'穿戴' },
-  { id:'watchs12', name:'Apple Watch Series 12', price:3199, months:2, type:'wear',  label:'穿戴' },
-  { id:'vision',   name:'Apple Vision Pro',   price:29999, months:26, type:'spatial',label:'空間' },
-  { id:'airpods5', name:'AirPods 5',          price:1249,  months:2,  type:'audio',  label:'配件' }
+// ---------- 機型資料：共用歷代資料庫（../assets/apple-models.js，2018–2026 共 105 款）----------
+const MODELS = (window.APPLE_MODELS || []).slice();
+const TYPE_ORDER = [
+  ['phone',  'iPhone'],
+  ['tablet', 'iPad'],
+  ['mac',    'Mac'],
+  ['wear',   'Apple Watch'],
+  ['audio',  'AirPods'],
+  ['spatial','Vision Pro']
 ];
 
 // 各產品線的折舊速度（每月保留率；越接近 1 越保值）
-const LINE_RATE = { phone:0.986, tablet:0.984, mac:0.982, wear:0.978, spatial:0.972, audio:0.968 };
+const LINE_RATE = { phone:0.986, tablet:0.985, mac:0.9855, wear:0.978, spatial:0.975, audio:0.968 };
 // 容量加價係數（相對基礎容量）
 const STORAGE = {
   phone: [['128GB',1.00],['256GB',1.08],['512GB',1.16],['1TB',1.26]],
@@ -277,11 +273,29 @@ const fmt = n => Math.round(n).toLocaleString('en-US');
 
 const modelSel = $('#model'), storageSel = $('#storage'), newSel = $('#newModel');
 
-MODELS.forEach(m => {
-  modelSel.insertAdjacentHTML('beforeend', `<option value="${m.id}">${m.name}（參考 HK$${fmt(m.price)}）</option>`);
-  newSel.insertAdjacentHTML('beforeend', `<option value="${m.id}">${m.name} · HK$${fmt(m.price)}</option>`);
-});
-newSel.value = 'ip18pm';
+// 全歷代機型，依產品線分組
+modelSel.innerHTML = TYPE_ORDER.map(([t, label]) => {
+  const items = MODELS.filter(m => m.type === t);
+  if (!items.length) return '';
+  return `<optgroup label="${label}">` + items.map(m =>
+    `<option value="${m.id}">${m.name}　${m.date.slice(0, 4)}（HK$${fmt(m.price)}）</option>`
+  ).join('') + `</optgroup>`;
+}).join('');
+
+// 換機目標只列現行販售機型
+newSel.innerHTML = TYPE_ORDER.map(([t, label]) => {
+  const items = MODELS.filter(m => m.type === t && m.cur);
+  if (!items.length) return '';
+  return `<optgroup label="${label}">` + items.map(m =>
+    `<option value="${m.id}">${m.name} · HK$${fmt(m.price)}</option>`
+  ).join('') + `</optgroup>`;
+}).join('');
+newSel.value = MODELS.some(m => m.id === 'ip18promax') ? 'ip18promax' : newSel.options[0].value;
+
+// 首選舊機（iPhone 15 為多數人的現役機）
+modelSel.value = MODELS.some(m => m.id === 'ip15') ? 'ip15' : modelSel.options[0].value;
+
+document.getElementById('modelCount').textContent = MODELS.length + ' 款歷代機型';
 
 function fillStorage() {
   const m = MODELS.find(x => x.id === modelSel.value);
@@ -291,14 +305,28 @@ function fillStorage() {
 
 function currentModel() { return MODELS.find(x => x.id === modelSel.value); }
 
-// 依機齡算出的保留率（含容量與產品線）
-function retention(model, months, storageFactor) {
-  const monthsSinceLaunch = model.months + months;
+// 依機齡（自發表起算，或購入月數取大者）算保留率（含容量與產品線）
+function retention(model, totalMonths, storageFactor) {
+  const age = Math.max(totalMonths || 0, model.months || 0);
   const rate = LINE_RATE[model.type] ?? 0.98;
-  const base = Math.pow(rate, monthsSinceLaunch);
+  const base = Math.pow(rate, age);
   // 前 3 個月掉最快，額外扣一點
-  const early = monthsSinceLaunch <= 3 ? 0.94 : 1;
-  return Math.max(0.18, Math.min(0.95, base * early)) * (0.5 + 0.5 * storageFactor);
+  const early = age <= 3 ? 0.94 : 1;
+  // 太老的機器有殘值地板（維修料件／備用機需求）
+  const floor = age > 84 ? 0.06 : 0.12;
+  return Math.max(floor, Math.min(0.95, base * early)) * (0.5 + 0.5 * storageFactor);
+}
+
+// 由機齡推回「購入時間」預設值
+function buyBucket(months) {
+  if (months <= 3) return '0';
+  if (months <= 9) return '6';
+  if (months <= 15) return '12';
+  if (months <= 21) return '18';
+  if (months <= 27) return '24';
+  if (months <= 33) return '30';
+  if (months <= 44) return '36';
+  return '48';
 }
 
 function calc() {
@@ -307,6 +335,7 @@ function calc() {
   const months = parseInt($('#bought').value, 10) || 0;
   const paid = Math.max(0, parseFloat($('#paid').value) || model.price);
   const qty = Math.max(1, parseInt($('#qty').value, 10) || 1);
+  const totalMonths = Math.max(months, model.months || 0);
 
   const cond = parseFloat($('#cond').value);
   const batt = parseFloat($('#batt').value);
@@ -314,7 +343,7 @@ function calc() {
   const war = parseFloat($('#warranty').value);
   const rep = parseFloat($('#repair').value);
 
-  const r = retention(model, months, storageF);
+  const r = retention(model, totalMonths, storageF);
   const baseValue = paid * r;
   const mid = baseValue * cond * batt * box * war * rep * qty;
   const low = mid * 0.92, high = mid * 1.08;
@@ -336,7 +365,7 @@ function calc() {
 
   // 影響因子明細
   const rows = [
-    ['時間折舊（' + (model.months + months) + ' 個月）', r, true],
+    ['時間折舊（' + totalMonths + ' 個月）', r, true],
     ['容量 ' + storageSel.options[storageSel.selectedIndex].text, storageF, storageF >= 1],
     ['外觀', cond, cond >= 1],
     ['電池健康', batt, batt >= 1],
@@ -359,14 +388,19 @@ function calc() {
   el.textContent = (diff > 0 ? '補 HK$' + fmt(diff) : '不用補') + (qty > 1 ? '／台' : '');
   el.style.color = diff > 0 ? 'var(--ink)' : 'var(--good)';
 
-  drawCurve(model, storageF, paid, cond * batt * box * war * rep, months, qty);
+  // 機型基本資料提示
+  $('#modelMeta').textContent =
+    `發表於 ${model.date}（機齡 ${model.months} 個月）・發表價 HK$${fmt(model.price)}` +
+    (model.cur ? '・官網仍在售' : '・已停售');
+
+  drawCurve(model, storageF, paid, cond * batt * box * war * rep, totalMonths, qty);
 }
 
-function drawCurve(model, storageF, paid, coeff, months, qty) {
+function drawCurve(model, storageF, paid, coeff, totalMonths, qty) {
   const W = 320, H = 120, pad = 6;
   const pts = [];
   for (let m = 0; m <= 24; m += 2) {
-    const v = paid * retention(model, m, storageF) * coeff * qty;
+    const v = paid * retention(model, totalMonths + m, storageF) * coeff * qty;
     pts.push([m, v]);
   }
   const maxV = Math.max(...pts.map(p => p[1])) || 1;
@@ -374,8 +408,8 @@ function drawCurve(model, storageF, paid, coeff, months, qty) {
   const y = v => H - pad - (v / maxV) * (H - pad * 2);
   const d = pts.map((p, i) => (i ? 'L' : 'M') + x(p[0]).toFixed(1) + ' ' + y(p[1]).toFixed(1)).join(' ');
   const fillD = d + ` L${x(24).toFixed(1)} ${H - pad} L${x(0).toFixed(1)} ${H - pad} Z`;
-  const cx = x(Math.min(24, model.months + months));
-  const cy = y(paid * retention(model, Math.min(24, model.months + months), storageF) * coeff * qty);
+  const cx = x(Math.min(24, totalMonths));
+  const cy = y(paid * retention(model, totalMonths, storageF) * coeff * qty);
 
   $('#chart').innerHTML = `
     <defs>
@@ -394,12 +428,19 @@ modelSel.addEventListener('change', () => {
   const m = currentModel();
   fillStorage();
   $('#paid').value = m.price;
-  $('#bought').value = '0';
+  $('#bought').value = buyBucket(m.months);
   calc();
 });
 ['#storage','#bought','#paid','#cond','#batt','#box','#warranty','#repair','#qty','#newModel']
   .forEach(s => $(s).addEventListener('input', calc));
 
+// 支援從換機指南帶參數進來自動選機（?m=ip15 或 #ip15）
+const urlModel = new URLSearchParams(location.search).get('m') || location.hash.replace('#', '');
+if (urlModel && MODELS.some(x => x.id === urlModel)) modelSel.value = urlModel;
+
+const first = currentModel();
+$('#paid').value = first.price;
+$('#bought').value = buyBucket(first.months);
 fillStorage();
 calc();
 

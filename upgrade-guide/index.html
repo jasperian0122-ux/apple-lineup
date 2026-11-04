@@ -11,6 +11,7 @@
 .q-card .q-num{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;align-items:center;justify-content:center;font-size:14px;margin-right:8px}
 .q-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
 @media(max-width:820px){.q-grid{grid-template-columns:1fr}}
+.q-meta{font-size:12.5px;color:var(--ink-3);margin:10px 0 0;line-height:1.6}
 .result{margin-top:22px;padding:26px;border-radius:var(--radius);display:none}
 .result.show{display:block}
 .result.up{background:rgba(0,113,227,.08);border:1.5px solid rgba(0,113,227,.35)}
@@ -52,24 +53,20 @@
     <div class="q-grid">
       <div class="q-card">
         <p><span class="q-num">1</span><b>你目前用什麼機型？</b></p>
-        <label for="qDevice" style="margin-top:10px">目前裝置</label>
-        <select id="qDevice">
-          <option value="ip15">iPhone 15 系列或更舊</option>
-          <option value="ip16">iPhone 16 系列</option>
-          <option value="ip17">iPhone 17 系列</option>
-          <option value="macOld">MacBook M1／M2</option>
-          <option value="macNew">MacBook M3 或更新</option>
-          <option value="ipadOld">iPad 第九／十代或 Air M1/M2</option>
-        </select>
+        <label for="qDevice" style="margin-top:10px">目前裝置（歷代 105 款）</label>
+        <select id="qDevice"></select>
+        <p class="q-meta" id="devMeta"></p>
       </div>
       <div class="q-card">
-        <p><span class="q-num">2</span><b>這台機器你用幾年了？</b></p>
-        <label for="qAge" style="margin-top:10px">使用年數</label>
-        <select id="qAge">
-          <option value="lt1">不到 1 年</option>
-          <option value="y12">1–2 年</option>
-          <option value="y34">3–4 年</option>
-          <option value="y5">5 年以上</option>
+        <p><span class="q-num">2</span><b>電池健康度大概多少？</b></p>
+        <label for="qBatt" style="margin-top:10px">電池健康度</label>
+        <select id="qBatt">
+          <option value="95">95% 以上／剛換過原廠電池</option>
+          <option value="90" selected>90–94%</option>
+          <option value="85">85–89%</option>
+          <option value="80">80–84%</option>
+          <option value="60">80% 以下／明顯掉電</option>
+          <option value="na">不知道，沒查過</option>
         </select>
       </div>
       <div class="q-card">
@@ -159,59 +156,116 @@
 <p style="font-size:12px;opacity:.62;margin:16px 0 0;text-align:center;line-height:1.7">本站為非官方獨立製作，與 Apple Inc. 無隸屬或背書關係。Apple、iPhone、iPad、Mac、Apple Watch、Vision Pro、AirPods 等名稱為 Apple Inc. 之商標。內容整理自公開資訊，僅供參考，實際規格與售價以官方公告為準。</p>
 </footer>
 
+<script src="../assets/apple-models.js"></script>
 <script>
 const $ = id => document.getElementById(id);
+const MODELS = window.APPLE_MODELS || [];
+const LIFE = window.APPLE_LIFE || { phone:66, tablet:78, mac:102, wear:66, audio:54, spatial:78 };
+const ORDER = [
+  ['phone','iPhone'], ['tablet','iPad'], ['mac','Mac'],
+  ['wear','Apple Watch'], ['audio','AirPods'], ['spatial','Vision Pro']
+];
+
+/* ── 機型下拉：歷代全機型，依產品線分組 ── */
+const devSel = $('qDevice');
+devSel.innerHTML = ORDER.map(([t, label]) => {
+  const items = MODELS.filter(m => m.type === t);
+  if (!items.length) return '';
+  return `<optgroup label="${label}">` + items.map(m =>
+    `<option value="${m.id}">${m.name}（${m.date.slice(0,4)}）</option>`
+  ).join('') + `</optgroup>`;
+}).join('');
+const DEFAULT_ID = MODELS.some(m => m.id === 'ip15') ? 'ip15' : (MODELS[0] && MODELS[0].id);
+if (DEFAULT_ID) devSel.value = DEFAULT_ID;
+
+const current = () => MODELS.find(m => m.id === devSel.value) || MODELS[0];
+function showMeta() {
+  const m = current();
+  if (!m) return;
+  $('devMeta').textContent = `發表於 ${m.date}・機齡 ${m.months} 個月` +
+    (m.cur ? '・官網仍在售' : '・已停售');
+}
+devSel.addEventListener('change', showMeta);
+showMeta();
+
+const ageText = mo => mo < 12 ? `${mo} 個月` : (mo % 12 ? `${Math.floor(mo/12)} 年 ${mo%12} 個月` : `${mo/12} 年`);
+const BATT_NOTE = {
+  '95': '電池還有新機水準，差距主要在效能、相機與螢幕',
+  '90': '電池已有輕微衰退，日常還撐得住',
+  '85': '電池衰退開始明顯，換一顆電池可以再撐一年',
+  '80': '電池明顯衰退，續航大概是你現在最大的痛點',
+  '60': '電池已嚴重衰退，就算不換機也該先換電池',
+  'na': '電池狀況未知，建議先到「設定 → 電池 → 電池健康度」查一下'
+};
+
+/* ── 換機目標建議 ── */
+function recommend(type, pri) {
+  if (type === 'phone') {
+    if (pri === 'light')  return ['iPhone Air（HK$9,499，165g／5.64mm）', '你最在意手感，Air 是目前最輕薄的 iPhone。'];
+    if (pri === 'battery')return ['iPhone 18 Pro Max（HK$11,499，影片最長 43 小時）', '5,391mAh 電池比 Pro 多 9 小時影片播放，是續航之王。'];
+    if (pri === 'budget') return ['認證整新 iPhone 17（約 HK$7,000）或 iPhone 16e（HK$5,499）', '預算優先不必上 Pro；整新機保固與新機相同，價格卻低一截。'];
+    if (pri === 'screen') return ['iPhone 18 Pro（HK$10,499）或 iPhone Duo（HK$17,499）', '前者 6.3 吋 120Hz＋3000 尼特；想要大畫面就直上 7.6 吋摺疊。'];
+    return ['iPhone 18 Pro（HK$10,499）', 'A20 Pro（2nm）＋可變光圈 48MP 主鏡＋8× 光學品質變焦，跨世代最有感。'];
+  }
+  if (type === 'tablet') {
+    if (pri === 'budget') return ['iPad（A16）（HK$3,599）', '文書、追劇、上課足夠，是最省的一條路。'];
+    if (pri === 'light')  return ['iPad mini（A20 Pro）（HK$5,299）', '單手拿得住，通勤與閱讀最順手。'];
+    if (pri === 'screen') return ['iPad Pro 13″（M5）（HK$9,499）', 'Tandem OLED＋120Hz，畫質與喇叭都是頂規。'];
+    return ['iPad Air（M4）（HK$5,999）', 'M4 效能對多數人已經過剩，重量與價格都更合理。'];
+  }
+  if (type === 'mac') {
+    if (pri === 'budget') return ['Mac mini（M6）（HK$7,299）', '不帶出門的話，同價位效能最高，螢幕自選更划算。'];
+    if (pri === 'light')  return ['MacBook Air 13″（M5）（HK$10,499）', '無風扇、1.24kg，續航一整天，通勤最舒服。'];
+    if (pri === 'screen') return ['MacBook Pro 14″（M6）（HK$15,999）', 'Liquid Retina XDR＋120Hz，剪片修圖的門檻在這裡。'];
+    return ['MacBook Pro 14″（M6）（HK$15,999）或 M5 Pro 版（HK$19,999）', 'M 系列每兩代才有明顯躍進，這次剛好跨了兩代。'];
+  }
+  if (type === 'wear') {
+    if (pri === 'battery') return ['Apple Watch Series 12（HK$3,199）', '換新一代最能解決續航與健康感測的落差。'];
+    if (pri === 'budget')  return ['Apple Watch SE 3（HK$1,999）', '少了Always-On 與部分感測器，但核心功能齊全。'];
+    return ['Apple Watch Ultra 4（HK$6,199）', '鈦金屬、雙頻 GPS、三天續航，一次到頂。'];
+  }
+  if (type === 'audio') {
+    if (pri === 'battery') return ['AirPods Pro 3（HK$1,899）', '降噪與續航都新一代，耳機電池老化沒得換，只能換機。'];
+    return ['AirPods 5（HK$1,099）或 AirPods Pro 3（HK$1,899）', '要降噪直上 Pro，只要日常通話與音樂選 AirPods 5 即可。'];
+  }
+  return ['Apple Vision Pro（M5）（HK$29,999）', '空間運算仍屬小眾，除非工作真的用得上，否則不建議現在換。'];
+}
 
 $('btnCalc').addEventListener('click', () => {
-  const dev = $('qDevice').value;
-  const age = $('qAge').value;
+  const m = current();
+  const batt = $('qBatt').value;
   const pri = $('qPriority').value;
   const box = $('result'), tag = $('rTag'), title = $('rTitle'), body = $('rBody'), pick = $('rPick');
 
-  const ageScore = { lt1:0, y12:1, y34:2, y5:3 }[age];
-  const devScore = { ip15:2, ip16:1, ip17:0, macOld:2, macNew:0, ipadOld:2 }[dev];
+  const life = LIFE[m.type] || 66;
+  let ratio = m.months / life + { '95':-0.12, '90':0, '85':0.08, '80':0.20, '60':0.40, 'na':0.03 }[batt];
+  if (m.cur && m.months <= 12) ratio = Math.min(ratio, 0.34);
+  ratio = Math.max(0, ratio);
 
-  let verdict = 'hold';
-  if(ageScore + devScore >= 4) verdict = 'up';
-  else if(ageScore + devScore <= 1) verdict = 'hold';
-  else verdict = 'used';
-  if(age === 'lt1') verdict = 'hold';
-  if(age === 'y5') verdict = 'up';
+  const verdict = ratio >= 0.95 ? 'up' : (ratio >= 0.60 ? 'used' : 'hold');
+  const reserve = ` ｜ <a href="../resale-calc/?m=${m.id}">先算這台的二手殘值 →</a>`;
+  const [target, why] = recommend(m.type, pri);
 
   box.className = 'result show';
 
-  if(verdict === 'up'){
+  if (verdict === 'up') {
     tag.textContent = '建議：升級';
     box.classList.add('up');
-    let target, why;
-    if(dev.startsWith('ip')){
-      if(pri === 'light') { target = 'iPhone Air（HK$9,499 起，165g、5.64mm）'; why = '你最在意輕巧，Air 是目前手感最好的 iPhone。'; }
-      else if(pri === 'battery') { target = 'iPhone 18 Pro Max（HK$11,499 起，影片最長 43 小時）'; why = '它的 5,391mAh 電池比 Pro 多 9 小時影片播放，是續航之王。'; }
-      else if(pri === 'budget') { target = 'iPhone Air 或認證整新 iPhone 17'; why = '預算優先就不必上 Pro；等 2027 春季標準版 iPhone 18 也是選項，但價格未必更甜（記憶體漲價）。'; }
-      else if(pri === 'screen') { target = 'iPhone 18 Pro（HK$10,499 起）'; why = '6.3 吋 120Hz＋3000 尼特，或考慮 7.6 吋大畫面的摺疊機 iPhone Duo（HK$17,499 起）。'; }
-      else { target = 'iPhone 18 Pro（HK$10,499 起）'; why = 'A20 Pro（2nm）＋可變光圈 48MP 主鏡＋8× 光學品質變焦，是你現有機型跨世代的完整答案。'; }
-    } else if(dev === 'macOld'){
-      target = 'MacBook Air M5（HK$10,499 起）或 Mac mini M6（HK$7,299 起）';
-      why = 'M1／M2 距今已 4 年以上，電池與 macOS 支援週期都開始吃緊，換 M5／M6 是痛感最明顯的升級。';
-    } else {
-      target = 'iPad Air M4（11″ HK$5,999 起）或 iPad mini A20 Pro（HK$5,299 起）';
-      why = '舊款 iPad 的 60Hz 螢幕與 A 系列晶片差距已拉大，Air M4 效能翻倍卻更薄。';
-    }
-    title.textContent = '升級！你的機器已經到汰換線了';
-    body.textContent = why;
-    pick.textContent = '👉 建議目標：' + target;
-  } else if(verdict === 'used'){
+    title.textContent = '升級！這台已經到汰換線了';
+    body.textContent = `你的 ${m.name} 已經出廠 ${ageText(m.months)}。${BATT_NOTE[batt]}。以 Apple 的系統支援週期與現在的效能差距來看，繼續留著的成本（維修、電池、時間）已經高於換機。`;
+    pick.innerHTML = `👉 建議目標：${target}——${why}${reserve}`;
+  } else if (verdict === 'used') {
     tag.textContent = '建議：考慮二手／觀望';
     box.classList.add('used');
-    title.textContent = '處於灰色地帶——二手或出清更聰明';
-    body.textContent = '你的機器還能用，但換新也不是不合理。這個時間點買新機最虧：新機剛發表價格最硬，而上一代正在跌價。';
-    pick.textContent = '👉 做法：查 Apple 認證整新品（保固相同、價格更低），或等 M6／A20 機種出清上一代。標準版 iPhone 18 傳聞 2027 春季發表，想換新機也可以再等半年。';
+    title.textContent = '灰色地帶——換不換都不算錯';
+    body.textContent = `${m.name} 出廠 ${ageText(m.months)}，${BATT_NOTE[batt]}。它還能好好用，但殘值正在往下掉；若你本來就打算換，現在賣掉舊機比明年更划算。`;
+    pick.innerHTML = `👉 兩個做法：① 不急就等下一代發表、上一代出清；② 要換就選認證整新機（保固相同、價更低）。${reserve}`;
   } else {
     tag.textContent = '建議：再撐一年';
     box.classList.add('hold');
-    title.textContent = '還不用換，你的機器還很能打';
-    body.textContent = '你用不到一年（或機型夠新），現在換機沒有任何痛點被解決。2027 年春季還會有標準版 iPhone 18（傳聞，未經官方確認）與 iPhone Air 2，屆時的選擇會更多。';
-    pick.textContent = '👉 省錢做法：先把 Fitness+ 年繳等訂閱成本顧好；真要花錢，把預算留給記憶體而不是更貴的機型。';
+    title.textContent = '還不用換，這台還很能打';
+    body.textContent = `${m.name} 出廠 ${ageText(m.months)}，${BATT_NOTE[batt]}。現在換機沒有任何痛點被解決，反而在最貴的時間點買入。`;
+    pick.innerHTML = `👉 省錢做法：${batt === '85' || batt === '80' || batt === '60' ? '先換原廠電池（HK$500 上下），體感提升比換新機更划算' : '把預算留給記憶體／容量，而不是更貴的機型'}${reserve}`;
   }
 });
 </script>
