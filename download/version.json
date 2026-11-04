@@ -5,9 +5,12 @@
     "換機指南與二手殘值計算器擴充為歷代 105 款機型（2018–2026，含停售機型）",
     "換機指南：機型改為分產品線完整下拉，第二題改問電池健康度，Watch／AirPods／Vision 也有建議",
     "二手殘值計算器：依真實機齡折舊，支援舊機估價與一鍵帶入",
-    "桌面版視窗標題修正為「選機顧問」"
+    "桌面版視窗標題修正為「選機顧問」",
+    "macOS 新增 Apple Silicon（arm64）原生版，Intel 版同時提供"
   ],
   "files": {
+    "mac-arm64-dmg": "Advisor-1.2.3-mac-arm64.dmg",
+    "mac-arm64-zip": "Advisor-1.2.3-mac-arm64.zip",
     "mac-dmg": "Advisor-1.2.3-mac-x64.dmg",
     "mac-zip": "Advisor-1.2.3-mac-x64.zip",
     "win-zip": "Advisor-1.2.3-win-x64.zip",

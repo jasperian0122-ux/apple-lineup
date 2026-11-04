@@ -97,6 +97,7 @@
         <li>二手殘值計算器：舊機依<b>真實機齡</b>折舊（不再假設都是新機），8 年以上仍有殘值地板；下方「換這台要補多少」只列現行販售機型</li>
         <li>換機指南的結果可直接跳到<b>二手殘值計算器</b>並自動選好機型</li>
         <li>桌面版視窗標題修正為「選機顧問」</li>
+        <li><b>macOS 新增 Apple Silicon 原生版</b>（arm64，不再經 Rosetta），Intel 版同時提供</li>
       </ul>
     </div>
   </div>
@@ -107,7 +108,7 @@
   <div class="wrap">
     <p class="kicker reveal">電腦版</p>
     <h2 class="reveal">macOS 與 Windows</h2>
-    <p class="muted reveal" style="margin-bottom:24px">點一下即開始下載。檔案較大（約 115 MB），建議用 Wi-Fi。</p>
+    <p class="muted reveal" style="margin-bottom:24px">點一下即開始下載。檔案較大（108–115 MB），建議用 Wi-Fi。</p>
 
     <div class="grid g2">
       <div class="card dl-card reveal">
@@ -119,12 +120,12 @@
           </div>
         </div>
         <p style="font-size:14.5px;color:var(--ink-2);margin:0">
-          拖進「應用程式」即可用。Apple 晶片（M1 以上）與 Intel 機型皆可執行。
+          拖進「應用程式」即可用。<b>Apple Silicon（M1 以上）</b>請下載 arm64 原生版；<b>Intel</b> 機型下載 x64 版。
         </p>
-        <div class="meta">macOS 11 Big Sur 或更新版 · 115 MB · 未簽章</div>
-        <a class="btn" href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-mac-x64.dmg" download>下載 macOS 版（.dmg）</a>
-        <div class="alt">或 <a href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-mac-x64.zip" download>下載 zip 壓縮版</a>（102 MB，解壓即用）</div>
-        <div class="hash" data-hash="cb746bd249deedae8856e03f7f73c7e0f209ec18bcc48d80b709f0e4f332d064" title="點擊複製">SHA-256 cb746bd2…d064</div>
+        <div class="meta">macOS 11 Big Sur 或更新版 · arm64 108 MB／x64 115 MB · 未簽章（首次開啟需右鍵「打開」）</div>
+        <a class="btn" href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-mac-arm64.dmg" download>下載 macOS 版 · Apple Silicon（.dmg）</a>
+        <div class="alt">Intel 機型：<a href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-mac-x64.dmg" download>下載 x64 .dmg</a> ｜ zip：<a href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-mac-arm64.zip" download>arm64</a> / <a href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-mac-x64.zip" download>x64</a></div>
+        <div class="hash" data-hash="3389cf5b30170ca4cd4cf7b0b4658b98593d452b6d1835a3fa5bc5df2473713a" title="點擊複製">SHA-256 3389cf5b…713a（arm64）</div>
       </div>
 
       <div class="card dl-card reveal">
@@ -136,12 +137,12 @@
           </div>
         </div>
         <p style="font-size:14.5px;color:var(--ink-2);margin:0">
-          解壓到任何資料夾，雙擊 <code class="k">選購顧問.exe</code> 就能開，不寫登錄檔。
+          解壓到任何資料夾，雙擊 <code class="k">選機顧問.exe</code> 就能開，不寫登錄檔。
         </p>
         <div class="meta">Windows 10 / 11（64 位元）· 111 MB · 免安裝</div>
         <a class="btn dark" href="https://github.com/jasperian0122-ux/apple-lineup/releases/download/v1.2.3/Advisor-1.2.3-win-x64.zip" download>下載 Windows 版（.zip）</a>
-        <div class="alt">解壓後執行 <code class="k">選購顧問.exe</code></div>
-        <div class="hash" data-hash="81e60ed49cbe0733bf8ebf0dc785d6362e3b0f330a8140ff46aa99058c85f0c7" title="點擊複製">SHA-256 81e60ed4…f0c7</div>
+        <div class="alt">解壓後執行 <code class="k">選機顧問.exe</code></div>
+        <div class="hash" data-hash="ee10f267dd2e74aab9942442e4f9f0ba76695f0e45d58fd70ef28d5c1fccd596" title="點擊複製">SHA-256 ee10f267…d596</div>
       </div>
     </div>
   </div>
@@ -326,7 +327,7 @@
         <h3>Windows</h3>
         <ol class="steps" style="padding:0;margin:14px 0 0">
           <li>下載 <code class="k">.zip</code>，右鍵 → <b>解壓縮全部</b>（不要直接在壓縮檔裡雙擊）。</li>
-          <li>進入解壓後的資料夾，雙擊 <code class="k">選購顧問.exe</code>。</li>
+          <li>進入解壓後的資料夾，雙擊 <code class="k">選機顧問.exe</code>。</li>
           <li>出現藍色 SmartScreen 視窗時，點 <b>「更多資訊」→「仍要執行」</b>。<br><span class="muted">只需一次；之後可把 exe 傳送到桌面當捷徑。</span></li>
         </ol>
       </div>
