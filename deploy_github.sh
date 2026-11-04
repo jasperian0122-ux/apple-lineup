@@ -35,7 +35,7 @@ echo "==> 2/4 建立 Release $TAG"
 REL_ID=$(curl -sS "${AUTH[@]}" "$API/releases/tags/$TAG" | python3 -c "import json,sys;print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
 if [ -z "$REL_ID" ]; then
   REL_ID=$(curl -sS "${AUTH[@]}" -X POST "$API/releases" \
-    -d "{\"tag_name\":\"$TAG\",\"name\":\"Apple Hub $TAG\",\"body\":\"十四站靜態站群。macOS / Windows 安裝包（單檔超過 GitHub 100 MB 限制，改由 Release 提供）；ipa、apk 直接隨 Pages 部署。\",\"draft\":false,\"prerelease\":false}" \
+    -d "{\"tag_name\":\"$TAG\",\"name\":\"Apple 選購顧問 $TAG\",\"body\":\"Apple 選購顧問站群。macOS / Windows 安裝包（單檔超過 GitHub 100 MB 限制，改由 Release 提供）；ipa、apk 直接隨 Pages 部署。\",\"draft\":false,\"prerelease\":false}" \
     | python3 -c "import json,sys;print(json.load(sys.stdin)['id'])")
   echo "    新 Release ID: $REL_ID"
 else

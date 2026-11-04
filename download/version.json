@@ -1,17 +1,17 @@
 {
-  "version": "1.1.0",
-  "date": "2026-11-03",
+  "version": "1.1.1",
+  "date": "2026-11-04",
   "notes": [
-    "新增 3 個網站：二手殘值計算器、相容性對照表、分期與教育價計算器",
-    "幣別切換更快：記住上次選擇，切換不再跳回首頁",
-    "桌面版新增幣別快捷鍵與本更新檢查功能"
+    "全新「選機問答」：回答幾個問題，直接推薦最適合的機型，附理由與完整規格",
+    "品牌更名為「Apple 選購顧問」，移除與 Apple 無關的工具，內容更專注",
+    "規格資料更新：28 款機型四幣別價格"
   ],
   "files": {
-    "mac-dmg": "Apple-Hub-1.1.0-mac-x64.dmg",
-    "mac-zip": "Apple-Hub-1.1.0-mac-x64.zip",
-    "win-zip": "Apple-Hub-1.1.0-win-x64.zip",
-    "android": "Apple-Hub-1.1.0-android.apk",
-    "androidtv": "Apple-Hub-1.1.0-androidtv.apk",
-    "ios": "Apple-Hub-1.1.0-ios.ipa"
+    "mac-dmg": "Advisor-1.1.1-mac-x64.dmg",
+    "mac-zip": "Advisor-1.1.1-mac-x64.zip",
+    "win-zip": "Advisor-1.1.1-win-x64.zip",
+    "android": "Advisor-1.1.1-android.apk",
+    "androidtv": "Advisor-1.1.1-androidtv.apk",
+    "ios": "Advisor-1.1.1-ios.ipa"
   }
 }

@@ -1,17 +1,17 @@
 {
-  "name": "Apple Hub｜十四站工作室",
-  "short_name": "Apple Hub",
-  "description": "Apple 2026 全系列資料、訂閱比價、規格對比、記帳、倒數、旅遊攻略等 14 個網站，一個入口。",
+  "name": "Apple 選購顧問｜九個選購工具",
+  "short_name": "選購顧問",
+  "description": "回答幾個問題即推薦最適合的 Apple 機型。另有產品總覽、規格對比、訂閱比價、殘值估算、分期試算等九個工具，離線可用、免登入。",
   "lang": "zh-Hant",
   "dir": "ltr",
-  "start_url": "./index.html?sharecode=BA7H62QNZZ",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
   "background_color": "#f5f5f7",
   "theme_color": "#0071e3",
-  "categories": ["productivity", "utilities", "shopping"],
+  "categories": ["shopping", "productivity", "utilities"],
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
@@ -34,12 +34,12 @@
   ],
   "shortcuts": [
     {
-      "name": "Apple 產品站",
-      "url": "./apple-lineup/"
+      "name": "選機問答",
+      "url": "./advisor/"
     },
     {
-      "name": "訂閱比價",
-      "url": "./subs-compare/"
+      "name": "Apple 產品總覽",
+      "url": "./apple-lineup/"
     },
     {
       "name": "下載桌面版",
