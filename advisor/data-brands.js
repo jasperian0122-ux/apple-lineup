@@ -10,12 +10,16 @@
   var D = window.ADVISOR;
 
   D.brands = [
-    { id: 'all',     name: '不限品牌' },
-    { id: 'apple',   name: 'Apple' },
-    { id: 'samsung', name: '三星' },
-    { id: 'xiaomi',  name: '小米' },
-    { id: 'google',  name: 'Google' },
-    { id: 'oneplus', name: 'OnePlus' }
+    { id: 'all',       name: '不限品牌' },
+    { id: 'apple',     name: 'Apple' },
+    { id: 'samsung',   name: '三星' },
+    { id: 'xiaomi',    name: '小米' },
+    { id: 'google',    name: 'Google' },
+    { id: 'oneplus',   name: 'OnePlus' },
+    { id: 'asus',      name: '華碩' },
+    { id: 'hp',        name: 'HP' },
+    { id: 'acer',      name: '宏碁' },
+    { id: 'microsoft', name: '微軟' }
   ];
 
   /* Apple 機型補上品牌欄位 */
@@ -280,7 +284,84 @@
       priceHK:999, priceUS:null, tags:['anc','budget','comfort'],
       best:'千元要最強降噪',
       why:'千元有 50dB 降噪與 Dynaudio 調音，續航 43 小時，性價比在耳機裡很突出。',
-      caveat:'空間音訊與頭部追蹤只支援 OnePlus 手機。' }
+      caveat:'空間音訊與頭部追蹤只支援 OnePlus 手機。' },
+
+    /* ================= 筆電：三星 ================= */
+    { id:'ss-book6p16', cat:'mac', brand:'samsung', brandName:'三星', name:'Galaxy Book6 Pro 16″', sub:'1.59kg · 30 小時續航',
+      chip:'Intel Core Ultra X7（Series 3）', gpu:'Intel Arc（Xe3）', ram:'32GB', storage:'1TB（可擴充）',
+      screen:'16 吋 Dynamic AMOLED 2X 觸控・30–120Hz', battery:'78.07Wh・影片最長 30 小時', weight:'1.59 kg',
+      priceHK:21880, priceUS:null, tags:['creative','pro','bigscreen','portable','office'],
+      best:'要 OLED 大螢幕的 Windows 專業機',
+      why:'16 吋 AMOLED 觸控加 Core Ultra X7、32GB／1TB，續航 30 小時——Windows 陣營裡螢幕與續航最接近 MacBook Pro 的一台。',
+      caveat:'HK$21,880 已接近 14 吋 MacBook Pro；沒有獨顯，3D 與遊戲仍靠內顯。' },
+
+    { id:'ss-book6p14', cat:'mac', brand:'samsung', brandName:'三星', name:'Galaxy Book6 Pro 14″', sub:'1.24kg · 同款 OLED',
+      chip:'Intel Core Ultra 7（Series 3）', gpu:'Intel Arc', ram:'32GB', storage:'1TB（可擴充）',
+      screen:'14 吋 Dynamic AMOLED 2X 觸控・30–120Hz', battery:'67.18Wh・影片最長 30 小時', weight:'1.24 kg',
+      priceHK:20280, priceUS:null, tags:['office','portable','creative','dev'],
+      best:'每天帶出門的 Windows 主力',
+      why:'跟 16 吋同規格、1.24kg，通勤背一整天不累；Multi Control 可以直接用它的鍵盤操作 Galaxy 手機。',
+      caveat:'與 16 吋只差 1,600 元，要大螢幕就直接上 16 吋；記憶體焊死。' },
+
+    { id:'ss-book6-14', cat:'mac', brand:'samsung', brandName:'三星', name:'Galaxy Book6 14″', sub:'一萬內 Copilot+',
+      chip:'Intel Core Ultra 5（Series 3）', gpu:null, ram:'16GB', storage:'512GB',
+      screen:'14 吋（面板規格依官網）', battery:null, weight:null,
+      priceHK:9980, priceUS:null, tags:['budget','student','office','portable'],
+      best:'一萬內、要三星生態',
+      why:'HK$9,980 就有 Core Ultra 5 與完整 Copilot+ 功能，配 Galaxy 手機的跨裝置操作最順——入門 Windows 機裡少見的整合度。',
+      caveat:'螢幕非 OLED、16GB 記憶體不可升級；適合文書，不適合剪片。' },
+
+    /* ================= 筆電：HP ================= */
+    { id:'hp-ob5-16', cat:'mac', brand:'hp', brandName:'HP', name:'OmniBook 5 16″ OLED', sub:'16 吋 OLED 觸控',
+      chip:'Intel Core Ultra 5', gpu:'Intel Graphics', ram:'16GB LPDDR5x', storage:'1TB',
+      screen:'16 吋 WUXGA OLED 觸控（95% DCI-P3）', battery:null, weight:null,
+      priceHK:12699, priceUS:null, tags:['office','student','bigscreen','media','value'],
+      best:'一萬三內要大螢幕 OLED',
+      why:'16 吋 OLED 觸控加 1TB，HK$12,699（原價 15,999）——同價位幾乎找不到這種大尺寸 OLED。',
+      caveat:'官方未標重量與續航，16 吋機身不適合天天通勤；內顯跑不動重度 3D。' },
+
+    { id:'hp-ob5-flip14', cat:'mac', brand:'hp', brandName:'HP', name:'OmniBook 5 Flip 14″', sub:'360° 翻轉二合一',
+      chip:'Intel Core Ultra 5', gpu:'Intel Graphics', ram:'16GB LPDDR5x', storage:'512GB',
+      screen:'14 吋 WUXGA 觸控・可翻轉', battery:null, weight:null,
+      priceHK:10999, priceUS:null, tags:['student','office','portable','study'],
+      best:'要手寫筆記的二合一',
+      why:'螢幕可翻 360 度，上課記筆記、開會畫流程圖一台搞定，HK$10,999 比 Surface 便宜一截。',
+      caveat:'觸控筆需另購；翻轉機構讓機身比同尺寸筆電厚一些。' },
+
+    { id:'hp-ob3-16', cat:'mac', brand:'hp', brandName:'HP', name:'OmniBook 3 16″', sub:'五千頭大螢幕',
+      chip:'AMD Ryzen 3 7320U', gpu:'AMD Radeon 內顯', ram:'8GB LPDDR5', storage:'512GB',
+      screen:'16 吋 16:10 WUXGA IPS（300 nits）', battery:null, weight:null,
+      priceHK:5999, priceUS:null, tags:['budget','student','office','bigscreen'],
+      best:'五千頭、只做文書網課',
+      why:'HK$5,999 就有 16 吋大螢幕與完整數字鍵盤，文書、網課、追劇都夠——預算最緊時的安全選擇。',
+      caveat:'Ryzen 3 加 8GB 記憶體，開十多個分頁就開始卡；不適合剪片或遊戲。' },
+
+    /* ================= 筆電：宏碁 ================= */
+    { id:'ac-sg14', cat:'mac', brand:'acer', brandName:'宏碁', name:'Swift Go 14（2026）', sub:'1.12kg · 120Hz OLED',
+      chip:'Intel Core Ultra 5 338H', gpu:'Intel Arc B370', ram:'16GB', storage:'1TB',
+      screen:'14 吋 1800p OLED 120Hz', battery:'71Wh', weight:'1.12 kg',
+      priceHK:15489, priceUS:null, tags:['creative','dev','portable','office','value'],
+      best:'要輕、要 OLED、又要效能',
+      why:'1.12kg 機身塞進 71Wh 電池與 120Hz OLED，Arc B370 內顯比同級快近一倍——剪片、寫程式都撐得住。',
+      caveat:'HK$15,489 起，比 Zenbook 14 貴一截；香港目前只先賣高階配置。' },
+
+    /* ================= 筆電：華碩 ================= */
+    { id:'as-zen14', cat:'mac', brand:'asus', brandName:'華碩', name:'Zenbook 14 OLED（UX3405CA）', sub:'3K OLED 觸控 · 1.2kg',
+      chip:'Intel Core Ultra 7 255H', gpu:'Intel Arc', ram:'16GB LPDDR5X（板載）', storage:'1TB',
+      screen:'14 吋 3K OLED 120Hz 觸控（500 nits）', battery:null, weight:'約 1.2 kg',
+      priceHK:10998, priceUS:null, tags:['creative','office','portable','value'],
+      best:'一萬一要好螢幕',
+      why:'3K OLED 觸控加 Core Ultra 7、1TB，促銷價 HK$10,998（參考價 16,998）——這價位的螢幕規格幾乎沒有對手。',
+      caveat:'16GB 記憶體板載且上限就是 16GB；促銷價隨通路變動，買前先確認。' },
+
+    /* ================= 筆電：微軟 ================= */
+    { id:'ms-sl8', cat:'mac', brand:'microsoft', brandName:'微軟', name:'Surface Laptop 8（13.8″）', sub:'1.34kg · 3:2 觸控',
+      chip:'Snapdragon X2 Plus（10 核）', gpu:'Qualcomm Adreno', ram:'16GB', storage:'512GB（可換 SSD）',
+      screen:'13.8 吋 2304×1536 觸控 120Hz', battery:'影片最長 20 小時', weight:'1.34 kg',
+      priceHK:null, priceUS:1599, tags:['office','portable','student','premium'],
+      best:'開會、文書為主的通勤機',
+      why:'3:2 螢幕看文件與長文最舒服，鏡頭麥克風是同級最好，1.34kg 加 20 小時續航——天天開視訊會議的人最有感。',
+      caveat:'香港未標港幣價，以美國官價 US$1,599 換算；Arm 版 Windows 少數舊軟件與防作弊遊戲不支援。' }
   ];
 
   D.models = D.models.concat(extra);

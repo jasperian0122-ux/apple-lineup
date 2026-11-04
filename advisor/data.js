@@ -12,7 +12,7 @@ window.ADVISOR = {
     { id: 'tablet',  name: '平板',    sub: 'Apple・三星・小米・OnePlus',        icon: 'tablet' },
     { id: 'watch',   name: '手錶',    sub: 'Apple・三星・小米・Google・OnePlus', icon: 'watch'  },
     { id: 'earbuds', name: '耳機',    sub: 'Apple・三星・小米・Google・OnePlus', icon: 'buds'   },
-    { id: 'mac',     name: '筆電',    sub: 'Mac（Apple 專區）',                 icon: 'laptop' },
+    { id: 'mac',     name: '筆電・電腦', sub: 'Apple・三星・華碩・HP・微軟・宏碁', icon: 'laptop' },
     { id: 'vision',  name: '空間運算', sub: 'Vision Pro（Apple 專區）',          icon: 'vision' },
     { id: 'home',    name: '電視盒',   sub: 'Apple TV 與 HomePod',              icon: 'tv'     }
   ],
