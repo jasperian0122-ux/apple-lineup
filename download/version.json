@@ -6,9 +6,11 @@
     "換機指南：機型改為分產品線完整下拉，第二題改問電池健康度，Watch／AirPods／Vision 也有建議",
     "二手殘值計算器：依真實機齡折舊，支援舊機估價與一鍵帶入",
     "桌面版視窗標題修正為「選機顧問」",
-    "macOS 新增 Apple Silicon（arm64）原生版，Intel 版同時提供"
+    "macOS 提供通用版（Universal），同一檔案同時支援 Intel 與 Apple Silicon；亦保留單一架構的較小檔案"
   ],
   "files": {
+    "mac-universal-dmg": "Advisor-1.2.3-mac-universal.dmg",
+    "mac-universal-zip": "Advisor-1.2.3-mac-universal.zip",
     "mac-arm64-dmg": "Advisor-1.2.3-mac-arm64.dmg",
     "mac-arm64-zip": "Advisor-1.2.3-mac-arm64.zip",
     "mac-dmg": "Advisor-1.2.3-mac-x64.dmg",
