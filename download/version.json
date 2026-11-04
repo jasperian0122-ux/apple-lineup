@@ -1,17 +1,18 @@
 {
-  "version": "1.1.1",
+  "version": "1.2.0",
   "date": "2026-11-04",
   "notes": [
-    "全新「選機問答」：回答幾個問題，直接推薦最適合的機型，附理由與完整規格",
-    "品牌更名為「Apple 選購顧問」，移除與 Apple 無關的工具，內容更專注",
-    "規格資料更新：28 款機型四幣別價格"
+    "選機問答升級為五品牌：Apple、三星、小米、Google、OnePlus 共 60 款機型",
+    "新增品牌快篩列，可只看某一家；結果卡標示品牌與價格來源",
+    "站名改為「選機顧問」，App 名稱同步更新",
+    "移除 6 個與選購無關的工具，只留 9 個選購相關功能"
   ],
   "files": {
-    "mac-dmg": "Advisor-1.1.1-mac-x64.dmg",
-    "mac-zip": "Advisor-1.1.1-mac-x64.zip",
-    "win-zip": "Advisor-1.1.1-win-x64.zip",
-    "android": "Advisor-1.1.1-android.apk",
-    "androidtv": "Advisor-1.1.1-androidtv.apk",
-    "ios": "Advisor-1.1.1-ios.ipa"
+    "mac-dmg": "Advisor-1.2.0-mac-x64.dmg",
+    "mac-zip": "Advisor-1.2.0-mac-x64.zip",
+    "win-zip": "Advisor-1.2.0-win-x64.zip",
+    "android": "Advisor-1.2.0-android.apk",
+    "androidtv": "Advisor-1.2.0-androidtv.apk",
+    "ios": "Advisor-1.2.0-ios.ipa"
   }
 }
